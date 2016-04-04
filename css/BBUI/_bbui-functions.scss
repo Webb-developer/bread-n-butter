@@ -1,0 +1,132 @@
+/*------------------------------------*\
+    #MIXINS
+\*------------------------------------*/
+
+
+// This mixin is for responsive font sizing
+// Paramaters should be a font size listed in $font-size map
+
+// Param 1 is mobile the font-size 
+// Param 2 is desktop the font-size
+
+// Not meant to be used for all font-sizing, 
+// but for headers that dont adapt too well to REM sizing
+
+@mixin fs($mobileSize, $desktopSize){
+    font-size: map-get($font-size, #{$mobileSize});
+
+    @media #{map-get($mediaQuery, "s")}{
+        font-size: map-get($font-size, #{$desktopSize});
+    }
+}
+
+
+
+
+
+/*------------------------------------*\
+    #FUNCTIONS
+\*------------------------------------*/
+
+
+
+@mixin createClassesFromMap($property, $className, $map){
+
+    @each $key, $value in $map{
+
+        .#{$className} {
+            
+            &--#{$key}{
+                #{$property}: $value !important;
+            }
+        }
+
+    }
+}
+
+
+
+@mixin createMQClassesFromMap($property, $className, $map){
+
+    @each $key, $value in $map{
+
+        @each $MQKey, $MQValue in $mediaQuery{
+            
+            @media #{$MQValue}{
+                
+                .#{$className}--#{$key}-on-#{$MQKey}{
+                    #{$property}: $value !important;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+@mixin createNumberClasses($property, $className, $iterations){
+    
+    @for $i from 1 through $iterations{
+        
+        .#{$className}--#{$i}{
+            #{$property}: ($i * 100% / $iterations) !important;
+        }
+    }
+}
+
+
+
+@mixin createMQNumberClasses($property, $className, $iterations){
+    
+    @for $i from 1 through $iterations{
+
+        @each $MQKey, $MQValue in $mediaQuery{
+            
+            @media #{$MQValue}{
+
+                .#{$className}--#{$i}-on-#{$MQKey}{
+                    #{$property}: ($i * 100% / $iterations) !important;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@mixin createIncrementalNumberClasses($property, $className, $increment, $max){
+
+    @for $i from 1 through $max{
+
+        $val: ($i * $increment);
+
+        .#{$className}--#{$val}{
+            #{$property}: #{$val}px !important;
+        }
+    }
+
+}
+
+
+@mixin createMQIncrementalNumberClasses($property, $className, $increment, $max){
+
+    @for $i from 1 through $max{
+
+        $val: ($i * $increment);
+        
+        @each $MQKey, $MQValue in $mediaQuery{
+            
+            @media #{$MQValue}{
+
+                .#{$className}--#{$val}-on-#{$MQKey}{
+                    #{$property}: #{$val}px !important;
+                }
+            }
+        }
+    }
+
+}
+

@@ -1,0 +1,195 @@
+/*------------------------------------*\
+    #TABLES
+\*------------------------------------*/
+
+
+
+.center-table{
+    display: table;
+    table-layout: fixed;
+    height: 100%;
+    width:  100%;
+}
+
+
+.center-table-cell{
+    display: table-cell;
+    vertical-align: middle;
+    height: 100%;
+}
+
+
+
+
+/*------------------------------------*\
+    #DISPLAYS
+\*------------------------------------*/
+
+
+
+.display-center-flex{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+}
+
+
+
+
+
+/*------------------------------------*\
+    #MISC-SIZING
+\*------------------------------------*/
+
+
+
+.page-content-max-width{
+    max-width: $page-content-max-width;
+    margin-left:  auto;
+    margin-right: auto;
+}
+
+
+
+
+
+/*------------------------------------*\
+    #MISC-SPACING
+\*------------------------------------*/
+
+
+
+.mlr--auto{
+    margin-left:  auto;
+    margin-right: auto;
+}
+
+
+
+
+
+/*------------------------------------*\
+    #TEXT
+\*------------------------------------*/
+
+
+
+.clip-text{
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
+}
+
+
+.clip-text--ellipsis{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+
+
+
+
+/*------------------------------------*\
+    #VISIBILITY
+\*------------------------------------*/
+
+
+
+.invisible-transparent{
+    visibility: hidden;
+    opacity: 0;
+}
+
+
+.visible-opaque{
+    visibility: visible;
+    opacity: 1;
+}
+
+
+
+
+
+/*------------------------------------*\
+    #RULES & #BORDERS
+\*------------------------------------*/
+
+
+
+.hr{
+    border: none;
+    height: map-get($line-width, "s");
+    display: block;
+    background-color: map-get($color, "light-gray");
+}
+
+
+.hr--medium{
+    height: map-get($line-width, "m");
+}
+
+
+.hr--thick{
+    height: map-get($line-width, "l");
+}
+
+
+
+
+/*------------------------------------*\
+    #IMAGES
+\*------------------------------------*/
+
+
+
+.bg-image--cover{
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+
+.bg-image--contain{
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+/*------------------------------------*\
+    #STATES
+\*------------------------------------*/
+
+
+
+// This class does not prevent functionality
+// Disable functionality using javascript
+
+.disabled{
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+
+
+
+
+/*------------------------------------*\
+    #MISC
+\*------------------------------------*/
+
+
+
+// Anything that has toggle functionality
+// should have a pointer cursor.
+
+// Data-toggle attributes are used in _bbjs-utilities.js
+
+[data-toggle]{
+    cursor: pointer;
+}
+

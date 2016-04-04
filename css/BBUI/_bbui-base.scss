@@ -1,0 +1,490 @@
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+
+/*------------------------------------*\
+    #NORMALIZE
+\*------------------------------------*/
+
+
+
+/* HTML5 display definitions
+   ========================================================================== */
+
+
+
+/**
+* Correct `block` display not defined for any HTML5 element in IE 8/9.
+* Correct `block` display not defined for `details` or `summary` in IE 10/11
+* and Firefox.
+* Correct `block` display not defined for `main` in IE 11.
+*/
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+menu,
+nav,
+section,
+summary {
+    display: block;
+}
+
+
+
+/**
+* 1. Correct `inline-block` display not defined in IE 8/9.
+* 2. Normalize vertical alignment of `progress` in Chrome, Firefox, and Opera.
+*/
+
+audio,
+canvas,
+progress,
+video {
+    display: inline-block; /* 1 */
+    vertical-align: baseline; /* 2 */
+}
+
+
+
+/**
+* Prevent modern browsers from displaying `audio` without controls.
+* Remove excess height in iOS 5 devices.
+*/
+
+audio:not([controls]) {
+    display: none;
+    height: 0;
+}
+
+
+
+/**
+* Address `[hidden]` styling not present in IE 8/9/10.
+* Hide the `template` element in IE 8/9/11, Safari, and Firefox < 22.
+*/
+
+[hidden],
+template {
+    display: none;
+}
+
+
+
+
+
+/* Links
+   ========================================================================== */
+
+
+
+/**
+* Remove the gray background color from active links in IE 10.
+*/
+
+a {
+    background-color: transparent;
+}
+
+
+/**
+* Improve readability when focused and also mouse hovered in all browsers.
+*/
+
+a:active,
+a:hover {
+    outline: 0;
+}
+
+
+
+
+
+/* Text-level semantics
+   ========================================================================== */
+
+
+
+/**
+* Prevent `sub` and `sup` affecting `line-height` in all browsers.
+*/
+
+sub,
+sup {
+    font-size: 75%;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+}
+
+
+sup {
+    top: -0.5em;
+}
+
+
+sub {
+    bottom: -0.25em;
+}
+
+
+
+
+
+/* Embedded content
+   ========================================================================== */
+
+
+
+/**
+* Correct overflow not hidden in IE 9/10/11.
+*/
+
+svg:not(:root) {
+    overflow: hidden;
+}
+
+
+
+
+
+/* Grouping content
+   ========================================================================== */
+
+
+
+/**
+* Contain overflow in all browsers.
+*/
+
+pre {
+    overflow: auto;
+}
+
+
+
+
+
+/* Forms
+   ========================================================================== */
+
+
+
+/**
+ * Address `overflow` set to `hidden` in IE 8/9/10/11.
+ */
+
+button {
+    overflow: visible;
+}
+
+
+/**
+* Address inconsistent `text-transform` inheritance for `button` and `select`.
+* All other form control elements do not inherit `text-transform` values.
+* Correct `button` style inheritance in Firefox, IE 8/9/10/11, and Opera.
+* Correct `select` style inheritance in Firefox.
+*/
+
+button,
+select {
+    text-transform: none;
+}
+
+
+/**
+ * Remove inner padding and border in Firefox 4+.
+ */
+
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border:  0;
+    padding: 0;
+}
+
+
+/**
+* Fix the cursor style for Chrome's increment/decrement buttons. For certain
+* `font-size` values of the `input`, it causes the cursor style of the
+* decrement button to change from `default` to `text`.
+*/
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    height: auto;
+}
+
+
+/**
+* Remove inner padding and search cancel button in Safari and Chrome on OS X.
+* Safari (but not Chrome) clips the cancel button when the search input has
+* padding (and `textfield` appearance).
+*/
+
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+}
+
+
+
+/**
+* 1. Correct `color` not being inherited in IE 8/9/10/11.
+* 2. Remove padding so people aren't caught out if they zero out fieldsets.
+*/
+
+legend {
+    border:  0; /* 1 */
+    padding: 0; /* 2 */
+}
+
+
+
+/**
+* Remove default vertical scrollbar in IE 8/9/10/11.
+*/
+
+textarea {
+    overflow: auto;
+}
+
+
+
+
+
+/* Tables
+   ========================================================================== */
+
+
+
+/**
+ * Remove most spacing between table cells.
+ */
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+
+
+
+
+/*------------------------------------*\
+    #END-NORMALIZE
+\*------------------------------------*/
+
+
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+    vertical-align: middle;
+}
+
+
+
+iframe{
+    border: 0;
+}
+
+
+
+*{
+    box-sizing: border-box;
+    margin:  0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+
+    &:before,
+    &:after{
+        box-sizing: border-box;
+    }
+}
+
+
+
+input,
+button,
+select,
+textarea{
+    box-shadow: none;
+    outline:    none;
+    border:     none;
+    appearance: none;
+    font:           inherit;
+    letter-spacing: inherit;
+    color:          inherit;
+    background: #fff;
+    border-radius: 0;
+}
+
+
+
+.touchevents:not(.desktop){
+
+    input:not([type='submit']),
+    select,
+    textarea{
+        font-size: 16px; // Prevents zoom on iOS input focus
+    }
+}
+
+
+
+select{
+    appearance: menulist;
+}
+
+
+select::-ms-expand {
+    display: none;
+}
+
+
+
+textarea{
+    resize: vertical;
+}
+
+
+
+ul,
+ol{
+    list-style-type: none;
+}
+
+
+
+img,
+svg,
+video{
+    max-width: 100%;
+    height: auto;
+    border: none;
+}
+
+
+
+a, .a{
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover{
+        opacity: 0.6;
+    }
+}
+
+
+a.plain{
+    text-decoration: none;
+
+    &:hover{
+        opacity: inherit;
+    }
+}
+
+
+
+strong, .strong{
+    font-weight: normal;
+}
+
+
+
+// Use font family bold class for true bold
+// for font face imports
+
+.b, b{
+    font-weight: 700;
+}
+
+
+
+// Normalize all headers
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6{
+    font-weight: normal;
+    font-size: inherit;
+}
+
+
+// We set h1-h3 to have bigger font sizes
+// Lets make the line height bigger too :)
+
+h1, h2, h3,
+.h1, .h2, .h3{
+    line-height: map-get($line-height, "s");
+}
+
+
+.h1, h1{
+    @include fs(l, l2);
+    font-family: map-get($font-family, "bold");
+}
+
+
+.h2, h2{
+    @include fs(m, m2);
+    font-family: map-get($font-family, "bold");
+}
+
+
+.h3, h3{
+    @include fs(m, m2);
+}
+
+
+
+q{
+    quotes: "“" "”" "‘" "’";
+}
+
+
+
+// Use font family italic class for true italic
+// for font face imports
+
+i, .i,
+em, .em{
+    font-style: italic;
+}
+
+
+
+
+html{
+    overflow-x: hidden;
+    -ms-text-size-adjust:     100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    font-size: 93.75%;
+    line-height: map-get($line-height, "m");
+
+    @media #{map-get($mediaQuery, "s")}{
+        font-size: 100%;
+    }
+}
+
+
+
+body{
+    word-wrap: break-word;
+    font-family: map-get($font-family, "base");
+    font-size: map-get($font-size, "base");
+    color: map-get($color, "black");
+
+    // to prevent scroll when a drawer is open
+    overflow-x: hidden;
+}

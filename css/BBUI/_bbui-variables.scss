@@ -1,0 +1,409 @@
+/*------------------------------------*\
+    #TYPE
+\*------------------------------------*/
+
+
+
+// Font Faces
+
+$font-family: (
+
+    "base":           unquote("Arial, sans-serif"),
+
+
+    "serif":          unquote(""),
+
+    "serif-alt":      unquote(""),
+
+
+    "sans-serif":     unquote(""),
+
+    "sans-serif-alt": unquote(""),
+
+
+    "medium":         unquote(""),
+
+    "medium-alt":     unquote(""),
+
+
+    "bold":           unquote(""),
+
+    "bold-alt":       unquote(""),
+
+
+    "italic":         unquote(""),
+
+    "italic-alt":     unquote(""),
+
+
+    "mono":           unquote("Monospace")
+
+);
+
+
+
+// Font Sizes
+
+$font-size: (
+
+    "base": 1rem,
+
+
+    "xs":   0.82rem,
+
+    "s":    0.9rem,
+
+
+    "m":    1.2rem,
+
+
+    "l":    1.7rem,
+
+    "l2":   2rem,
+
+
+    "xl":   2.3rem,
+
+    "xl2":  2.6rem,
+
+
+    "xxl":  3rem,
+
+    "xxl2": 3.3rem
+
+);
+
+
+
+// Other Typography
+
+$letter-spacing: (
+
+    "none": 0,
+
+    "s":    0.03em,
+
+    "m":    0.06em,
+
+    "l":    0.09em,
+
+);
+
+
+
+$line-height: (
+
+    "none": 0,
+
+    "s":    1.1,
+
+    "m":    1.4,
+
+    "l":    1.8,
+
+);
+
+
+
+
+
+/*------------------------------------*\
+    #COLORS
+\*------------------------------------*/
+
+
+
+$color: (
+    
+    "black": #222,
+
+    "light-black": #555,
+
+
+    "white": #fff,
+
+
+    "gray": gray,
+
+    "dark-gray": #999,
+
+    "medium-gray": #c0c0c0,
+
+    "light-gray": #ccc,
+
+    "extra-light-gray": #eaeaea,
+
+
+    "blue": #0d7792,
+
+    "light-blue": #d7e5e8,
+
+
+    "green": #007e00,
+
+    "light-green": #dff0d8,
+
+
+    "red": #c40000,
+
+    "light-red": #f2dede,
+
+
+    "yellow": #ffff3b,
+
+    "light-yellow": #fcf8e3,
+
+);
+
+
+
+
+
+/*------------------------------------*\
+    #SPACING
+\*------------------------------------*/
+
+
+
+$spacing: (
+
+    "none": 0,
+
+    "xs":   0.5em,
+
+    "s":    1em,
+
+    "m":    1.5em,
+
+    "l":    2em,
+
+    "xl":   3em
+
+);
+
+
+
+
+/*------------------------------------*\
+    #MEDIA-QUERIES
+\*------------------------------------*/
+
+
+
+$mediaQuery: (
+    
+    "s":  unquote("(min-width: 600px)"),
+
+    "m":  unquote("(min-width: 1000px)"),
+
+    "l":  unquote("(min-width: 1300px)"),
+
+    "xl": unquote("(min-width: 1500px)")
+
+);
+
+
+
+
+
+/*------------------------------------*\
+    #DISPLAY
+\*------------------------------------*/
+
+
+
+// Used to create media query display classes
+// Included as a trump
+
+$display: (
+    
+    "block": block !important,
+
+    "inline-block": inline-block !important,
+
+    "none": none !important
+
+);
+
+
+
+
+
+/*------------------------------------*\
+    #Z-INDEX
+\*------------------------------------*/
+
+
+
+$zIndex: (
+
+    "negative":      -1,
+
+    "base":          1,
+
+    "header":        10,
+
+    "overlay":       20,
+
+
+    "drawer":        15,
+
+    "drawerOverlay": 13,
+
+
+    "max":           9999
+
+);
+
+
+
+
+/*------------------------------------*\
+    #RULES & BORDERS
+\*------------------------------------*/
+
+
+
+// Used for borders and hrs
+
+$line-width: (
+
+    "none": 0,
+
+    "s":    1px,
+
+    "m":    2px,
+
+    "l":    3px
+
+);
+
+
+
+$border-radius: (
+
+    "none": 0,
+
+    "s":    2px,
+
+    "m":    4px,
+
+    "l":    6px,
+
+    "half": 50%
+
+);
+
+
+
+
+
+/*------------------------------------*\
+    #CSS3
+\*------------------------------------*/
+
+
+
+// All cubic-bezier transitions are easeInOut
+// See: http://easings.net/
+
+$transition-type: (
+
+    "linear": unquote("linear"),
+
+    "sine":   unquote("cubic-bezier(0.445, 0.05, 0.55, 0.95)"),
+
+    "quad":   unquote("cubic-bezier(0.455, 0.03, 0.515, 0.955)"),
+
+    "cubic":  unquote("cubic-bezier(0.645, 0.045, 0.355, 1)"),
+
+    "quart":  unquote("cubic-bezier(0.77, 0, 0.175, 1)"),
+
+    "quint":  unquote("cubic-bezier(0.86, 0, 0.07, 1)"),
+
+    "expo":   unquote("cubic-bezier(1, 0, 0, 1)"),
+
+    "circ":   unquote("cubic-bezier(0.785, 0.135, 0.15, 0.86)"),
+
+    "back":   unquote("cubic-bezier(0.68, -0.55, 0.265, 1.55)")
+    
+);
+
+
+
+$transition-speed: (
+    
+    "base":       0s,
+
+    "extra-slow": 1s,
+
+    "slow":       0.6s,
+
+    "medium":     0.4s,
+
+    "fast":       0.25s,
+
+    "extra-fast": 0.10s
+    
+);
+
+
+
+
+/*------------------------------------*\
+    #DRAWERS
+\*------------------------------------*/
+
+
+
+$drawer: (
+
+    "width": 320px,
+
+    "padding": map-get($spacing, "m"),
+
+    "overlayColor": fade-out(map-get($color, "gray"), 0.5)
+
+);
+
+
+
+
+/*------------------------------------*\
+    #GRIDS
+\*------------------------------------*/
+
+
+
+$grid: (
+    
+    "gutter": 1.2rem,
+
+
+    "1-2-bp": map-get($mediaQuery, "s"),
+
+
+    "1-2-3-bp-1": map-get($mediaQuery, "s"),
+
+    "1-2-3-bp-2": map-get($mediaQuery, "m"),
+
+
+    "2-4-bp": map-get($mediaQuery, "m"),
+
+);
+
+
+
+
+
+/*------------------------------------*\
+    #PAGE-CONTENT
+\*------------------------------------*/
+
+
+
+// A class (.page-content-max-width) will be created based on this value.
+
+$page-content-max-width: 1000px;
+
+
