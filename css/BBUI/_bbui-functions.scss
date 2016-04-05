@@ -34,11 +34,15 @@
 
     @each $key, $value in $map{
 
-        .#{$className} {
+        @if $value != '' {
             
-            &--#{$key}{
-                #{$property}: $value !important;
+            .#{$className} {
+            
+                &--#{$key}{
+                    #{$property}: $value !important;
+                }
             }
+            
         }
 
     }

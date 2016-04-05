@@ -34,15 +34,15 @@
 
     animateIn();
 
-    if(globalSettings.lazyload.enable === true){
+    if(globalSettings.lazyload.enable){
         callLazy(); // Accepts lazyloads options parameter
     }
 
-    if(globalSettings.instafeed.enable === true){
+    if(globalSettings.instafeed.enable){
         callInstafeed(); // Has optional parameters
     }
 
-    if(globalSettings.carousels.enable === true){
+    if(globalSettings.carousels.enable){
         callCarousel();
     }
 

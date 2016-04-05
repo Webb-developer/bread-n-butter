@@ -60,17 +60,17 @@ $(function() {
 
     if(cache.$html.hasClass('no-cssvhunit')){
 
-        var fullHeightSelector = $(".full-vh");
+        var $fullHeightSelector = $(".full-vh");
 
 
         var fallBackVH = debounce(function(){
 
-            fullHeightSelector.height(cache.$window.outerHeight());
+            $fullHeightSelector.height(cache.$window.outerHeight());
 
         }, 150);
 
 
-        if(fullHeightSelector.length > 0){
+        if($fullHeightSelector.length){
 
             fallBackVH();
 
@@ -94,17 +94,17 @@ $(function() {
     'use strict';
 
 
-    var fullHeightSelector = $(".js-full-vh");
+    var $fullHeightSelector = $(".js-full-vh");
 
 
     var fallBackVH = debounce(function(){
 
-        fullHeightSelector.height(cache.$window.outerHeight());
+        $fullHeightSelector.height(cache.$window.outerHeight());
 
-    }, 150);
+    }, 50);
 
 
-    if(fullHeightSelector.length){
+    if($fullHeightSelector.length){
 
         fallBackVH();
 
@@ -352,7 +352,7 @@ $(function() {
 
     $(document).on("click", settings.selector, function(){
 
-        var $self = $(this),
+        var $self   = $(this),
             classes = $self.attr(settings.class).split(" ");
 
 

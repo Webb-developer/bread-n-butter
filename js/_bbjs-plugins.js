@@ -13,7 +13,7 @@
 
     // Fast Click
 
-    if(globalSettings.fastclick === true){
+    if(globalSettings.fastclick){
 
         FastClick.attach(document.body);
         
@@ -22,7 +22,7 @@
 
     // Masonry
 
-    if(globalSettings.masonry === true){
+    if(globalSettings.masonry){
 
         var $masonryContainer = $(".js-masonry");
 
@@ -40,7 +40,7 @@
 
     // Easy Zoom, not on touch screens
 
-    if(touchTest() === true && globalSettings.easyzoom === true){
+    if(touchTest() && globalSettings.easyzoom){
         $('.js-easyzoom').easyZoom();
     }
 
@@ -58,7 +58,8 @@ function callLazy(options){
 
 
     // We want to wait for other images to load before
-    // we start lazy loading.
+    // we start lazy loading. That way if were waiting for images loaded
+    // to show the page, it will show faster.
 
     cache.$main.imagesLoaded(function(){
 
@@ -84,12 +85,12 @@ function callCarousel(){
         slideBy: 1,
         loop: true,
         mouseDrag: true,
-        dots: false,
+        dots: true,
         nav: true,
         lazyLoad: true,
         responsiveRefreshRate: 0,
         navText: globalSettings.carousels.arrows,
-        smartSpeed: 250
+        smartSpeed: 300
     });
 
     return carousel;
@@ -106,7 +107,7 @@ function callInstafeed(callback){
     'use strict';
     
 
-    if($("#instafeed").length > 0){
+    if($("#instafeed").length){
 
         var userFeed = new Instafeed({
             get: 'user',

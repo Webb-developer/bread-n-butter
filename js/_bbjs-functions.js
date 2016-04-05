@@ -458,7 +458,9 @@ var Cookies = (function(document){
     var settings = {
 
         ifSetSelector: ".js-cookie-target", // Add the cookie name to this selector. Optional
+
         hideSelector: ".js-hide-if-cookie", // Hide this if cookie is present selector. Optional
+        
         showSelector: ".js-show-if-cookie"  // Show this if cookie is present selector. Optional
 
     };
@@ -470,15 +472,15 @@ var Cookies = (function(document){
 
             if(cookies.isSet(name) === true){
 
-                if($(settings.ifSetSelector).length > 0){
+                if($(settings.ifSetSelector).length){
                     $(settings.ifSetSelector).addClass('cookie-set  cookie-set--' + name);
                 }
 
-                if($(settings.hideSelector).length > 0){
+                if($(settings.hideSelector).length){
                     $(settings.hideSelector).addClass('hidden');
                 }
 
-                if($(settings.showSelector).length > 0){
+                if($(settings.showSelector).length){
                     $(settings.showSelector).removeClass('hidden');
                 }
 

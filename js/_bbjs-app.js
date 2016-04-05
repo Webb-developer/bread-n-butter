@@ -5,7 +5,7 @@
 // andrew.lpuig@gmail.com
 
 
-// VERSION: 1.2
+// VERSION: 1.3
 
 
 /*
@@ -18,7 +18,7 @@
 *
 * PLUGINS..........................Our vendor related functions and setup.
 *
-* FUNCTIONS........................A list of our custom functions that we will call
+* FUNCTIONS........................A list of our custom useful functions that we will call
 *
 * UTILITIES........................Plug and play code.
 *
@@ -35,8 +35,8 @@
 \*------------------------------------*/
 
 
-
-// Configure your BBJS a bit
+// BBJS is intended for internal use.
+// Basic Configuration
 
 var globalSettings = {
 
@@ -100,14 +100,15 @@ var cache = {
 
 
 // Returns true only on mobile touch not desktop touch
-// Requires touch support in modernizr
+// Requires touch support in modernizr and device.js (Built In)
 
 function touchTest(){
 
     'use strict';
 
-    return cache.$html.hasClass("touchevents") && (cache.$html.hasClass('desktop') || cache.$html.hasClass('no-touchevents'));
+    return cache.$html.hasClass("touchevents") && !cache.$html.hasClass("desktop");
 }
+
 
 
 
@@ -131,6 +132,8 @@ function touchTest(){
 // @codekit-prepend "vendor/lazyload.js";
 
 // @codekit-prepend "vendor/owl-carousel.js";
+
+// @codekit-prepend "vendor/device.js";
 
 
 
