@@ -49,10 +49,6 @@ var globalSettings = {
 
     fastclick: true,
 
-    easyzoom: false,
-
-    masonry: false,
-
     // Owl Carousel
     carousels: {
         enable: true,
@@ -123,11 +119,7 @@ function touchTest(){
 
 // @codekit-prepend "vendor/images-loaded.js";
 
-// @codekit-prepend "vendor/easyzoom-modified.js";
-
 // @codekit-prepend "vendor/instafeed.js";
-
-// @codekit-prepend "vendor/masonry.js";
 
 // @codekit-prepend "vendor/lazyload.js";
 

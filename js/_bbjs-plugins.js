@@ -19,31 +19,6 @@
         
     }
 
-
-    // Masonry
-
-    if(globalSettings.masonry){
-
-        var $masonryContainer = $(".js-masonry");
-
-
-        $masonryContainer.imagesLoaded(function(){
-
-            $masonryContainer.masonry({
-                itemSelector: '.js-masonry__item'
-            });
-
-        });
-
-    }
-
-
-    // Easy Zoom, not on touch screens
-
-    if(touchTest() && globalSettings.easyzoom){
-        $('.js-easyzoom').easyZoom();
-    }
-
 })();
 
 
