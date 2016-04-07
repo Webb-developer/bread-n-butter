@@ -2,24 +2,17 @@
     #DEBOUNCE
 \*------------------------------------*/
 
-
-
-// Returns a function, that, as long as it continues to be invoked, will not
-// be triggered. The function will be called after it stops being called for
-// N milliseconds. If `immediate` is passed, trigger the function on the
-// leading edge, instead of the trailing.
-
-
 // https://davidwalsh.name/javascript-debounce-function
 
+/* Call:
 
-// Call:
-
-// var myFunction = debounce(function(){
+var myFunction = debounce(function(){
     // Do something
-// }, 150);
+}, 150);
 
-// myFunction();
+myFunction();
+
+*/
 
 
 function debounce(func, wait, immediate) {
@@ -57,7 +50,8 @@ function debounce(func, wait, immediate) {
 
 
 // Animate scrollTo position.
-// Speed parameter is optional and defaults to 250
+// @param {number} pos
+// @param {number} speed - is optional and defaults to 250
 
 function animateScroll(pos, speed){
 

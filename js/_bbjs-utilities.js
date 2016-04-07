@@ -1,7 +1,7 @@
 
 
 // Add capitalize method to String prototype
-// Capitalizes every word in a string
+// Capitalizes every word in a string.
 
 String.prototype.capitalize = function(){
 
@@ -25,9 +25,9 @@ String.prototype.capitalize = function(){
 
 
 
-// Smooth anchor scrolling
+// Smooth anchor link scrolling
 
-$(function() {
+(function() {
 
     'use strict';
 
@@ -51,9 +51,10 @@ $(function() {
 
 
 
-// fallback for no CSS VH unit support
+// Fallback for no CSS VH unit support
+// Requires cssvhunit test in Modernizr
 
-(function(){
+(function(window){
 
     'use strict';
 
@@ -63,31 +64,31 @@ $(function() {
         var $fullHeightSelector = $(".full-vh");
 
 
-        var fallBackVH = debounce(function(){
-
-            $fullHeightSelector.height(cache.$window.outerHeight());
-
-        }, 150);
-
-
         if($fullHeightSelector.length){
 
-            fallBackVH();
+            var setVH = debounce(function(){
+
+                $fullHeightSelector.height($(window).outerHeight());
+
+            }, 50);
+
+
+            setVH();
 
             $(window).on("resize", function(){
-                fallBackVH();
+                setVH();
             });
         }
 
     }
 
-})();
+})(window);
 
 
 
 
 
-// js version for CSS VH unit
+// JS version for CSS VH unit
 
 (function(){
 
@@ -97,19 +98,19 @@ $(function() {
     var $fullHeightSelector = $(".js-full-vh");
 
 
-    var fallBackVH = debounce(function(){
-
-        $fullHeightSelector.height(cache.$window.outerHeight());
-
-    }, 50);
-
-
     if($fullHeightSelector.length){
 
-        fallBackVH();
+        var setVH = debounce(function(){
+
+            $fullHeightSelector.height($(window).outerHeight());
+
+        }, 50);
+
+
+        setVH();
 
         $(window).on("resize", function(){
-            fallBackVH();
+            setVH();
         });
     }
 
@@ -232,27 +233,44 @@ $(function() {
     'use strict';
 
 
-    var counter = 0;
+    var counter = {
+        value: 0,
+        increment: 5,
+        max: 80
+    };
 
+
+    // The visual progress bar
     var $progress = $(".load-progress-bar");
 
+
+    // The main page container where we wait for
+    // images to load. Once the images are loaded we determine
+    // that the page has loaded. Alternatively,
+    // you can use $(window).load() to wait for
+    // everything to load.
     var $imgsLoadedContainer = cache.$main;
 
 
     setInterval(function(){
 
-        if((counter += 5) <= 80){
-            $progress.css("width", counter + "%");
+        // Increase the counter by x every 400ms.
+        // When the counter reaches 80 stop and
+        // wait for the images or window to actually load
+        // before setting the progress bar to done.
+        if((counter.value += counter.increment) <= counter.max){
+            $progress.css("width", counter.value + "%");
         }
 
-    }, 400);
+    }, 400); // Increase the counter every x ms here.
 
 
+    // Once the images have loaded set the counter to its target
+    // mark of 80. Then set the width of the progress bar to 100%.
     $imgsLoadedContainer.imagesLoaded(function() {
-        counter = 80;
+        counter.value = counter.max;
         $progress.css("width", "100%").addClass('done');
     });
-
 
 }());
 
@@ -356,7 +374,7 @@ $(function() {
             classes = $self.attr(settings.class).split(" ");
 
 
-        classes.forEach( function(element, index) {
+        classes.forEach(function(element, index) {
 
             if($self.attr("toggle-parent") !== "true"){
                 cache.$html.toggleClass(element.concat("--toggled"));
