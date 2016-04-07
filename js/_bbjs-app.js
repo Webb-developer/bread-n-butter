@@ -28,6 +28,8 @@
 
 
 
+// BBJS is intended for internal use.
+
 
 
 /*------------------------------------*\
@@ -35,9 +37,8 @@
 \*------------------------------------*/
 
 
-// BBJS is intended for internal use.
-// Basic Configuration
 
+// Basic Configuration
 var globalSettings = {
 
     lazyload: {
@@ -67,7 +68,8 @@ var globalSettings = {
 
 
 // Create an object for caching of common variables
-
+// I recommend using these cached variables for setting
+// rather then getting to ensure up to date results.
 var cache = {
 
     $html:   $("html"),
@@ -96,8 +98,8 @@ var cache = {
 
 
 // Returns true only on mobile touch not desktop touch
-// Requires touch support in modernizr and device.js (Built In)
-
+// Requires touch support in Modernizr (Built In) and device sniffing.
+// For device sniffing we use device.js (Built In)
 function touchTest(){
 
     'use strict';
@@ -115,17 +117,30 @@ function touchTest(){
 
 
 
-// @codekit-prepend "vendor/fastclick.js";
+// Optional includes.
 
-// @codekit-prepend "vendor/images-loaded.js";
 
-// @codekit-prepend "vendor/instafeed.js";
+    // @codekit-prepend "vendor/fastclick.js";
 
-// @codekit-prepend "vendor/lazyload.js";
+    // @codekit-prepend "vendor/instafeed.js";
 
-// @codekit-prepend "vendor/owl-carousel.js";
+    // @codekit-prepend "vendor/lazyload.js";
 
-// @codekit-prepend "vendor/device.js";
+    // @codekit-prepend "vendor/owl-carousel.js";
+
+// End optional includes.
+
+
+
+// Required includes.
+
+
+    // @codekit-prepend "vendor/images-loaded.js";
+
+    // @codekit-prepend "vendor/device.js";
+
+
+// End required includes.
 
 
 

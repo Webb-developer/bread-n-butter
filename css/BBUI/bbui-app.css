@@ -2270,7 +2270,7 @@ body {
 
 /*------------------------------------*    #HEIGHTS
 \*------------------------------------*/
-.height-vh--full {
+.vh--full {
   height: 100vh !important; }
 
 .height--auto {
@@ -2399,8 +2399,8 @@ body {
 
 /*------------------------------------*    #WIDTHS
 \*------------------------------------*/
-.width-vh--full {
-  width: 100vh !important; }
+.vw--full {
+  width: 100vw !important; }
 
 .width--auto {
   width: auto; }

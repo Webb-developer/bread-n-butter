@@ -1,20 +1,22 @@
 
 
-// Add capitalize method to String prototype
-// Capitalizes every word in a string.
+// This function adds a capitalize method to the String prototype
+// It capitalizes every word in a string.
+
+// "string".capitalize()
 
 String.prototype.capitalize = function(){
 
     'use strict';
     
 
-    var arrayString = this.split(" ");
+    var array  = this.split(" ");
 
     var string = [];
 
 
-    for (var i = 0, l = arrayString.length; i < l; i++) {
-        string.push(arrayString[i].charAt(0).toUpperCase() + arrayString[i].substring(1));
+    for (var i = 0, l = array.length; i < l; i++) {
+        string.push(array[i].charAt(0).toUpperCase() + array[i].substring(1));
     }
 
     return string.join(" ");
@@ -25,13 +27,14 @@ String.prototype.capitalize = function(){
 
 
 
-// Smooth anchor link scrolling
+// Smooth anchor link scrolling.
 
-(function() {
+(function(){
 
     'use strict';
 
 
+    // a href contains #something not just #
     $('a[href*="#"]:not([href="#"])').on("click", function(e) {
 
         e.preventDefault();
@@ -45,13 +48,14 @@ String.prototype.capitalize = function(){
         animateScroll(scroll);
 
     });
-});
+
+})();
 
 
 
 
 
-// Fallback for no CSS VH unit support
+// Fallback for no CSS vh unit support
 // Requires cssvhunit test in Modernizr
 
 (function(window){
@@ -61,22 +65,22 @@ String.prototype.capitalize = function(){
 
     if(cache.$html.hasClass('no-cssvhunit')){
 
-        var $fullHeightSelector = $(".full-vh");
+        var $fullHeight = $(".full-vh");
 
 
-        if($fullHeightSelector.length){
+        if($fullHeight.length){
 
-            var setVH = debounce(function(){
+            var setVh = debounce(function(){
 
-                $fullHeightSelector.height($(window).outerHeight());
+                $fullHeight.height($(window).outerHeight());
 
             }, 50);
 
 
-            setVH();
+            setVh();
 
             $(window).on("resize", function(){
-                setVH();
+                setVh();
             });
         }
 
@@ -88,29 +92,29 @@ String.prototype.capitalize = function(){
 
 
 
-// JS version for CSS VH unit
+// JS version for CSS vh unit
 
 (function(){
 
     'use strict';
 
 
-    var $fullHeightSelector = $(".js-full-vh");
+    var $fullHeight = $(".js-full-vh");
 
 
-    if($fullHeightSelector.length){
+    if($fullHeight.length){
 
-        var setVH = debounce(function(){
+        var setVh = debounce(function(){
 
-            $fullHeightSelector.height($(window).outerHeight());
+            $fullHeight.height($(window).outerHeight());
 
         }, 50);
 
 
-        setVH();
+        setVh();
 
         $(window).on("resize", function(){
-            setVH();
+            setVh();
         });
     }
 
@@ -123,18 +127,24 @@ String.prototype.capitalize = function(){
     #SUGGEST #SEARCH
 \*------------------------------------*/
 
+
+
 (function(){
 
     'use strict';
 
 
-    var $input = $(".suggest-search__input");
+    var settings = {
 
-    var $searchTerm = $(".js-search-term");
+        $input: $('.suggest-search__input'),
+        $searchTerm: $('.js-search-term'),
+        $placeholder: $(".suggest-search__placeholder")
 
-    var $psuedoPlaceholder = $(".suggest-search__placeholder");
+    };
 
-    var keywords = [];
+
+    var searchTerms = [];
+
 
     var tab = {
         allowFinish: false,
@@ -142,22 +152,27 @@ String.prototype.capitalize = function(){
     };
 
 
-    $searchTerm.each(function(index, el) {
-        keywords.push($.trim($(el).text().toLowerCase())); // Note were forcing lowercase
+    settings.$searchTerm.each(function(index, el) {
+        searchTerms.push($(el).text());
     });
 
+    // perform all string formatting here.
+    function handleize(array){
+        return array.split(", ");
+    }
 
-    var uniqueKeys = uniqueArray(keywords).sort();
+
+    var uniqueKeys = uniqueArray(searchTerms).sort();
 
 
-    $input.on("blur", function(){
+    settings.$input.on("blur", function(){
 
         $psuedoPlaceholder.html("");
 
     });
 
 
-    $input.on("keyup", function(){
+    settings.$input.on("keyup", function(){
 
         var $self = $(this);
 
@@ -197,9 +212,9 @@ String.prototype.capitalize = function(){
 
         if(cache.$html.hasClass("touchevents") && tab.allowFinish === true){
 
-            $input.on("click", function(){
+            settings.$input.on("click", function(){
 
-                $input.val(tab.keyword);
+                settings.$input.val(tab.keyword);
 
             });
 
@@ -211,7 +226,7 @@ String.prototype.capitalize = function(){
 
             e.preventDefault();
 
-            $input.val(tab.keyword);
+            settings.$input.val(tab.keyword);
 
         }
 
@@ -227,6 +242,8 @@ String.prototype.capitalize = function(){
 /*------------------------------------*\
     #LOAD #PROGRESS #BAR
 \*------------------------------------*/
+
+
 
 (function(){
 
@@ -254,8 +271,8 @@ String.prototype.capitalize = function(){
 
     setInterval(function(){
 
-        // Increase the counter by x every 400ms.
-        // When the counter reaches 80 stop and
+        // Increase the counter by x every x ms.
+        // When the counter reaches counter.max stop and
         // wait for the images or window to actually load
         // before setting the progress bar to done.
         if((counter.value += counter.increment) <= counter.max){
@@ -266,7 +283,7 @@ String.prototype.capitalize = function(){
 
 
     // Once the images have loaded set the counter to its target
-    // mark of 80. Then set the width of the progress bar to 100%.
+    // mark of counter.max. Then set the width of the progress bar to 100%.
     $imgsLoadedContainer.imagesLoaded(function() {
         counter.value = counter.max;
         $progress.css("width", "100%").addClass('done');
@@ -351,11 +368,17 @@ String.prototype.capitalize = function(){
 
 
 
-// Add toggle functionality to elements
+// This function adds basic toggleClass() functionality 
+// on a click event to an element (settings.selector).
 
-// Markup: <div class='js-toggle' data-toggle='search'>
+// The element (settings.selector) should have an attribute (settings.classes)
+// which specifies which classes to add to the given element.
 
-// Output: search--toggled class on html
+// By default this function will toggleClass() on the html element.
+// If the element has the attribute
+
+// Example markup: <div class='js-toggle' data-toggle='search'>Search</div>
+// Example output: "search--toggled" class on the html element.
 
 (function(){
 
@@ -363,26 +386,34 @@ String.prototype.capitalize = function(){
 
 
     var settings = {
-        selector: ".js-toggle",
-        class: "data-toggle"
+
+        element: {
+            selector: ".js-toggle",
+
+            // element.selector attributes
+            classes: "data-toggle",
+            useParentAttribute: "toggle-parent"
+        },
+
+        toggledClass: "--toggled"
+
     };
 
 
-    $(document).on("click", settings.selector, function(){
+    $(document).on("click", settings.element.selector, function(){
 
         var $self   = $(this),
-            classes = $self.attr(settings.class).split(" ");
+            classes = $self.attr(settings.element.classes).split(" ")
 
+            .forEach(function(class, index){
 
-        classes.forEach(function(element, index) {
+                if($self.attr(settings.element.useParentAttribute) !== "true"){
+                    cache.$html.toggleClass(class.concat(settings.toggledClass));
+                } else {
+                    $self.parent().toggleClass(class.concat(settings.toggledClass));
+                }
 
-            if($self.attr("toggle-parent") !== "true"){
-                cache.$html.toggleClass(element.concat("--toggled"));
-            } else {
-                $self.toggleClass(element.concat("--toggled"));
-            }
-
-        });
+            });
 
     });
 
@@ -391,19 +422,25 @@ String.prototype.capitalize = function(){
 
 
 
-// Hide drawer by drawer overlay click
+// This function hides drawers by click of the overlay.
 
 (function(){
 
     'use strict';
 
 
-    var overlay = ".drawer__overlay";
+    var settings = {
+        // The element that we click to hide the drawer.
+        overlay: ".drawer__overlay",
+
+        // The class(es) that make the drawer visible
+        classes: "drawer--right--toggled  drawer--left--toggled"
+    };
 
 
-    $(document).on("click", overlay, function(){
+    $(document).on("click", settings.overlay, function(){
 
-        cache.$html.removeClass('drawer--right--toggled').removeClass('drawer--left--toggled');
+        cache.$html.removeClass(settings.classes);
 
     });
 

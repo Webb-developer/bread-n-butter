@@ -79,13 +79,10 @@ function animateScroll(pos, speed){
 
 
 
-// Call:
-
 // var myArray = ["fuck", "fuck", "shit"];
-// var uniqueArray = uniqueArray(myArray);
+// uniqueArray(myArray); Returns ["fuck", "shit"]
 
-// Returns ["fuck", "shit"]
-
+// @param {array} array
 
 function uniqueArray(array){
 
@@ -289,18 +286,18 @@ var MatchMediaLoad = (function(window, document){
         mediaQuery: "data-match",
         class: "match-media--replaced",
 
-        debounceRate: 250,
+        debounceRate: 150,
 
         cache: [],
 
-        support: typeof(window.matchMedia) === "function" ? true : false
+        hasSupport: typeof(window.matchMedia) === "function" ? true : false
 
     };
 
 
     var _bindUI = function(){
 
-        if(settings.support === true){
+        if(settings.hasSupport){
 
             // proceed normally
 
@@ -432,114 +429,57 @@ var MatchMediaLoad = (function(window, document){
 
 
 
-// Markup: (optional)
-// <div class='js-hide-if-cookie'>Modal</div>
-
-
-// Call:
-
-// Cookies.create("modal", "true");
-// Cookies.delete("modal");
-// Cookies.isSet("modal");
-// Cookies.print();
-
+// Create, remove and check the status of cookies with this function.
+// Cookies.create("name", "value");
+// Cookies.remove("name");
+// Cookies.isSet("name");
 
 var Cookies = (function(document){
 
     'use strict';
-    
-
-    var settings = {
-
-        ifSetSelector: ".js-cookie-target", // Add the cookie name to this selector. Optional
-
-        hideSelector: ".js-hide-if-cookie", // Hide this if cookie is present selector. Optional
-        
-        showSelector: ".js-show-if-cookie"  // Show this if cookie is present selector. Optional
-
-    };
 
 
-    var cookies = {
+    // @param {string, number} name - the cookie name
+    // @param {string, number} value - the cookie value
+    function create(name, value){
 
-        _bindUI: function(name){
+        document.cookie = name + "=" + value;
 
-            if(cookies.isSet(name) === true){
-
-                if($(settings.ifSetSelector).length){
-                    $(settings.ifSetSelector).addClass('cookie-set  cookie-set--' + name);
-                }
-
-                if($(settings.hideSelector).length){
-                    $(settings.hideSelector).addClass('hidden');
-                }
-
-                if($(settings.showSelector).length){
-                    $(settings.showSelector).removeClass('hidden');
-                }
-
-            }
-
-        },
+    }
 
 
-        create: function(name, value){
+    // @param {string, number} name - the cookie name to delete
+    function remove(name){
 
-            this.name  = name;
-            this.value = value;
+        document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
-            cookies._bindUI(this.name);
-
-            if(cookies.isSet(name) === false){
-                document.cookie = name + "=" + value;
-            }
-
-        },
-
-
-        delete: function(name){
-
-            this.name = name;
-
-            document.cookie = this.name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-
-
-            if(cookies.isSet(this.name) === true){
-                console.log(this.name + " cookie could not be deleted.");
-            } else {
-                console.log(this.name + " cookie was deleted");
-            }
-
-        },
-
-
-        isSet: function(name){
-
-            if(document.cookie.indexOf(name) === -1) {
-                return false;
-            } else {
-                return true;
-            }
-
-        },
-
-
-        print: function(){
-
-            // Logs all cookies on the site.
-            // Not just the ones we created.
-
-            var cookiesArray = document.cookie.split('; ');
-
-            for (var i = cookiesArray.length - 1; i >= 0; i--) {
-                console.log(cookiesArray[i]);
-            }
-
+        if(isSet(name)){
+            console.log(name + " cookie could not be deleted.");
+        } else {
+            console.log(name + " cookie was deleted");
         }
 
-    };
+    }
 
-    return cookies;
+
+    // @param {string, number} name - the cookie name to check
+    // returns true if the cookie is set.
+    function isSet(name){
+
+        if(document.cookie.indexOf(name) !== -1) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+
+    return {
+        create: create,
+        isSet:  isSet,
+        remove: remove
+    }
 
 })(document);
 
@@ -627,7 +567,7 @@ var Modals = function(){
 
         _wasVisited: function(){
 
-            if(Cookies.isSet(settings.cookieName) === true){
+            if(Cookies.isSet(settings.cookieName)){
                 return true;
             } else {
                 return false;
@@ -652,9 +592,9 @@ var Modals = function(){
 
         init: function(){
 
-            if($(settings.modal).length > 0 && settings.enabled === true){
+            if($(settings.modal).length && settings.enabled){
 
-                if(settings.hideOnPage === true && $(settings.pageToHideOn).length > 0){
+                if(settings.hideOnPage && $(settings.pageToHideOn).length){
 
                     modals.hide();
 
@@ -662,18 +602,20 @@ var Modals = function(){
 
                     modals._bindUI();
 
-                    if(modals._wasVisited() === true){
+                    if(modals._wasVisited()){
 
-                        if(settings.hideOnRevisit === true){
+                        if(settings.hideOnRevisit){
                             modals.hide();
                         } else {
                             modals.show();
                         }
 
                     } else {
+
                         Cookies.create(settings.cookieName, settings.cookieVal);
 
                         modals.show();
+
                     }
 
                 }
