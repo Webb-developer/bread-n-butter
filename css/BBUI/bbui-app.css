@@ -29,6 +29,8 @@ includes. Ex: _trump,  _objects
 */
 /*------------------------------------*    #TYPE
 \*------------------------------------*/
+/*------------------------------------*    #LISTS
+\*------------------------------------*/
 /*------------------------------------*    #COLORS
 \*------------------------------------*/
 /*------------------------------------*    #SPACING
@@ -50,8 +52,6 @@ includes. Ex: _trump,  _objects
 /*------------------------------------*    #PAGE-CONTENT
 \*------------------------------------*/
 /*------------------------------------*    #MIXINS
-\*------------------------------------*/
-/*------------------------------------*    #FUNCTIONS
 \*------------------------------------*/
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 /*------------------------------------*    #NORMALIZE
@@ -288,10 +288,10 @@ ol {
 
 img,
 svg,
+object,
 video {
   max-width: 100%;
-  height: auto;
-  border: none; }
+  height: auto; }
 
 a, .a {
   color: inherit;
@@ -811,7 +811,7 @@ body {
 .hr--thick {
   height: 3px; }
 
-/*------------------------------------*    #IMAGES
+/*------------------------------------*    #MEDIA
 \*------------------------------------*/
 .bg-image--cover {
   background-size: cover;
@@ -820,6 +820,21 @@ body {
 .bg-image--contain {
   background-size: contain;
   background-repeat: no-repeat; }
+
+.bg-image--cover--center {
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%; }
+
+.aspect-ratio--16-9 {
+  position: relative;
+  padding-top: 56.25%; }
+  .aspect-ratio--16-9 .aspect-ratio__object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%; }
 
 /*------------------------------------*    #STATES
 \*------------------------------------*/
@@ -990,20 +1005,11 @@ body {
 .text-align--left {
   text-align: left !important; }
 
-.text-align--center {
-  text-align: center !important; }
-
 .text-align--right {
   text-align: right !important; }
 
-.text-transform--lowercase {
-  text-transform: lowercase !important; }
-
-.text-transform--capitalize {
-  text-transform: capitalize !important; }
-
-.text-transform--uppercase {
-  text-transform: uppercase !important; }
+.text-align--center {
+  text-align: center !important; }
 
 .text-decoration--none {
   text-decoration: none !important; }
@@ -1014,19 +1020,31 @@ body {
 .text-decoration--strike {
   text-decoration: line-through !important; }
 
+.text-transform--lowercase {
+  text-transform: lowercase !important; }
+
+.text-transform--capitalize {
+  text-transform: capitalize !important; }
+
+.text-transform--uppercase {
+  text-transform: uppercase !important; }
+
+.text-transform--none {
+  text-transform: none !important; }
+
 /*------------------------------------*    #LISTS
 \*------------------------------------*/
 .list-style--none {
-  list-style-type: none !important; }
+  list-style: none !important; }
 
 .list-style--square {
-  list-style-type: square !important; }
+  list-style: square !important; }
 
 .list-style--disc {
-  list-style-type: disc !important; }
+  list-style: disc !important; }
 
 .list-style--decimal {
-  list-style-type: decimal !important; }
+  list-style: decimal !important; }
 
 /*------------------------------------*    #CSS3
 \*------------------------------------*/
@@ -1114,7 +1132,7 @@ body {
   -webkit-transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55) !important;
           transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55) !important; }
 
-/*------------------------------------*    #SPACING
+/*------------------------------------*    #PADDING
 \*------------------------------------*/
 .padding--none {
   padding: 0 !important; }
@@ -1686,6 +1704,8 @@ body {
   .padding-bottom--xl-on-xl {
     padding-bottom: 3em !important; } }
 
+/*------------------------------------*    #MARGIN
+\*------------------------------------*/
 .margin-left--auto {
   margin-left: auto !important; }
 
@@ -2822,9 +2842,6 @@ body {
 
 /*------------------------------------*    #CURSORS & #POINTERS
 \*------------------------------------*/
-.cursor--pointer {
-  cursor: pointer !important; }
-
 .cursor--zoom-in {
   cursor: -webkit-zoom-in !important;
   cursor: zoom-in !important; }
@@ -2833,11 +2850,14 @@ body {
   cursor: -webkit-zoom-out !important;
   cursor: zoom-out !important; }
 
-.pointer-events--auto {
-  pointer-events: auto !important; }
+.cursor--pointer {
+  cursor: pointer !important; }
 
 .pointer-events--none {
   pointer-events: none !important; }
+
+.pointer-events--auto {
+  pointer-events: auto !important; }
 
 /*------------------------------------*    #BORDERS
 \*------------------------------------*/
@@ -2915,6 +2935,15 @@ body {
 
 .border-width--l {
   border-width: 3px !important; }
+
+.border-style--zoom-in {
+  border-style: zoom-in !important; }
+
+.border-style--zoom-out {
+  border-style: zoom-out !important; }
+
+.border-style--pointer {
+  border-style: pointer !important; }
 
 .border-style--none {
   border-style: none !important; }

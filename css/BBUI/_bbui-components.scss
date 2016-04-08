@@ -140,7 +140,7 @@
 
 
 /*------------------------------------*\
-    #IMAGES
+    #MEDIA
 \*------------------------------------*/
 
 
@@ -154,6 +154,20 @@
 .bg-image--contain{
     background-size: contain;
     background-repeat: no-repeat;
+}
+
+
+.bg-image--cover--center{
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+
+
+
+.aspect-ratio--16-9{
+    // Maintain the intrinsic aspect ratio.
+    @include aspect-ratio(16, 9);
 }
 
 

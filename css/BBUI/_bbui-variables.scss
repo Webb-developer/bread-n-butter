@@ -143,6 +143,7 @@ $text-decoration: (
 
 
 
+
 /*------------------------------------*\
     #LISTS
 \*------------------------------------*/
@@ -158,6 +159,39 @@ $list-style: (
     "disc": disc,
 
     "decimal": decimal
+
+);
+
+
+
+$pointer-events: (
+
+    "none": none,
+
+    "auto": auto
+
+);
+
+
+
+$cursor: (
+
+    "zoom-in": zoom-in,
+
+    "zoom-out": zoom-out,
+
+    "pointer": pointer
+
+);
+
+
+$border-style: (
+
+    "zoom-in": zoom-in,
+
+    "zoom-out": zoom-out,
+
+    "pointer": pointer
 
 );
 

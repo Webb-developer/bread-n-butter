@@ -24,15 +24,31 @@
 
 
 
-/*------------------------------------*\
-    #FUNCTIONS
-\*------------------------------------*/
+// Mixin to preseve intrinsic aspect ratios.
+
+// @param {number} width
+// @param {number} height
+
+// Ex: @include aspect-ratio(16, 9);
+
+@mixin aspect-ratio($width, $height){
+    position: relative;
+    padding-top: ($height / $width) * 100%;
+ 
+    .aspect-ratio__object{
+        position: absolute;
+        top:  0;
+        left: 0;
+        height: 100%;
+        width:  100%;
+    }
+}
 
 
 
-// This function is the heart of BBUI.
-// It takes a given map and iterates through the keys
-// and creates css classes based on the key value pairs.
+
+// This function takes a given map and iterates through the keys
+// and creates css classes based on the key-value pairs.
 
 // @param {string} property - the name of the property that will be outputted.
 

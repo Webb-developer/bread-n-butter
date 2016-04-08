@@ -32,12 +32,11 @@
 
 
 
-@include createClassesFromMap(text-transform, text-transform, $text-transform);
-
-
-
 @include createClassesFromMap(text-decoration, text-decoration, $text-decoration);
 
+
+
+@include createClassesFromMap(text-transform, text-transform, $text-transform);
 
 
 
@@ -49,6 +48,8 @@
 
 
 @include createClassesFromMap(list-style, list-style, $list-style);
+
+
 
 
 
@@ -95,40 +96,34 @@
 
 
 /*------------------------------------*\
-    #SPACING
+    #PADDING
 \*------------------------------------*/
 
 
-
-// #Padding
 
 @include createClassesFromMap(padding, padding, $spacing);
 
     @include createMQClassesFromMap(padding, padding, $spacing);
 
 
-// Padding #Left
 
 @include createClassesFromMap(padding-left, padding-left, $spacing);
 
    @include createMQClassesFromMap(padding-left, padding-left, $spacing);
 
 
-// Padding #Right
 
 @include createClassesFromMap(padding-right, padding-right, $spacing);
 
    @include createMQClassesFromMap(padding-right, padding-right, $spacing);
 
 
-// Padding #Top
 
 @include createClassesFromMap(padding-top, padding-top, $spacing);
 
     @include createMQClassesFromMap(padding-top, padding-top, $spacing);
 
 
-// Padding #Bottom
 
 @include createClassesFromMap(padding-bottom, padding-bottom, $spacing);
 
@@ -136,7 +131,13 @@
 
 
 
-// #Margin
+
+
+/*------------------------------------*\
+    #MARGIN
+\*------------------------------------*/
+
+
 
 .margin-left--auto{
     margin-left: auto !important;
@@ -618,30 +619,11 @@
 
 
 
-.cursor--pointer{
-    cursor: pointer !important;
-}
-
-
-.cursor--zoom-in{
-    cursor: zoom-in !important;
-}
-
-
-.cursor--zoom-out{
-    cursor: zoom-out !important;
-}
+@include createClassesFromMap(cursor, cursor, $cursor);
 
 
 
-.pointer-events--auto{
-    pointer-events: auto !important;
-}
-
-
-.pointer-events--none{
-    pointer-events: none !important;
-}
+@include createClassesFromMap(pointer-events, pointer-events, $pointer-events);
 
 
 
@@ -660,6 +642,9 @@
 
 
 @include createClassesFromMap(border-width, border-width, $line-width);
+
+
+@include createClassesFromMap(border-style, border-style, $border-style);
 
 
 
