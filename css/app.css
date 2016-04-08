@@ -52,6 +52,8 @@ includes. Ex: _trump,  _objects
 */
 /*------------------------------------*    #TYPE
 \*------------------------------------*/
+/*------------------------------------*    #LISTS
+\*------------------------------------*/
 /*------------------------------------*    #COLORS
 \*------------------------------------*/
 /*------------------------------------*    #SPACING
@@ -1013,11 +1015,11 @@ body {
 .text-align--left {
   text-align: left !important; }
 
-.text-align--center {
-  text-align: center !important; }
-
 .text-align--right {
   text-align: right !important; }
+
+.text-align--center {
+  text-align: center !important; }
 
 .text-transform--lowercase {
   text-transform: lowercase !important; }
@@ -1027,6 +1029,9 @@ body {
 
 .text-transform--uppercase {
   text-transform: uppercase !important; }
+
+.text-transform--none {
+  text-transform: none !important; }
 
 .text-decoration--none {
   text-decoration: none !important; }
@@ -1040,16 +1045,16 @@ body {
 /*------------------------------------*    #LISTS
 \*------------------------------------*/
 .list-style--none {
-  list-style-type: none !important; }
+  list-style: none !important; }
 
 .list-style--square {
-  list-style-type: square !important; }
+  list-style: square !important; }
 
 .list-style--disc {
-  list-style-type: disc !important; }
+  list-style: disc !important; }
 
 .list-style--decimal {
-  list-style-type: decimal !important; }
+  list-style: decimal !important; }
 
 /*------------------------------------*    #CSS3
 \*------------------------------------*/

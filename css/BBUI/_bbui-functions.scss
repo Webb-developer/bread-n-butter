@@ -10,7 +10,7 @@
 // Param 2 is desktop the font-size
 
 // Not meant to be used for all font-sizing, 
-// but for headers that dont adapt too well to REM sizing
+// but for larger titles that dont adapt too well to REM sizing
 
 @mixin fs($mobileSize, $desktopSize){
     font-size: map-get($font-size, #{$mobileSize});
@@ -29,6 +29,21 @@
 \*------------------------------------*/
 
 
+
+// This function is the heart of BBUI.
+// It takes a given map and iterates through the keys
+// and creates css classes based on the key value pairs.
+
+// @param {string} property - the name of the property that will be outputted.
+
+// @param {string} className - the classname that will be outputted, 
+// suffixed with "--" then the value of the property. Ex: text-decoration--none
+// The suffix is for a BEM like structure.
+
+// @param {map} map - the SASS map where we get the data from
+// and iterate through the key-value pairs.
+
+// Usage: @include createClassesFromMap(font-family, font-family, $font-family);
 
 @mixin createClassesFromMap($property, $className, $map){
 

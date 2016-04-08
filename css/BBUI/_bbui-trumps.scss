@@ -28,51 +28,16 @@
 
 
 
-.text-align--left{
-    text-align: left !important;
-}
-
-
-.text-align--center{
-    text-align: center !important;
-}
-
-
-.text-align--right{
-    text-align: right !important;
-}
+@include createClassesFromMap(text-align, text-align, $text-align);
 
 
 
-.text-transform--lowercase{
-    text-transform: lowercase !important;
-}
-
-
-.text-transform--capitalize{
-    text-transform: capitalize !important;
-}
-
-
-.text-transform--uppercase{
-    text-transform: uppercase !important;
-}
+@include createClassesFromMap(text-transform, text-transform, $text-transform);
 
 
 
-.text-decoration--none{
-    text-decoration: none !important;
-}
+@include createClassesFromMap(text-decoration, text-decoration, $text-decoration);
 
-
-.text-decoration--underline{
-    text-decoration: underline !important;
-}
-
-
-.text-decoration--strike{
-    text-decoration: line-through !important;
-}
 
 
 
@@ -83,25 +48,7 @@
 
 
 
-.list-style--none{
-    list-style-type: none !important;
-}
-
-
-.list-style--square{
-    list-style-type: square !important;
-}
-
-
-.list-style--disc{
-    list-style-type: disc !important;
-}
-
-
-.list-style--decimal{
-    list-style-type: decimal !important;
-}
-
+@include createClassesFromMap(list-style, list-style, $list-style);
 
 
 

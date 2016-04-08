@@ -105,6 +105,62 @@ $line-height: (
 
 
 
+$text-align: (
+
+    "left": left,
+
+    "right": right,
+
+    "center": center
+    
+);
+
+
+
+$text-transform: (
+
+    "lowercase": lowercase,
+
+    "capitalize": capitalize,
+
+    "uppercase": uppercase,
+
+    "none": none
+    
+);
+
+
+
+$text-decoration: (
+
+    "none": none,
+
+    "underline": underline,
+
+    "strike": line-through
+
+);
+
+
+
+/*------------------------------------*\
+    #LISTS
+\*------------------------------------*/
+
+
+
+$list-style: (
+
+    "none": none,
+
+    "square": square,
+
+    "disc": disc,
+
+    "decimal": decimal
+
+);
+
 
 
 /*------------------------------------*\
