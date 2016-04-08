@@ -105,44 +105,6 @@ $line-height: (
 
 
 
-$text-align: (
-
-    "left": left,
-
-    "right": right,
-
-    "center": center
-    
-);
-
-
-
-$text-transform: (
-
-    "lowercase": lowercase,
-
-    "capitalize": capitalize,
-
-    "uppercase": uppercase,
-
-    "none": none
-    
-);
-
-
-
-$text-decoration: (
-
-    "none": none,
-
-    "underline": underline,
-
-    "strike": line-through
-
-);
-
-
-
 
 /*------------------------------------*\
     #LISTS
@@ -203,25 +165,32 @@ $border-style: (
 
 
 
+// Lighter variations of the $base-black color will
+// be created.
+
+$base-black: #000;
+
+
+
 $color: (
     
-    "black": #222,
+    "black": $base-black,
 
-    "light-black": #555,
+    "grey-90": tint($base-black, 10%),
 
+    "grey-75": tint($base-black, 25%),
 
-    "white": #fff,
+    "grey-50": tint($base-black, 50%),
 
+    "grey-40": tint($base-black, 60%),
 
-    "gray": gray,
+    "grey-30": tint($base-black, 65%),
 
-    "dark-gray": #999,
+    "grey-25": tint($base-black, 70%),
 
-    "medium-gray": #c0c0c0,
+    "grey-10": tint($base-black, 90%),
 
-    "light-gray": #ccc,
-
-    "extra-light-gray": #eaeaea,
+    "grey-05": tint($base-black, 95%),
 
 
     "blue": #0d7792,
@@ -255,19 +224,22 @@ $color: (
 
 
 
+// The $spacing map is shared by padding
+// and margin classes.
+
 $spacing: (
 
     "none": 0,
 
-    "xs":   0.5em,
+    "xs":   0.5rem,
 
-    "s":    1em,
+    "s":    1rem,
 
-    "m":    1.5em,
+    "m":    1.5rem,
 
-    "l":    2em,
+    "l":    2rem,
 
-    "xl":   3em
+    "xl":   3rem
 
 );
 
@@ -279,6 +251,11 @@ $spacing: (
 \*------------------------------------*/
 
 
+
+// WARNING: Adding too many media queries here will
+// dramatically increase the file size. Please check 
+// the minified file size if you are adding additional
+// media queries.
 
 $mediaQuery: (
     
@@ -297,21 +274,25 @@ $mediaQuery: (
 
 
 /*------------------------------------*\
-    #DISPLAY
+    #GRIDS
 \*------------------------------------*/
 
 
 
-// Used to create media query display classes
-// Included as a trump
-
-$display: (
+$grid: (
     
-    "block": block !important,
+    "gutter": 1.2rem,
 
-    "inline-block": inline-block !important,
 
-    "none": none !important
+    "1-2-bp": map-get($mediaQuery, "s"),
+
+
+    "1-2-3-bp-1": map-get($mediaQuery, "s"),
+
+    "1-2-3-bp-2": map-get($mediaQuery, "m"),
+
+
+    "2-4-bp": map-get($mediaQuery, "m"),
 
 );
 
@@ -354,7 +335,7 @@ $zIndex: (
 
 
 
-// Used for borders and hrs
+// Used for borders and hr elements.
 
 $line-width: (
 
@@ -423,7 +404,7 @@ $transition-type: (
 
 $transition-speed: (
     
-    "base":       0s,
+    "none":       0s,
 
     "extra-slow": 1s,
 
@@ -452,33 +433,7 @@ $drawer: (
 
     "padding": map-get($spacing, "m"),
 
-    "overlayColor": fade-out(map-get($color, "gray"), 0.5)
-
-);
-
-
-
-
-/*------------------------------------*\
-    #GRIDS
-\*------------------------------------*/
-
-
-
-$grid: (
-    
-    "gutter": 1.2rem,
-
-
-    "1-2-bp": map-get($mediaQuery, "s"),
-
-
-    "1-2-3-bp-1": map-get($mediaQuery, "s"),
-
-    "1-2-3-bp-2": map-get($mediaQuery, "m"),
-
-
-    "2-4-bp": map-get($mediaQuery, "m"),
+    "overlayColor": fade-out($base-black, 0.5)
 
 );
 
@@ -492,8 +447,132 @@ $grid: (
 
 
 
-// A class (.page-content-max-width) will be created based on this value.
+// A CSS class (.page-content-max-width)
+// will be created based on this value.
 
 $page-content-max-width: 1000px;
 
+
+
+
+
+/*------------------------------------*\
+    #GENERATED CLASSES
+\*------------------------------------*/
+
+
+
+// The generated classes section contains a series
+// of SASS maps. The keys of the maps are iterated over
+// when you call our createClassesFromMap() mixin
+// and create CSS classes. You can also fetch these values in your
+// SASS file using SASS' map-get function. Note: not all maps that generate
+// classes are listed here.
+
+
+$display: (
+    
+    "block": block,
+
+    "inline-block": inline-block,
+
+    "none": none,
+
+    "table": table,
+
+    "table-cell": table-cell,
+
+    "flex": flex
+
+);
+
+
+
+
+
+$text-align: (
+
+    "left": left,
+
+    "right": right,
+
+    "center": center
+    
+);
+
+
+
+$text-transform: (
+
+    "lowercase": lowercase,
+
+    "capitalize": capitalize,
+
+    "uppercase": uppercase,
+
+    "none": none
+    
+);
+
+
+
+$text-decoration: (
+
+    "none": none,
+
+    "underline": underline,
+
+    "strike": line-through
+
+);
+
+
+
+$align-items: (
+
+    "center": center,
+
+    "flex-end": flex-end,
+
+    "flex-start": flex-start,
+
+    "baseline": baseline
+
+);
+
+
+
+$flex-wrap: (
+
+    "wrap": wrap,
+
+    "nowrap": nowrap
+
+);
+
+
+
+$flex-direction: (
+
+    "row": row,
+
+    "column": column
+
+);
+
+
+
+$justify-content: (
+
+    "flex-end": flex-end,
+
+    "flex-start": flex-start,
+
+    "center": center,
+
+    "space-around": space-around,
+
+    "space-between": space-between
+
+);
 

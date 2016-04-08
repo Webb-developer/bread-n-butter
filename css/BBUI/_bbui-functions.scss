@@ -47,7 +47,25 @@
 
 
 
-// This function takes a given map and iterates through the keys
+// Map deep get
+// @author Hugo Giraudel
+// @param {map} $map - Map
+// @param {Arglist} $keys - Key chain
+// map-deep-get is not compatible with createClassesFromMap().
+
+@function map-deep-get($map, $keys){
+
+    @each $key in $keys {
+        $map: map-get($map, $key);
+    }
+
+    @return $map;
+}
+
+
+
+
+// This mixin takes a given map and iterates through the keys
 // and creates css classes based on the key-value pairs.
 
 // @param {string} property - the name of the property that will be outputted.
@@ -58,6 +76,12 @@
 
 // @param {map} map - the SASS map where we get the data from
 // and iterate through the key-value pairs.
+
+// Additionally, all values are outputted with !important because they
+// are intended to be used as trumps. Removing !important may result
+// in styles getting overidden by BBUI.
+
+// map-deep-get is not compatible with createClassesFromMap().
 
 // Usage: @include createClassesFromMap(font-family, font-family, $font-family);
 
@@ -72,6 +96,7 @@
                 &--#{$key}{
                     #{$property}: $value !important;
                 }
+
             }
             
         }
@@ -80,6 +105,10 @@
 }
 
 
+
+// This mixin is nearly identical to createClassesFromMap()
+// except it wraps our classes in a media query. It gets the
+// media queries from our $mediaQuery map.
 
 @mixin createMQClassesFromMap($property, $className, $map){
 
@@ -92,6 +121,7 @@
                 .#{$className}--#{$key}-on-#{$MQKey}{
                     #{$property}: $value !important;
                 }
+
             }
         }
     }
@@ -108,6 +138,7 @@
         .#{$className}--#{$i}{
             #{$property}: ($i * 100% / $iterations) !important;
         }
+
     }
 }
 
@@ -125,8 +156,11 @@
                     #{$property}: ($i * 100% / $iterations) !important;
                 }
             }
+
         }
+
     }
+
 }
 
 
@@ -141,27 +175,7 @@
         .#{$className}--#{$val}{
             #{$property}: #{$val}px !important;
         }
+
     }
 
 }
-
-
-@mixin createMQIncrementalNumberClasses($property, $className, $increment, $max){
-
-    @for $i from 1 through $max{
-
-        $val: ($i * $increment);
-        
-        @each $MQKey, $MQValue in $mediaQuery{
-            
-            @media #{$MQValue}{
-
-                .#{$className}--#{$val}-on-#{$MQKey}{
-                    #{$property}: #{$val}px !important;
-                }
-            }
-        }
-    }
-
-}
-

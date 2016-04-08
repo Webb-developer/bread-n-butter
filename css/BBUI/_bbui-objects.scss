@@ -183,7 +183,7 @@
 
     &:hover,
     &:focus{
-        border-color: darken(map-get($color, "light-gray"), 17%);
+        border-color: map-get($color, "grey-50");
     }
 }
 
@@ -435,7 +435,6 @@
     // .modal__inner is no longer vertically centered
     // without flexbox support. We'll add some padding 
     // so its not too close to the top edge of the screen.
-
     // Alternatively, by wrapping the .modal__inner with two elements
     // in the markup and adding .center-table
     // and .center-table-cell classes to the respective elements,
@@ -448,7 +447,7 @@
 
 
 .modal{
-    background-color: fade-out(map-get($color, "gray"), 0.5);
+    background-color: fade-out($base-black, 0.5);
     z-index: map-get($zIndex, "max");
     position: fixed;
     top:    0;

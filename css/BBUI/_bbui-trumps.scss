@@ -246,7 +246,6 @@
 
 
 
-// #Max Widths
 
 @include createIncrementalNumberClasses(max-width, max-width, 50, 15);
 
@@ -260,120 +259,22 @@
 
 
 
-.hidden{
-    display: none !important;
-    speak: none;
-}
-
-
-.display--none{
-    display: none !important;
-}
-
-
-.display--inline{
-    display: inline !important;
-}
-
-
-.display--inline-block{
-    display: inline-block !important;
-}
-
-
-.display--block{
-    display: block !important;
-}
-
-
-
-.display--table{
-    display: table !important;
-}
-
-
-.display--table-cell{
-    display: table-cell !important;
-}
-
-
-
-.display--flex{
-    display: flex !important;
-}
-
-
-
-.flex-wrap--wrap{
-    flex-wrap: wrap !important;
-}
-
-
-.flex-wrap--nowrap{
-    flex-wrap: nowrap !important;
-}
-
-
-.flex-direction--row{
-    flex-direction: row !important;
-}
-
-
-.flex-direction--column{
-    flex-direction: column !important;
-}
-
-
-
-.align-items--center{
-    align-items: center !important;
-}
-
-
-.align-items--end{
-    align-items: flex-end !important;
-}
-
-
-.align-items--start{
-    align-items: flex-start !important;
-}
-
-
-.align-items--baseline{
-    align-items: baseline !important;
-}
-
-
-
-.justify--end{
-    justify-content: flex-end !important;
-}
-
-
-.justify--end{
-    justify-content: flex-start !important;
-}
-
-
-.justify--center{
-    justify-content: center !important;
-}
-
-
-.justify--around{
-    justify-content: space-around !important;
-}
-
-
-.justify--between{
-    justify-content: space-between !important;
-}
-
-
+@include createClassesFromMap(display, display, $display);
 
 @include createMQClassesFromMap(display, display, $display);
 
+
+
+@include createMQClassesFromMap(align-items, flex-align-items, $align-items);
+
+
+@include createMQClassesFromMap(flex-wrap, flex-wrap, $flex-wrap);
+
+
+@include createMQClassesFromMap(flex-direction, flex-direction, $flex-direction);
+
+
+@include createMQClassesFromMap(justify-content, justify-content, $justify-content);
 
 
 
