@@ -59,13 +59,17 @@ function callCarousel(){
         items: 1,
         slideBy: 1,
         loop: true,
-        mouseDrag: true,
+        mouseDrag: false,
         dots: true,
         nav: true,
         lazyLoad: true,
+        autoplay: true,
+        autoplayTimeout: 4000,
         responsiveRefreshRate: 0,
         navText: globalSettings.carousels.arrows,
-        smartSpeed: 300
+        smartSpeed: 300,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn'
     });
 
     return carousel;

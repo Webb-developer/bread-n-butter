@@ -30,8 +30,6 @@
 
     Modals.init();
 
-    MatchMediaLoad.run();
-
     animateIn();
 
     if(globalSettings.lazyload.enable){
