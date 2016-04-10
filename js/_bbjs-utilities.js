@@ -403,14 +403,14 @@ String.prototype.capitalize = function(){
     $(document).on("click", settings.element.selector, function(){
 
         var $self   = $(this),
-            classes = $self.attr(settings.element.classes).split(" ")
+            classes = $self.attr(settings.element.classes).split(" ");
 
-            .forEach(function(class, index){
+            $.each(classes, function(index, element){
 
                 if($self.attr(settings.element.useParentAttribute) !== "true"){
-                    cache.$html.toggleClass(class.concat(settings.toggledClass));
+                    cache.$html.toggleClass(element.concat(settings.toggledClass));
                 } else {
-                    $self.parent().toggleClass(class.concat(settings.toggledClass));
+                    $self.parent().toggleClass(element.concat(settings.toggledClass));
                 }
 
             });

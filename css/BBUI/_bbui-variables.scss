@@ -1,3 +1,34 @@
+
+
+// @name variables
+
+// @description
+
+// This file is the key to everything. Nearly all of these SASS maps generate CSS
+// classes based on their key-value pairs.
+
+/*
+
+@example
+
+$font-size: (
+
+    "s":    0.9rem,
+
+    "m":    1.2rem,
+
+    "l":    1.7rem
+
+);
+
+*/
+
+// Our createClassesFromMap() mixin will loop through each key in the $font-size map and create a class based on the value. This is powerful because it makes creating markup usable classes very easy, as well as values we can fetch in our SASS file using SASS's map-get function.
+
+
+
+
+
 /*------------------------------------*\
     #TYPE
 \*------------------------------------*/
@@ -48,28 +79,17 @@ $font-size: (
 
     "base": 1rem,
 
-
     "xs":   0.82rem,
 
     "s":    0.9rem,
 
-
     "m":    1.2rem,
-
 
     "l":    1.7rem,
 
-    "l2":   2rem,
-
-
     "xl":   2.3rem,
 
-    "xl2":  2.6rem,
-
-
     "xxl":  3rem,
-
-    "xxl2": 3.3rem
 
 );
 
@@ -103,59 +123,6 @@ $line-height: (
 
 );
 
-
-
-
-/*------------------------------------*\
-    #LISTS
-\*------------------------------------*/
-
-
-
-$list-style: (
-
-    "none": none,
-
-    "square": square,
-
-    "disc": disc,
-
-    "decimal": decimal
-
-);
-
-
-
-$pointer-events: (
-
-    "none": none,
-
-    "auto": auto
-
-);
-
-
-
-$cursor: (
-
-    "zoom-in": zoom-in,
-
-    "zoom-out": zoom-out,
-
-    "pointer": pointer
-
-);
-
-
-$border-style: (
-
-    "zoom-in": zoom-in,
-
-    "zoom-out": zoom-out,
-
-    "pointer": pointer
-
-);
 
 
 
@@ -224,10 +191,13 @@ $color: (
 
 
 
-// The $spacing map is shared by padding
-// and margin classes.
+// This map's values are used to create margin
+// and padding classes. They are also referenced
+// throughout BBUI.
 
 $spacing: (
+
+    "auto": auto,
 
     "none": 0,
 
@@ -257,7 +227,7 @@ $spacing: (
 // the minified file size if you are adding additional
 // media queries.
 
-$mediaQuery: (
+$media-query: (
     
     "s":  unquote("(min-width: 600px)"),
 
@@ -272,41 +242,13 @@ $mediaQuery: (
 
 
 
-
-/*------------------------------------*\
-    #GRIDS
-\*------------------------------------*/
-
-
-
-$grid: (
-    
-    "gutter": 1.2rem,
-
-
-    "1-2-bp": map-get($mediaQuery, "s"),
-
-
-    "1-2-3-bp-1": map-get($mediaQuery, "s"),
-
-    "1-2-3-bp-2": map-get($mediaQuery, "m"),
-
-
-    "2-4-bp": map-get($mediaQuery, "m"),
-
-);
-
-
-
-
-
 /*------------------------------------*\
     #Z-INDEX
 \*------------------------------------*/
 
 
 
-$zIndex: (
+$z-index: (
 
     "negative":      -1,
 
@@ -335,7 +277,7 @@ $zIndex: (
 
 
 
-// Used for borders and hr elements.
+// Used for borders and HR elements.
 
 $line-width: (
 
@@ -462,27 +404,22 @@ $page-content-max-width: 1000px;
 
 
 
-// The generated classes section contains a series
-// of SASS maps. The keys of the maps are iterated over
-// when you call our createClassesFromMap() mixin
-// and create CSS classes. You can also fetch these values in your
-// SASS file using SASS' map-get function. Note: not all maps that generate
-// classes are listed here.
-
+// These values are less likely to be modifed 
+// we'll put them at the bottom of the file.
 
 $display: (
     
-    "block": block,
+    "block":        block,
 
     "inline-block": inline-block,
 
-    "none": none,
+    "none":         none,
 
-    "table": table,
+    "table":        table,
 
-    "table-cell": table-cell,
+    "table-cell":   table-cell,
 
-    "flex": flex
+    "flex":         flex
 
 );
 
@@ -492,9 +429,9 @@ $display: (
 
 $text-align: (
 
-    "left": left,
+    "left":   left,
 
-    "right": right,
+    "right":  right,
 
     "center": center
     
@@ -504,13 +441,13 @@ $text-align: (
 
 $text-transform: (
 
-    "lowercase": lowercase,
+    "lowercase":  lowercase,
 
     "capitalize": capitalize,
 
-    "uppercase": uppercase,
+    "uppercase":  uppercase,
 
-    "none": none
+    "none":       none
     
 );
 
@@ -518,11 +455,11 @@ $text-transform: (
 
 $text-decoration: (
 
-    "none": none,
+    "none":      none,
 
     "underline": underline,
 
-    "strike": line-through
+    "strike":    line-through
 
 );
 
@@ -530,13 +467,13 @@ $text-decoration: (
 
 $align-items: (
 
-    "center": center,
+    "center":     center,
 
-    "flex-end": flex-end,
+    "flex-end":   flex-end,
 
     "flex-start": flex-start,
 
-    "baseline": baseline
+    "baseline":   baseline
 
 );
 
@@ -544,7 +481,7 @@ $align-items: (
 
 $flex-wrap: (
 
-    "wrap": wrap,
+    "wrap":   wrap,
 
     "nowrap": nowrap
 
@@ -554,7 +491,7 @@ $flex-wrap: (
 
 $flex-direction: (
 
-    "row": row,
+    "row":    row,
 
     "column": column
 
@@ -564,15 +501,135 @@ $flex-direction: (
 
 $justify-content: (
 
-    "flex-end": flex-end,
+    "flex-end":      flex-end,
 
-    "flex-start": flex-start,
+    "flex-start":    flex-start,
 
-    "center": center,
+    "center":        center,
 
-    "space-around": space-around,
+    "space-around":  space-around,
 
     "space-between": space-between
 
+);
+
+
+
+$list-style: (
+
+    "none":    none,
+
+    "square":  square,
+
+    "disc":    disc,
+
+    "decimal": decimal
+
+);
+
+
+
+$pointer-events: (
+
+    "none": none,
+
+    "auto": auto
+
+);
+
+
+
+$cursor: (
+
+    "zoom-in":  zoom-in,
+
+    "zoom-out": zoom-out,
+
+    "pointer":  pointer
+
+);
+
+
+
+$border-style: (
+
+    "none":   none,
+
+    "solid":  solid,
+
+    "dotted": dotted,
+
+    "dashed": dashed
+
+);
+
+
+
+$sizes: (
+
+    "auto": auto,
+
+    "16":   16.667%,
+
+    "20":   20%,
+
+    "25":   25%,
+
+    "33":   33.33%,
+
+    "50":   50%,
+
+    "66":   66.66%,
+
+    "75":   75%,
+
+    "100":  100%
+
+);
+
+
+
+$overflow: (
+    
+    "auto":   auto,
+
+    "scroll": scroll,
+
+    "hidden": hidden
+
+);
+
+
+
+$vertical-align: (
+    
+    "top":    top,
+
+    "bottom": bottom,
+
+    "middle": middle
+
+);
+
+
+
+$float: (
+
+    "none":  none,
+    
+    "left":  left,
+
+    "right": right
+
+);
+
+
+
+$white-space: (
+
+    "nowrap": nowrap,
+
+    "pre":    pre    
+    
 );
 

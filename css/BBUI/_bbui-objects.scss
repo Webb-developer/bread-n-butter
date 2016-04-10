@@ -4,96 +4,68 @@
 
 
 
-// Using modernizr no-flexbox class
+// Using modernizr no-flexbox class. You should
+// apply the .grid class to any grids and .grid__item
+// to any grid items.
+
+// If the browser doesnt support flexbox
+// we'll fallback to a floated grid.
+// When creating grids using the createGrid
 
 .no-flexbox{
 
     .grid{
         display: block;
-        @extend .clearfix;
+        overflow: hidden;
     }
 
     .grid__item{
-        display: inline-block;
-        margin-left: -4px;
+        float: left;
     }
 }
 
 
-.grid{
-    display: flex;
-    flex-wrap: wrap;
-    margin-left:  -#{map-get($grid, "gutter")};
-    margin-right: -#{map-get($grid, "gutter")};
-}
+// Instructions for creating grids with createGrid()
+
+    // 1. For parameter descriptions find createGrid() in _bbui-functions.
+
+    // 2. When creating grids where the number of columns will change
+    //    on a breakpoint, set the number of columns mobile first.
+    //    Ex: For a grid that goes from 1 to 2 columns:
+    //    @include createGrid(1, 2rem, "grid--1-2")
+    //    then create a media query independently to go from 100% to 50% width. Ex:
+    /*    .grid--1-2__item{
+
+                @media (min-width: 600px){
+                    width: 50%;
+                }
+            }
+    */
 
 
-.grid__item{
-    margin-bottom: map-get($grid, "gutter") * 2;
-    padding-left:  map-get($grid, "gutter");
-    padding-right: map-get($grid, "gutter");
-    display: block;
-}
+@include createGrid(2, 1.5rem, "grid--2");
 
 
-.grid__item--1-2{
-    width: 100%;
 
-    &:nth-last-of-type(1){
-        margin-bottom: 0;
-    }
+@include createGrid(1, 1.5rem, "grid--1-2");
 
-    @media #{map-get($grid, "1-2-bp")}{
+
+.grid--1-2__item{
+
+    @media #{map-get($media-query, "s")}{
         width: 50%;
-
-        &:nth-last-of-type(2){
-            margin-bottom: 0;
-        }
     }
 }
 
 
-.grid__item--1-2-3{
-    width: 100%;
 
-    &:nth-last-of-type(1){
-        margin-bottom: 0;
-    }
-
-    @media #{map-get($grid, "1-2-3-bp-1")}{
-        width: 50%;
-
-        &:nth-last-of-type(2){
-            margin-bottom: 0;
-        }
-    }
-
-    @media #{map-get($grid, "1-2-3-bp-2")}{
-        width: 33.33%;
-
-        &:nth-last-of-type(2),
-        &:nth-last-of-type(3){
-            margin-bottom: 0;
-        }
-    }
-}
+@include createGrid(2, 1rem, "grid--2-4");
 
 
-.grid__item--2-4{
-    width: 50%;
+.grid--2-4__item{
 
-    &:nth-last-of-type(1),
-    &:nth-last-of-type(2){
-        margin-bottom: 0;
-    }
-
-    @media #{map-get($grid, "2-4-bp")}{
+    @media #{map-get($media-query, "m")}{
         width: 25%;
-
-        &:nth-last-of-type(3),
-        &:nth-last-of-type(4){
-            margin-bottom: 0;
-        }
     }
 }
 
@@ -111,7 +83,7 @@
     position: fixed;
     top:  0;
     left: 0;
-    z-index: map-get($zIndex, "max");
+    z-index: map-get($z-index, "max");
     height: 3px;
     background-color: #000;
     transform: translateZ(0);
@@ -448,7 +420,7 @@
 
 .modal{
     background-color: fade-out($base-black, 0.5);
-    z-index: map-get($zIndex, "max");
+    z-index: map-get($z-index, "max");
     position: fixed;
     top:    0;
     left:   0;
@@ -517,7 +489,7 @@
     bottom: 0;
     overflow-y: auto;
     overflow-x: hidden;
-    z-index: map-get($zIndex, "drawer");
+    z-index: map-get($z-index, "drawer");
     background-color: #fff;
     transition: transform map-get($transition-speed, "medium") map-get($transition-type, "cubic");
     padding: map-get($drawer, "padding");
@@ -554,7 +526,7 @@
     visibility: hidden;
     opacity: 0;
     transform: translateZ(0);
-    z-index: map-get($zIndex, "drawerOverlay");
+    z-index: map-get($z-index, "drawerOverlay");
     transition: opacity map-get($transition-speed, "medium") map-get($transition-type, "cubic");
     background-color: map-get($drawer, "overlayColor");
 }
