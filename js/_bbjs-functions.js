@@ -336,11 +336,12 @@ var Cookies = (function(document){
 
 
 /*
+@description
 
 Shows and hides modals with cookie based detection.
 
 
-Markup:
+@example
 
 <div class='modal  js-modal  transparent  invisible'>
     
@@ -349,7 +350,6 @@ Markup:
     <div class='modal__inner'></div>
 
 </div>
-
 */
 
 
@@ -475,11 +475,12 @@ var Modals = function(){
 
 
 
-// Perform actions to elements when images are loaded in a specified container.
+// @example
 
+// Perform actions to elements when images are loaded in a specified container.
 // Requires imagesLoaded (Built in to BBJS): http://imagesloaded.desandro.com/
 
-// Markup:
+// @example:
 // <div class="js-animate" animate-class="animated  fadeInUp" animate-offset="1.5">Fuck Me</div>
 
 var animateIn = (function(){

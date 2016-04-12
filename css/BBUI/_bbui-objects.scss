@@ -1,8 +1,55 @@
 /*------------------------------------*\
+    #TYPE
+\*------------------------------------*/
+
+
+
+.title--m{
+    font-family:    map-deep-get($title, "m" "font-family");
+    font-size:      map-deep-get($title, "m" "font-size");
+    font-weight:    map-deep-get($title, "m" "font-weight");
+    letter-spacing: map-deep-get($title, "m" "letter-spacing");
+    line-height:    map-deep-get($title, "m" "line-height");
+}
+
+
+.title--l{
+    font-family:    map-deep-get($title, "l" "font-family");
+    font-size:      map-deep-get($title, "l" "font-size");
+    font-weight:    map-deep-get($title, "l" "font-weight");
+    letter-spacing: map-deep-get($title, "l" "letter-spacing");
+    line-height:    map-deep-get($title, "l" "line-height");
+}
+
+
+.title--xl{
+    font-family:    map-deep-get($title, "xl" "font-family");
+    font-size:      map-deep-get($title, "xl" "font-size");
+    font-weight:    map-deep-get($title, "xl" "font-weight");
+    letter-spacing: map-deep-get($title, "xl" "letter-spacing");
+    line-height:    map-deep-get($title, "xl" "line-height");
+}
+
+
+.title--xxl{
+    font-family:    map-deep-get($title, "xxl" "font-family");
+    font-size:      map-deep-get($title, "xxl" "font-size");
+    font-weight:    map-deep-get($title, "xxl" "font-weight");
+    letter-spacing: map-deep-get($title, "xxl" "letter-spacing");
+    line-height:    map-deep-get($title, "xxl" "line-height");
+}
+
+
+
+
+
+/*------------------------------------*\
     #GRIDS
 \*------------------------------------*/
 
 
+
+// @description
 
 // Using modernizr no-flexbox class. You should
 // apply the .grid class to any grids and .grid__item
@@ -46,7 +93,6 @@
 @include createGrid(2, 1.5rem, "grid--2");
 
 
-
 @include createGrid(1, 1.5rem, "grid--1-2");
 
 
@@ -56,7 +102,6 @@
         width: 50%;
     }
 }
-
 
 
 @include createGrid(2, 1rem, "grid--2-4");
@@ -78,18 +123,18 @@
 \*------------------------------------*/
 
 
+// Functionality for this is in _bbjs-utilities.js
 
-.load-progress-bar{
+.load-bar{
     position: fixed;
     top:  0;
     left: 0;
     z-index: map-get($z-index, "max");
     height: 3px;
-    background-color: #000;
+    background-color: map-get($color, "black");
     transform: translateZ(0);
     transition: width 0.4s linear;
     
-    // Functionality is in _bbjs-utilities.js
     &.done{
         visibility: hidden;
     }
@@ -103,6 +148,11 @@
     #SEARCH
 \*------------------------------------*/
 
+
+
+.suggest-search{
+    position: relative;
+}
 
 
 .suggest-search__input{
@@ -142,7 +192,7 @@
 
 .label{
     display: block;
-    color: map-get($color, "light-black");
+    color: map-get($color, "grey-75");
     margin-bottom: 4px;
 }
 
@@ -150,18 +200,13 @@
 .input{
     border: solid map-get($line-width, "s") rgba(0,0,0,0.2);
     padding: 0.3rem 0.8rem;
-    color: map-get($color, "light-black");
+    color: map-get($color, "grey-75");
     transition: border-color map-get($transition-speed, "extra-fast") map-get($transition-type, "cubic");
 
     &:hover,
     &:focus{
         border-color: map-get($color, "grey-50");
     }
-}
-
-
-.input--warning{
-    background-color: map-get($color, "light-yellow");
 }
 
 
@@ -230,14 +275,48 @@
         transform: scale3D(0.9, 0.9, 0.9);
     }
 
+    &.no-icon{
+
+        &:after{
+            display: none;
+        }
+    }
+
 }
 
 
-.close-icon--no-icon{
 
-    &:after{
-        display: none;
-    }
+
+
+/*------------------------------------*\
+    #RULES & #BORDERS
+\*------------------------------------*/
+
+
+
+.hr{
+    border:  none;
+    outline: none;
+    height: map-get($line-width, "s");
+    display: block;
+    background-color: map-get($color, "grey-20");
+    margin-top:    0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+
+.hr--medium{
+    height: map-get($line-width, "m");
+}
+
+
+.hr--thick{
+    height: map-get($line-width, "l");
+}
+
+
+.hr--short{
+    max-width: 100px;
 }
 
 
@@ -268,10 +347,17 @@
 }
 
 
+.list-item--larger{
+    margin-right: map-get($spacing, "m");
+
+    &:nth-last-child(1){
+        margin-right: 0;
+    }
+}
+
+
 .list-item--vertical{
     display: block;
-    margin-left:  0;
-    margin-right: 0;
     margin-bottom: map-get($spacing, "s");
 
     &:nth-last-child(1){
@@ -289,6 +375,15 @@
 }
 
 
+.list-item--vertical--larger{
+    margin-bottom: map-get($spacing, "m");
+
+    &:nth-last-child(1){
+        margin-bottom: 0;
+    }
+}
+
+
 .list-item--padded{
     padding: map-get($spacing, "s");
 }
@@ -297,6 +392,12 @@
 .list-item--padded--smaller{
     padding: map-get($spacing, "xs");
 }
+
+
+.list-item--padded--larger{
+    padding: map-get($spacing, "m");
+}
+
 
 
 
@@ -308,19 +409,71 @@
 
 
 .button{
-    transition: all map-get($transition-speed, "extra-fast") map-get($transition-type, "cubic");
     cursor: pointer;
-    padding: 0.3rem 0.8rem;
-
-    &:active{
-        transform: scale3D(0.9, 0.9, 0.9);
-    }
+    border: solid 1px transparent;
+    display: inline-block;
+    white-space: nowrap;
+    line-height: 0.7em;
+    text-align: center;
+    padding: map-deep-get($button, "base" "padding");
+    height: map-deep-get($button, "base" "height");
+    line-height: map-deep-get($button, "base" "line-height");
 
     &[disabled]{
-        @extend .disabled;
+        @extend %disabled;
     }
 }
 
+
+
+.button--short{
+    height: map-deep-get($button, "short" "height");
+    line-height: map-deep-get($button, "short" "line-height");
+}
+
+
+.button--tall{
+    height: map-deep-get($button, "tall" "height");
+    line-height: map-deep-get($button, "tall" "line-height");
+}
+
+
+
+.button--narrow{
+    padding: map-deep-get($button, "narrow" "padding");
+}
+
+
+.button--wide{
+    padding: map-deep-get($button, "wide" "padding");
+}
+
+
+
+.button--black{
+    background-color: map-get($color, "black");
+    color: #fff;
+    border-color: map-get($color, "black");
+    transition: all map-get($transition-speed, "fast") map-get($transition-type, "linear");
+
+    &:hover{
+        background-color: #fff;
+        color: map-get($color, "black");
+    }
+}
+
+
+.button--white{
+    background-color: #fff;
+    color: map-get($color, "black");
+    border-color: map-get($color, "black");
+    transition: all map-get($transition-speed, "fast") map-get($transition-type, "linear");
+
+    &:hover{
+        background-color: map-get($color, "black");
+        color: #fff;
+    }
+}
 
 
 
@@ -330,36 +483,47 @@
 \*------------------------------------*/
 
 
+// @description
+
+// Wrapper for user entered content to "reset" styles.
 
 .wysiwyg{
     line-height: map-get($line-height, "l");
 
-    ol:not(.plain), ul:not(.plain){
+    h1, h2{
+        margin-bottom: map-get($spacing, "l");
+    }
+
+    h3{
+        margin-bottom: map-get($spacing, "m");
+    }
+
+    h4{
+        margin-bottom: map-get($spacing, "s");
+    }
+
+    ol,
+    ul{
         margin-bottom: map-get($spacing, "s");
         margin-left: map-get($spacing, "m");
     }
 
-    ol, ul{
-        line-height: map-get($line-height, "l");
-    }
-
-    ol:not(.plain){
+    ol{
         list-style-type: decimal;
     }
 
-    ul:not(.plain){
+    ul{
         list-style-type: square;
     }
 
-    p:not(.plain){
+    p{
         margin-top: map-get($spacing, "s");
     }
 
-    b:not(.plain), strong:not(.plain){
+    b,
+    strong{
         font-family: map-get($font-family, "bold");
     }
-
-    // Global h1-h3 styles are defined in _bbui-base
 }
 
 
@@ -372,7 +536,7 @@
 
 
 
-.breadcrumbs-item{
+.breadcrumb{
     display: inline-block;
 
     &:after{
@@ -430,6 +594,7 @@
     padding-right: map-get($spacing, "s");
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     align-items: center;
 }
 
@@ -444,11 +609,6 @@
     position: relative;
     box-shadow: 0 2px 4px rgba(0,0,0,.2);
     text-align: center;
-}
-
-
-.modal__inner--info{
-    background-color: map-get($color, "light-blue");
 }
 
 
@@ -474,6 +634,49 @@
 
 
 
+/*------------------------------------*\
+    #DROPDOWN
+\*------------------------------------*/
+
+
+
+.dropdown{
+    position: relative;
+}
+
+
+.dropdown__content--toggled{
+
+    .dropdown__content{
+        display: block;
+    }
+}
+
+
+.dropdown__summary{
+    display: inline-block;
+    user-select: none;
+}
+
+
+.dropdown__content{
+    display: none;
+    margin-top: map-get($spacing, "s");
+}
+
+
+.dropdown__item{
+    display: block;
+    margin-top: map-get($spacing, "xs");
+
+    &:nth-of-type(1){
+        margin-top: 0;
+    }
+}
+
+
+
+
 
 /*------------------------------------*\
     #DRAWERS
@@ -481,7 +684,7 @@
 
 
 
-// visually hidden drawer until activated via .js-drawer-open-* classes
+// Visually hidden drawer until activated via .js-drawer-open-* classes
 
 .drawer {
     position: fixed;
@@ -494,14 +697,9 @@
     transition: transform map-get($transition-speed, "medium") map-get($transition-type, "cubic");
     padding: map-get($drawer, "padding");
     transform: translateZ(0);
-    @extend .hidden-scrollbar;
     -webkit-overflow-scrolling: touch;
-}
-
-
-.drawer--left,
-.drawer--right{
     width: map-get($drawer, "width");
+    @extend .hidden-scrollbar;
 }
 
 
@@ -515,7 +713,7 @@
 }
 
 
-// the overlay that appears when a drawer is open
+// The overlay that appears when a drawer is open
 
 .drawer__overlay{
     position: fixed;
@@ -570,10 +768,8 @@
 }
 
 
-// anything with this class will be pushed left or right when a drawer is open
-
-// left drawers will push it left
-// right drawers will push it right
+// Anything with this class will be 
+// pushed left or right when a drawer is open
 
 .will-move{
     transition: transform map-get($transition-speed, "medium") map-get($transition-type, "cubic");

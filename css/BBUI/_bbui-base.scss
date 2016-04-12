@@ -393,16 +393,20 @@ a.plain{
 
 
 
-strong, .strong{
+// Strong is for semantic emphasis,
+// not for visual emphasis.
+
+strong{
     font-weight: normal;
 }
 
 
 
-// Use font-family--bold class for true bold
-// when using custom fonts.
+// Use .font-family--bold for true bold
+// when using custom fonts. Or use .font-weight--700
+// for regular font weight styling.
 
-.b, b{
+b{
     font-weight: 700;
 }
 
@@ -417,29 +421,26 @@ h1, h2, h3, h4, h5, h6,
 }
 
 
-// We set h1-h3 to have bigger font sizes
-// Lets make the line height bigger too :)
-
-h1, h2, h3,
-.h1, .h2, .h3{
-    line-height: map-get($line-height, "s");
-}
-
+// We extend our .titles--* classes
+// to our h1-h4 tags/classes.
 
 .h1, h1{
-    font-size: map-get($font-size, "xl");
-    font-family: map-get($font-family, "bold");
+    @extend .title--xxl;
 }
 
 
 .h2, h2{
-    font-size: map-get($font-size, "l");
-    font-family: map-get($font-family, "medium");
+   @extend .title--xl;
 }
 
 
 .h3, h3{
-    font-size: map-get($font-size, "m");
+    @extend .title--l;
+}
+
+
+.h4, h4{
+    @extend .title--m;
 }
 
 
@@ -451,7 +452,6 @@ i, .i,
 em, .em{
     font-style: italic;
 }
-
 
 
 

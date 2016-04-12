@@ -9,6 +9,7 @@
     table-layout: fixed;
     height: 100%;
     width:  100%;
+    text-align: center;
 }
 
 
@@ -40,22 +41,6 @@
     display: none !important;
     speak: none;
 }
-
-
-
-
-/*------------------------------------*\
-    #MISC-SIZING
-\*------------------------------------*/
-
-
-
-.page-content-max-width{
-    max-width: $page-content-max-width;
-    margin-left:  auto;
-    margin-right: auto;
-}
-
 
 
 
@@ -104,42 +89,30 @@
 
 
 
-.invisible-transparent{
+.visually-hidden{
     visibility: hidden;
     opacity: 0;
 }
 
 
-.visible-opaque{
+.visually-visible{
     visibility: visible;
     opacity: 1;
 }
 
 
+// Reference the percent "classes" when
+// using SASS's @extend to avoid file bloat.
 
-
-
-/*------------------------------------*\
-    #RULES & #BORDERS
-\*------------------------------------*/
-
-
-
-.hr{
-    border: none;
-    height: map-get($line-width, "s");
-    display: block;
-    background-color: map-get($color, "light-gray");
+%visually-hidden{
+    visibility: hidden;
+    opacity: 0;
 }
 
 
-.hr--medium{
-    height: map-get($line-width, "m");
-}
-
-
-.hr--thick{
-    height: map-get($line-width, "l");
+%visually-visible{
+    visibility: visible;
+    opacity: 1;
 }
 
 
@@ -171,11 +144,34 @@
 
 
 
+// Maintain intrinsic aspect ratios.
+
 .aspect-ratio--16-9{
-    // Maintain the intrinsic aspect ratio.
     @include aspect-ratio(16, 9);
 }
 
+
+.aspect-ratio--4-5{
+    @include aspect-ratio(4, 5);
+}
+
+
+.aspect-ratio--4-5-to-16-9{
+    @include aspect-ratio(4, 5);
+
+    @media #{map-get($media-query, "s")}{
+        @include aspect-ratio(16, 9);
+    }
+}
+
+
+.aspect-ratio__object{
+    position: absolute;
+    top:  0;
+    left: 0;
+    height: 100%;
+    width:  100%;
+}
 
 
 
@@ -191,9 +187,14 @@
 
 .disabled{
     opacity: 0.5;
-    cursor: not-allowed;
+    pointer-events: none;
 }
 
+
+%disabled{
+    opacity: 0.5;
+    pointer-events: none;
+}
 
 
 
@@ -207,7 +208,7 @@
 // Anything that has toggle functionality
 // should have a pointer cursor.
 
-// Data-toggle attributes are used in _bbjs-utilities.js
+// data-toggle attributes are used in _bbjs-utilities.js
 
 [data-toggle]{
     cursor: pointer;

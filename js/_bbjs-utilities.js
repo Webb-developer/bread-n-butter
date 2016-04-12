@@ -1,30 +1,3 @@
-
-// @description This function adds a capitalize method to the String prototype
-//              It capitalizes every word in a string.
-
-// @example "string".capitalize()
-
-String.prototype.capitalize = function(){
-
-    'use strict';
-    
-
-    var array  = this.split(" ");
-
-    var string = [];
-
-
-    for (var i = 0, l = array.length; i < l; i++) {
-        string.push(array[i].charAt(0).toUpperCase() + array[i].substring(1));
-    }
-
-    return string.join(" ");
-
-};
-
-
-
-
 // @description Smooth anchor link scrolling.
 
 (function(){
