@@ -22,7 +22,7 @@
 
 
 
-$bbui-version: 1.4;
+$version: 1.4;
 
 
 
@@ -30,11 +30,11 @@ $bbui-version: 1.4;
 
 /*
 
-@author: Andrew Puig
+@author Andrew Puig
 
 I recommend not editing BBUI itself, but rather
 putting your overrides or custom code in the non-prefixed
-includes. Ex: _trump,  _objects
+includes. Ex: _trump.scss,  _objects.scss
 
 */
 

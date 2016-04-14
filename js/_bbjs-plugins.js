@@ -1,22 +1,13 @@
-
-
-/*------------------------------------*\
-    #PLUGINS
-\*------------------------------------*/
-
-
-
 (function(){
 
     'use strict';
 
 
-    // Fast Click
+    // @name Fast Click
+    // https://github.com/ftlabs/fastclick
 
     if(globalSettings.fastclick){
-
         FastClick.attach(document.body);
-        
     }
 
 })();
@@ -25,7 +16,8 @@
 
 
 
-// Lazy Load
+// @name Lazy Load
+// http://www.appelsiini.net/projects/lazyload
 
 function callLazy(options){
 
@@ -35,7 +27,6 @@ function callLazy(options){
     // We want to wait for other images to load before
     // we start lazy loading. That way if were waiting for images loaded
     // to show the page, it will show faster.
-
     cache.$main.imagesLoaded(function(){
 
         $(".js-lazy").lazyload(typeof(options) === "undefined" ? globalSettings.lazyload.options : options);
@@ -48,7 +39,8 @@ function callLazy(options){
 
 
 
-// General Carousel
+// @name Owl Carousel
+// http://www.owlcarousel.owlgraphic.com/
 
 function callCarousel(){
 
@@ -67,9 +59,7 @@ function callCarousel(){
         autoplayTimeout: 4000,
         responsiveRefreshRate: 0,
         navText: globalSettings.carousels.arrows,
-        smartSpeed: 300,
-        animateOut: 'fadeOut',
-        animateIn: 'fadeIn'
+        smartSpeed: 300
     });
 
     return carousel;
@@ -79,7 +69,8 @@ function callCarousel(){
 
 
 
-// Instafeed
+// @name Instafeed
+// http://instafeedjs.com/
 
 function callInstafeed(callback){
 
@@ -110,4 +101,3 @@ function callInstafeed(callback){
     }
 
 }
-

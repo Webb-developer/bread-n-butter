@@ -294,6 +294,8 @@
 
 @include createClassesFromMap(float, float, $float);
 
+    @include createMQClassesFromMap(float, float, $float);
+
 
 
 @include createClassesFromMap(vertical-align, vertical-align, $vertical-align);

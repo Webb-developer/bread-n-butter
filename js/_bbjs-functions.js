@@ -1,19 +1,14 @@
-/*------------------------------------*\
-    #DEBOUNCE
-\*------------------------------------*/
+/**
+@name debounce
+https://davidwalsh.name/javascript-debounce-function
 
-// https://davidwalsh.name/javascript-debounce-function
-
-/* Call:
-
+@example
 var myFunction = debounce(function(){
     // Do something
 }, 150);
 
 myFunction();
-
 */
-
 
 function debounce(func, wait, immediate) {
 
@@ -49,9 +44,15 @@ function debounce(func, wait, immediate) {
 
 
 
-// Animate scrollTo position.
-// @param {number} pos
-// @param {number} speed - is optional and defaults to 250
+/**
+@name animateScroll
+
+@description
+Animate scrollTo position.
+
+@param {number} pos
+@param {number} speed - is optional and defaults to 250
+*/
 
 function animateScroll(pos, speed){
 
@@ -73,16 +74,17 @@ function animateScroll(pos, speed){
 
 
 
-/*------------------------------------*\
-    #UNIQUE ARRAY
-\*------------------------------------*/
+/**
+@name uniqueArray
 
+@example
+var myArray = ["fuck", "fuck", "shit"];
+uniqueArray(myArray);
 
+@returns {array} - a unique array, meaning, no key is the same.
 
-// var myArray = ["fuck", "fuck", "shit"];
-// uniqueArray(myArray); Returns ["fuck", "shit"]
-
-// @param {array} array
+@param {array} array
+*/
 
 function uniqueArray(array){
 
@@ -102,6 +104,8 @@ function uniqueArray(array){
     #FORMS
 \*------------------------------------*/
 
+
+// @todo, re-do forms
 
 
 // Check form for empty fields.
@@ -265,24 +269,27 @@ var Forms = function(){
 
 
 
-/*------------------------------------*\
-    #COOKIES
-\*------------------------------------*/
 
 
+/**
+@name cookies
 
-// Create, remove and check the status of cookies with this function.
-// Cookies.create("name", "value");
-// Cookies.remove("name");
-// Cookies.isSet("name");
+@description
+Create, remove and check the status of cookies.
+
+@example
+Cookies.create("name", "value");
+Cookies.remove("name");
+Cookies.isSet("name");
+*/
 
 var Cookies = (function(document){
 
     'use strict';
 
 
-    // @param {string, number} name - the cookie name
-    // @param {string, number} value - the cookie value
+    // @param {string|number} name - the cookie name
+    // @param {string|number} value - the cookie value
     function create(name, value){
 
         document.cookie = name + "=" + value;
@@ -290,22 +297,20 @@ var Cookies = (function(document){
     }
 
 
-    // @param {string, number} name - the cookie name to delete
+    // @param {string|number} name - the cookie name to delete
     function remove(name){
 
         document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 
         if(isSet(name)){
-            console.log(name + " cookie could not be deleted.");
-        } else {
-            console.log(name + " cookie was deleted");
+            throw new Error(name + " cookie could not be deleted.");
         }
 
     }
 
 
-    // @param {string, number} name - the cookie name to check
-    // returns true if the cookie is set.
+    // @param {string|number} name - the cookie name to check
+    // @returns {boolean} - true if the cookie is set.
     function isSet(name){
 
         if(document.cookie.indexOf(name) !== -1) {
@@ -328,30 +333,18 @@ var Cookies = (function(document){
 
 
 
+/**
+@name modals
 
-/*------------------------------------*\
-    #MODALS
-\*------------------------------------*/
-
-
-
-/*
 @description
-
 Shows and hides modals with cookie based detection.
 
-
 @example
-
 <div class='modal  js-modal  transparent  invisible'>
-    
     <span class='modal__close  js-modal-close'>X</span>
-
     <div class='modal__inner'></div>
-
 </div>
 */
-
 
 var Modals = function(){
 
@@ -475,13 +468,17 @@ var Modals = function(){
 
 
 
-// @example
+/**
+@name animateIn
 
-// Perform actions to elements when images are loaded in a specified container.
-// Requires imagesLoaded (Built in to BBJS): http://imagesloaded.desandro.com/
+@description
+Perform actions to elements when images in a container
+or the window is loaded. Requires imagesLoaded.js (Built in to BBJS):
+http://imagesloaded.desandro.com/
 
-// @example:
-// <div class="js-animate" animate-class="animated  fadeInUp" animate-offset="1.5">Fuck Me</div>
+@example:
+<div class="js-animate" animate-class="animated  fadeInUp" animate-offset="1.5">I'll fadeUp soon</div>
+*/
 
 var animateIn = (function(){
 
@@ -490,44 +487,55 @@ var animateIn = (function(){
 
     var settings = {
 
-        imagesLoadedContainer: ".js-images-loaded",
+        // @property {object} settings.imagesLoadedContainer
+        // Set to window to use window.load() to wait for page load.
+        imagesLoadedContainer: cache.$main,
 
         item: {
+            // @property {string} settings.item.selector - the element
+            // that will be animated.
             selector: ".js-animate",
 
-            // Attributes
+            // @property {string} settings.item.class - the class that will be applied
+            // to item.selector once images have loaded.
             class: "animate-class",
-            offset: "animate-offset"
-        },
 
-        // Hide items on load
-        hideItems: {
-            selector: ".js-hide-on-load",
-            class: "hidden"
+            // @property {number} settings.item.offset - the amount of time to wait
+            // after images have loaded to apply the class to item.selector.
+            offset: "animate-offset"
         }
 
     };
 
 
-    $(settings.imagesLoadedContainer).imagesLoaded(function(){
-
+    function run(){
 
         $(settings.imagesLoadedContainer).find($(settings.item.selector).each(function(index, el){
 
-            var offset = ($(el).attr(settings.item.offset) * 1000).toFixed(0);
-
+            // Convert offset from MS to S.
+            var offset = ($(el).attr(settings.item.offset) * 1000).toFixed(0) || 0;
                     
             setTimeout(function(){
-
                 $(el).addClass($(el).attr(settings.item.class));
-
             }, offset);
-
-
-            $(document).find(settings.hideItems.selector).addClass(settings.hideItems.class);
 
         }));
 
-    });
+    }
+
+
+    if(settings.imagesLoadedContainer === window){
+        
+        cache.$window.on("load", function(){
+            run();
+        });
+
+    } else {
+
+        $(settings.imagesLoadedContainer).imagesLoaded(function(){
+            run();
+        });
+
+    }
 
 });

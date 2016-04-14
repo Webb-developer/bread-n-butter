@@ -1,11 +1,9 @@
+/**
+@author Andrew Puig [andrew.lpuig@gmail.com]
 
+@version 1.35
+*/
 
-// Andrew Puig
-// puigandrew.com
-// andrew.lpuig@gmail.com
-
-
-// VERSION: 1.3
 
 
 /*
@@ -22,23 +20,18 @@
 *
 * UTILITIES........................Plug and play code.
 *
-* SHOPIFY UTILITIES................Plug and play code, intended for Shopify.
-*
 */
 
 
 
-// BBJS is intended for internal use.
 
+/**
+@name globalSettings
 
+@description
+Some basic configuration
+*/
 
-/*------------------------------------*\
-    #SETTINGS
-\*------------------------------------*/
-
-
-
-// Basic Configuration
 var globalSettings = {
 
     lazyload: {
@@ -67,9 +60,15 @@ var globalSettings = {
 
 
 
-// Create an object for caching of common variables
-// I recommend using these cached variables for setting
-// rather then getting to ensure up to date results.
+/**
+@name cache
+
+@description
+Create an object for caching of common variables
+I recommend using these cached variables for setting
+rather then getting to ensure up to date results.
+*/
+
 var cache = {
 
     $html:   $("html"),
@@ -78,12 +77,6 @@ var cache = {
 
     $main:   $(".js-main"),
 
-    $header: $(".js-header"),
-
-    $footer: $(".js-footer"),
-
-    $doc:    $(document),
-
     $window: $(window)
 
 };
@@ -91,22 +84,25 @@ var cache = {
 
 
 
-/*------------------------------------*\
-    #TOUCH-TEST
-\*------------------------------------*/
 
 
+/**
+@name touchTest
 
-// Returns true only on mobile touch not desktop touch
-// Requires touch support in Modernizr (Built In) and device sniffing.
-// For device sniffing we use device.js (Built In)
+@returns {boolean}
+
+@description
+Returns true only on mobile touch not desktop touch
+Requires touch support in Modernizr (Built In) and device sniffing.
+For device sniffing we use device.js (Built In)
+*/
+
 function touchTest(){
 
     'use strict';
 
     return cache.$html.hasClass("touchevents") && !cache.$html.hasClass("desktop");
 }
-
 
 
 
@@ -127,6 +123,7 @@ function touchTest(){
     // @codekit-prepend "vendor/lazyload.js";
 
     // @codekit-prepend "vendor/owl-carousel.js";
+
 
 // End optional includes.
 
@@ -153,5 +150,3 @@ function touchTest(){
 
 
 // @codekit-append "_bbjs-partials.js";
-
-

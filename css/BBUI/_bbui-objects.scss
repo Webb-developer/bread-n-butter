@@ -143,47 +143,6 @@
 
 
 
-
-/*------------------------------------*\
-    #SEARCH
-\*------------------------------------*/
-
-
-
-.suggest-search{
-    position: relative;
-}
-
-
-.suggest-search__input{
-    z-index: 1;
-    position: relative;
-}
-
-
-.suggest-search__placeholder{
-    position: absolute;
-    left:   0;
-    right:  0;
-    top:    0;
-    pointer-events: none;
-    color: rgba(0,0,0,.3);
-}
-
-
-.suggest-search__placeholder,
-.suggest-search__input{
-    font-size: map-get($font-size, "base");
-    text-transform: lowercase;
-    text-align: left;
-    padding: map-get($spacing, "s");
-    white-space: nowrap;
-    text-rendering: geometricPrecision;
-}
-
-
-
-
 /*------------------------------------*\
     #FORMS
 \*------------------------------------*/
