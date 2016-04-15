@@ -1,13 +1,19 @@
-/*------------------------------------*\
-    #MIXINS
-\*------------------------------------*/
+/*
+@name query
 
+@description
+Mixin for a media query.
 
+@param {string} query - a key in our $media-query
+map that we are fetching.
 
-// @name query
-
-// @param {map key} query - the key in our $media-query
-// map that we are fetching.
+@example
+.hello{
+    @include query("m"){
+        color: red;
+    }
+}
+*/
 
 @mixin query($query){
     
@@ -19,16 +25,18 @@
 
 
 
-// @name aspect-ratio
+/*
+@name aspect-ratio
 
-// @description
-// Mixin to preseve intrinsic aspect ratios.
+@description
+Mixin to preserve aspect ratios.
 
-// @param {number} width
-// @param {number} height
+@param {number} width
+@param {number} height
 
-// @example
-// @include aspect-ratio(16, 9);
+@example
+@include aspect-ratio(16, 9);
+*/
 
 @mixin aspect-ratio($width, $height){
     position: relative;
@@ -37,34 +45,38 @@
 
 
 
-// @name createGrid
-
-// @description
-// Mixin to create grids. Does not support media queries.
-// Add media queries independently as you would for anything.
-// See _bbui-objects.scss for more examples.
-
-// @param {number} cols - the number of columns in the grid
-// @param {number} gutter - the spacing between the columns
-// @param {string} className - the class name of the grid that will be outputted.
-//                             the child will have a suffix of __item.
-// @param {boolean} useFlex - If true, it will use flexbox for the layout
-//                            if false it will use a floated grid.
 
 /*
-    @example
-    With static number of columns
-    @include createGrid(2, 1rem, "grid--2-4");
+@name createGrid
 
-    With changing number of columns and independent media query.
-    @include createGrid(2, 1rem, "grid--2-4");
-    
-    .grid--2-4__item{
+@description
+Mixin to create grids. Does not support media queries.
+Add media queries independently as you would for anything.
+See _bbui-objects.scss for more examples.
 
-        @media #{map-get($media-query, "m")}{
-            width: 25%;
-        }
+@param {number} cols - the number of columns in the grid
+
+@param {number} gutter - the spacing between the columns
+
+@param {string} className - the class name of the grid that will be outputted.
+the child will have a suffix of __item.
+
+@param {boolean} useFlex - If true, it will use flexbox for the layout
+if false it will use a floated grid.
+
+@example
+With static number of columns
+@include createGrid(2, 1rem, "grid--2-4");
+
+With changing number of columns and independent media query.
+@include createGrid(2, 1rem, "grid--2-4");
+
+.grid--2-4__item{
+
+    @include query("m"){
+        width: 25%;
     }
+}
 */
 
 @mixin createGrid($cols, $gutter, $className, $useFlex: true){
@@ -109,12 +121,13 @@
 
 
 
-
-// @name map-deep-get
-// @author Hugo Giraudel
-// @param {map} $map - Map
-// @param {Arglist} $keys - Key chain
-// map-deep-get is not compatible with createClassesFromMap().
+/*
+@name map-deep-get
+@author Hugo Giraudel
+@param {map} $map - Map
+@param {Arglist} $keys - Key chain
+NOTE: map-deep-get is not compatible with createClassesFromMap().
+*/
 
 @function map-deep-get($map, $keys){
 
@@ -126,27 +139,28 @@
 }
 
 
+/*
+@name createClassesFromMap
 
-// @name createClassesFromMap
+@description
+This mixin takes a given map and iterates through the keys
+and creates css classes based on the key-value pairs.
+Additionally, all values are outputted with !important because they
+are intended to be used as trumps. Removing !important may result
+in styles getting overidden by BBUI. map-deep-get is not compatible with createClassesFromMap().
 
-// @description
-// This mixin takes a given map and iterates through the keys
-// and creates css classes based on the key-value pairs.
-// Additionally, all values are outputted with !important because they
-// are intended to be used as trumps. Removing !important may result
-// in styles getting overidden by BBUI. map-deep-get is not compatible with createClassesFromMap().
+@param {string} property - the name of the property that will be outputted.
 
-// @param {string} property - the name of the property that will be outputted.
+@param {string} className - the classname that will be outputted, 
+suffixed with "--" then the value of the property. Ex: text-decoration--none
+The suffix is for a BEM like structure.
 
-// @param {string} className - the classname that will be outputted, 
-// suffixed with "--" then the value of the property. Ex: text-decoration--none
-// The suffix is for a BEM like structure.
+@param {map} map - the SASS map where we get the data from
+and iterate through the key-value pairs.
 
-// @param {map} map - the SASS map where we get the data from
-// and iterate through the key-value pairs.
-
-// @example
-// @include createClassesFromMap(font-family, font-family, $font-family);
+@example
+@include createClassesFromMap(font-family, font-family, $font-family);
+*/
 
 @mixin createClassesFromMap($property, $className, $map){
 
@@ -168,13 +182,14 @@
 }
 
 
+/*
+@name createMQClassesFromMap
 
-// @name createMQClassesFromMap
-
-// @description
-// This mixin is nearly identical to createClassesFromMap()
-// except it wraps our classes in a media query. It gets the
-// media queries from our $media-query map.
+@description
+This mixin is nearly identical to createClassesFromMap()
+except it wraps our classes in a media query. It gets the
+media queries from our $media-query map.
+*/
 
 @mixin createMQClassesFromMap($property, $className, $map){
 
@@ -194,9 +209,10 @@
 }
 
 
-
-// @name createIncrementalNumberClasses
-// @todo add description
+/*
+@name createIncrementalNumberClasses
+@todo add description
+*/
 
 @mixin createIncrementalNumberClasses($property, $className, $increment, $max){
 

@@ -49,13 +49,14 @@
 
 
 
-// @description
-// Using modernizr no-flexbox class. You should
-// apply the .grid class to any grids and .grid__item
-// to any grid items.
-// If the browser doesnt support flexbox
-// we'll fallback to a floated grid.
-// When creating grids using the createGrid
+/*
+@description
+This depends on modernizr no-flexbox class.
+Apply the .grid class to any grids and .grid__item
+to any grid items.
+If the browser doesnt support flexbox we'll fallback to a floated grid.
+if were using flexbox to create grids using createGrid()
+*/
 
 .no-flexbox{
 
@@ -69,26 +70,27 @@
     }
 }
 
+/*
+@description
+Instructions for creating grids with createGrid()
+For parameter descriptions find createGrid() in _bbui-functions.
+When creating grids where the number of columns will change
+on a breakpoint, set the number of columns mobile first.
 
-// Instructions for creating grids with createGrid()
+@example
+For a grid that goes from 1 to 2 columns:
+@include createGrid(1, 2rem, "grid--1-2")
+then create a media query independently to go from 100% to 50% width.
 
-    // 1. For parameter descriptions find createGrid() in _bbui-functions.
-
-    // 2. When creating grids where the number of columns will change
-    //    on a breakpoint, set the number of columns mobile first.
-    //    Ex: For a grid that goes from 1 to 2 columns:
-    //    @include createGrid(1, 2rem, "grid--1-2")
-    //    then create a media query independently to go from 100% to 50% width. Ex:
-    /*    .grid--1-2__item{
-
-                @media (min-width: 600px){
-                    width: 50%;
-                }
-            }
-    */
-
+.grid--1-2__item{
+    @include query("s"){
+        width: 50%;
+    }
+}
+*/
 
 @include createGrid(2, 1.5rem, "grid--2");
+
 
 
 @include createGrid(1, 1.5rem, "grid--1-2");
@@ -96,10 +98,11 @@
 
 .grid--1-2__item{
 
-    @media #{map-get($media-query, "s")}{
+    @include query("s"){
         width: 50%;
     }
 }
+
 
 
 @include createGrid(2, 1rem, "grid--2-4");
@@ -107,7 +110,7 @@
 
 .grid--2-4__item{
 
-    @media #{map-get($media-query, "m")}{
+    @include query("m"){
         width: 25%;
     }
 }
@@ -121,7 +124,14 @@
 \*------------------------------------*/
 
 
-// Functionality for this is in _bbjs-utilities.js
+
+/*
+@description
+Functionality for this is in _bbjs-utilities.js
+
+@example
+<div class="load-bar"></div>
+*/
 
 .load-bar{
     position: fixed;
@@ -184,6 +194,15 @@
 \*------------------------------------*/
 
 
+
+/*
+@example
+<div class="menu-icon">
+    <div class="menu-icon__line"></div>
+    <div class="menu-icon__line"></div>
+    <div class="menu-icon__line"></div>
+</div>
+*/
 
 .menu-icon{
     width: map-get($hamburger, "width");
@@ -436,6 +455,13 @@
 
 
 
+/*
+@example
+<div class="overlay__wrap">
+    <div class="overlay">Overlay Content</div>
+</div>
+*/
+
 .overlay__wrap{
     position: relative;
 
@@ -538,10 +564,6 @@
             display: none;
         }
     }
-
-    &.active{
-        text-decoration: underline;
-    }
 }
 
 
@@ -568,6 +590,32 @@
     }
 }
 
+/*
+@example
+<div class="modal">
+            
+    <div class="modal__inner">
+        <span class="modal__close  js-modal-close"></span>
+        Modal content
+    </div>
+
+</div>
+
+
+Can be used in conjunction with Modals() in
+bbjs-functions.js by applying a js-modal class to the modal.
+Do this if you want to have the modal to appear on page load.
+
+@example
+<div class="modal  js-modal  invisible  transparent">
+            
+    <div class="modal__inner">
+        <span class="modal__close  js-modal-close"></span>
+        Modal content
+    </div>
+
+</div>
+*/
 
 .modal{
     background-color: fade-out($base-black, 0.5);
@@ -627,6 +675,17 @@
 
 
 
+/*
+@description
+Simple content dropdowns
+
+@example
+<div class='dropdown'>
+    <div class='dropdown__summary  js-toggle' data-tab='dropdown__content' use-parent="true">Toggle</div>
+    <div class='dropdown__content'>Im some content</div>
+</div>
+*/
+
 .dropdown{
     position: relative;
 }
@@ -652,6 +711,7 @@
 }
 
 
+// Optional, to create a list like structure.
 .dropdown__item{
     display: block;
     margin-top: map-get($spacing, "xs");
@@ -666,12 +726,52 @@
 
 
 /*------------------------------------*\
+    #TABS
+\*------------------------------------*/
+
+
+/*
+@description
+.tab__content should have a hidden class applied to it.
+tabs functionality is in bbjs-utilities.js
+
+@example
+<div class='js-tab-toggle  tab__summary' data-tab='0'>Toggle</div>
+<div class='js-tab-content  tab__content' data-tab='0'>Im some content</div>
+*/
+
+.tab__summary{
+    cursor: pointer;
+    display: inline-block;
+    user-select: none;
+    margin-right: map-get($spacing, "m");
+
+    &:nth-last-of-type(1){
+        margin-right: 0;
+    }
+}
+
+
+.tab__content{
+    margin-top: map-get($spacing, "s");
+}
+
+
+
+/*------------------------------------*\
     #DRAWERS
 \*------------------------------------*/
 
 
 
-// Slide out from left or right drawers.
+/*
+@description
+Slide out from left or right drawers.
+
+@example
+<div class='js-toggle' data-toggle='drawer--right'>Toggle drawer</div>
+<div class='drawer  drawer--right' data-tab='0'>Im a drawer</div>
+*/
 
 .drawer {
     position: fixed;

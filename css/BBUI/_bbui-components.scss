@@ -159,7 +159,7 @@
 .aspect-ratio--4-5-to-16-9{
     @include aspect-ratio(4, 5);
 
-    @media #{map-get($media-query, "s")}{
+    @include query("s"){
         @include aspect-ratio(16, 9);
     }
 }

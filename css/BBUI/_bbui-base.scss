@@ -450,10 +450,10 @@ html{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-size: 93.75%;
+    font-size: 90%;
     line-height: map-get($line-height, "m");
 
-    @media #{map-get($media-query, "s")}{
+    @include query("s"){
         font-size: 100%;
     }
 }

@@ -76,6 +76,10 @@ or 0, the height of 100% of the window will be set.
 @description
 This function adds toggle functionality to tabs.
 Only one tab can be open at a time.
+
+@example
+<div class='js-tab-toggle  tab__summary' data-tab='0'>Toggle</div>
+<div class='js-tab-content  tab__content' data-tab='0'>Im some content</div>
 */
 
 (function(){
@@ -278,7 +282,7 @@ Would output: "search--toggled" class on the html element.
 
             $.each(classes, function(index, element){
 
-                if(!$self.attr(settings.element.parentAttribute)){
+                if($self.attr(settings.element.parentAttribute) !== "true"){
                     cache.$html.toggleClass(element.concat(settings.toggledClass));
                 } else {
                     $self.parent().toggleClass(element.concat(settings.toggledClass));
