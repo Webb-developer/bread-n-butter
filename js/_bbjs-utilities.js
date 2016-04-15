@@ -72,6 +72,49 @@ or 0, the height of 100% of the window will be set.
 
 
 
+/**
+@description
+This function adds toggle functionality to tabs.
+Only one tab can be open at a time.
+*/
+
+(function(){
+
+    var $tab     = $(".js-tab-toggle"),
+        $content = $(".js-tab-content");
+
+    var ACTIVE_CLASS = "tabs__summary--active",
+        HIDDEN_CLASS = "hidden";
+
+
+    $tab.on("click", function(){
+
+        var $self = $(this);
+
+
+        if($self.hasClass(ACTIVE_CLASS)){
+
+            // Remove any active states from clicked tab.
+            $self.removeClass(ACTIVE_CLASS);
+            $(".js-tab-content[data-tab=" + $self.data("tab") + "]").addClass(HIDDEN_CLASS);
+
+        } else {
+
+            // Remove any active states from all tabs.
+            $tab.removeClass(ACTIVE_CLASS);
+            $content.addClass(HIDDEN_CLASS);
+
+            // Add active states to clicked tab.
+            $self.addClass(ACTIVE_CLASS);
+            $(".js-tab-content[data-tab=" + $self.data("tab") + "]").removeClass(HIDDEN_CLASS);
+
+        }
+
+    });
+
+})();
+
+
 
 
 /**

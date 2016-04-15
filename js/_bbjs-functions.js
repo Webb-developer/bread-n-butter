@@ -100,173 +100,183 @@ function uniqueArray(array){
 
 
 
-/*------------------------------------*\
-    #FORMS
-\*------------------------------------*/
+/**
+@name forms
 
+@description
+Check form for empty fields.
+Submit form via AJAX or standard submit
+Adds error and success classes to inputs
 
-// @todo, re-do forms
+@example
+<input type='text' data-handle-field='true'>
 
+@example
+forms.process({
+    form: "#customer_login",
+    ajax: true,
+    resetOnSuccess: true, (AJAX only)
+    success: function(){
+        console.log("oh yesss");
+    },
+    error: function(){
+        console.log("oh no");
+    },
+});
+*/
 
-// Check form for empty fields.
-// Submit form via AJAX or standard submit
-// Adds error and success classes to inputs
-
-
-// Markup field:
-// <input type='text' data-handle-field='true'>
-
-
-// Call:
-
-// Forms.init({
-//     form: "#customer_login",
-//     ajax: false,
-//     resetOnSuccess: true, (AJAX only)
-//     success: function(){
-//          console.log("ayeee");
-//     },
-//     error: function(){
-//          console.log("oh no");
-//     },
-// });
-
-
-var Forms = function(){
+var forms = function(){
 
     'use strict';
 
 
     var settings = {
+
         enabled: true,
-        inputSelector: "handle-field"
+
+        element: {
+            "selector": ".js-handle",
+            "successClass": "input--success",
+            "errorClass": "input--error"
+        },
+
+        options: {}
     };
 
 
-    var forms = {
+    function _submitAJAX(){
 
-        _submit: function(options){
+        var form = $(settings.options.form);
 
 
-            var form = $(options.form);
+        form.on('submit', function(e){
 
-            form.on('submit', function(e){
+            e.preventDefault();
+
+            _checkFields();
+
+
+            $.ajax({
+                type    : form.attr("method"),
+                url     : form.attr("action"),
+                data    : form.serialize()
+
+            }).done(function(data){
+
+                if(data.success === true){
+                    _onSuccess();
+                } else {
+                    _onError();
+                }
+
+            });
+
+        });
+
+    }
+
+
+    // Only called on AJAX forms
+    function _onSuccess(){
+
+        if(settings.options.resetOnSuccess){
+            $(settings.options.form)[0].reset();
+        }
+
+        if(typeof(settings.options.success) === "function"){
+            settings.options.success();
+        }
+
+    }
+
+
+    function _onError(){
+
+        if(typeof(settings.options.error) === "function"){
+            settings.options.error();
+        }
+
+    }
+
+    /**
+    @name _checkFields
+
+    @description
+    This function does not validate any data.
+    It simply checks if the field is empty or not.
+
+    @returns {object}
+    @property fields.inputs - the amount of fields in the form
+    @property fields.valid - the amount of valid fields in the form
+    */
+
+    function _checkFields(){
+
+        var fields = {
+            inputs: $(settings.options.form).find(settings.element.selector),
+            valid: []
+        };
+
+        
+        fields.inputs.each(function(index, el){
+
+            if($(el).val().length === 0){
+                $(this).addClass(settings.element.errorClass);
+            } else {
+
+                $(el).removeClass(settings.element.errorClass).addClass(settings.element.successClass);
+
+                fields.valid.push($(el));
+
+            }
+
+        });
+
+        return fields;
+
+    }
+
+
+    function _processForm(){
+
+        $(settings.options.form).on('submit', function(e){
+
+            // The length of the valid fields does not match
+            // the length of the fields. Process error.
+            if(_checkFields().valid.length !== _checkFields().inputs.length){
 
                 e.preventDefault();
 
-                forms._checkFields(options);
+                _onError();
 
-                $.ajax({
-                    type    : form.attr("method"),
-                    url     : form.attr("action"),
-                    data    : form.serialize(),
-                    dataType: 'json'
-
-                }).done(function(data){
-
-                    if(data.success === true){
-                        forms._onSuccess(options);
-                    } else {
-                        forms._onError(options);
-                    }
-
-                });
-
-            });
-            
-        },
-
-
-        _onSuccess: function(options){ // Only called on AJAX forms
-
-            var form = $(options.form);
-
-            if(options.resetOnSuccess === true){
-                form[0].reset();
             }
 
-            if(typeof(options.success) === "function"){
-                options.success();
-            }
-
-        },
+        });
+    }
 
 
-        _onError: function(options){
+    function init(options){
 
-            if(typeof(options.error) === "function"){
-                options.error();
-            }
+        if(settings.enabled){
 
-        },
-
-
-        _checkFields: function(options){
-
-            var fields = {};
-
-            fields.inputs = $(options.form).find("[" + settings.inputSelector + "]");
-
-            fields.validArray = [];
-
-            
-            fields.inputs.each(function(index, el){
-
-                // if field is blank
-
-                if($(el).val().length === 0){
-                    $(this).addClass('input--error');
-                } else {
-                    $(this).removeClass('input--error').addClass('input--success');
-                    fields.validArray.push($(this));
-                }
-
-            });
-
-            return fields;
-
-        },
+            // Set our settings options to the users options.
+            settings.options = options;
 
 
-        _handle: function(options){
-
-            $(options.form).on('submit', function(e){
-
-                forms._checkFields(options);
-
-                if(forms._checkFields(options).validArray.length !== forms._checkFields(options).inputs.length){ // form error
-                    e.preventDefault();
-                    forms._onError(options);
-                }
-
-            });
-        },
-
-
-        init: function(options){
-
-            this.options = options;
-
-            if(typeof this.options.form === "undefined" || settings.enabled === false){
-                console.log("Notice: Forms.init() requires a form selector or Forms() is disabled.");
+            if(settings.options.ajax){
+                _submitAJAX();
             } else {
-
-                if(options.ajax === true){
-                    forms._submit(this.options);
-                } else {
-                    forms._handle(this.options);
-                }
-
+                _processForm();
             }
-        }
 
+        }
+    }
+
+    return {
+        process: init
     };
 
-    return forms;
-
 }();
-
-
 
 
 

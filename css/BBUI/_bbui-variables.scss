@@ -3,12 +3,10 @@
 @name variables
 
 @description
-
 This file is the key to everything. Nearly all of these SASS maps generate CSS
 classes based on their key-value pairs.
 
 @example
-
 $font-size: (
     "s":    0.9rem,
     "m":    1.2rem,
@@ -29,7 +27,6 @@ NOTE: deep maps cannot generate classes. They can only be fetched using the map-
 
 
 // @description
-
 // WARNING: Adding too many media queries here will
 // dramatically increase the file size. Please check 
 // the minified file size if you are adding additional
@@ -57,7 +54,6 @@ $media-query: (
 
 
 // @description
-
 // Define the breakpoint in which you decide
 // you've moved from mobile to a desktop. Useful
 // for when you have multiple fixed site headers with different
@@ -153,46 +149,6 @@ $line-height: (
 );
 
 
-// Define some base titles.
-
-$title: (
-    
-    "m": (
-        "font-family": map-get($font-family, "bold"),
-        "font-size": map-get($font-size, "m"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
-    ),
-
-    "l": (
-        "font-family": map-get($font-family, "bold"),
-        "font-size": map-get($font-size, "l"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
-    ),
-
-    "xl": (
-        "font-family": map-get($font-family, "bold"),
-        "font-size": map-get($font-size, "xl"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
-    ),
-
-    "xxl": (
-        "font-family": map-get($font-family, "bold"),
-        "font-size": map-get($font-size, "xxl"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
-    )
-
-);
-
-
-
 
 
 /*------------------------------------*\
@@ -201,7 +157,6 @@ $title: (
 
 
 // @description
-
 // This map's values are used to create margin
 // and padding classes. They are also referenced
 // throughout BBUI.
@@ -234,15 +189,19 @@ $spacing: (
 
 
 
-// Lighter variations of the $base-black color will
-// be created.
+// Lighter/darker variations of the 
+// $base-* colors will be created.
 
 $base-black: #000;
+
+$base-white: #fff;
 
 
 $color: (
     
     "black": $base-black,
+
+    "white": $base-white,
 
 
     "grey-90": lighten($base-black, 10%),
@@ -260,11 +219,6 @@ $color: (
     "grey-10": lighten($base-black, 90%),
 
     "grey-05": lighten($base-black, 95%),
-
-
-    "blue":       #0d7792,
-
-    "light-blue": #d7e5e8,
 
 
     "green":       #007e00,
@@ -292,7 +246,6 @@ $color: (
 
 
 // @description
-
 // This map's values are used to create width
 // and height classes.
 
@@ -315,75 +268,6 @@ $sizes: (
     "80":   80%,
 
     "100":  100%
-
-);
-
-
-
-
-
-/*------------------------------------*\
-    #BUTTON
-\*------------------------------------*/
-
-
-
-$button: (
-
-    "base": (
-        "height": 35px,
-        "line-height": 35px,
-        "padding": 0 1.2rem
-    ),
-
-
-    "short": (
-        "height": 25px,
-        "line-height": 25px
-    ),
-
-    "tall": (
-        "height": 45px,
-        "line-height": 45px
-    ),
-
-
-    "wide": (
-        "padding": 0 2rem
-    ),
-
-    "narrow": (
-        "padding": 0 0.6rem
-    )
-
-);
-
-
-
-
-/*------------------------------------*\
-    #Z-INDEX
-\*------------------------------------*/
-
-
-
-$z-index: (
-
-    "negative":      -1,
-
-    "base":          1,
-
-    "header":        10,
-
-    "overlay":       20,
-
-
-    "drawer":        15,
-
-    "drawerOverlay": 13,
-
-
-    "max":           9999
 
 );
 
@@ -427,13 +311,181 @@ $border-radius: (
 
 
 /*------------------------------------*\
+    #OBJECTS
+\*------------------------------------*/
+
+
+
+$drawer: (
+
+    "width": 320px,
+
+    "padding": map-get($spacing, "m"),
+
+    "overlayColor": fade-out($base-black, 0.5)
+
+);
+
+
+
+$button: (
+    
+    // All non-themed buttons have a default
+    // transparent color border.
+    "border-width": 1px,
+
+    "base": (
+        "height": 35px,
+        "line-height": 35px,
+        "padding": 0 1.2rem
+    ),
+
+
+    "short": (
+        "height": 25px,
+        "line-height": 25px
+    ),
+
+    "tall": (
+        "height": 45px,
+        "line-height": 45px
+    ),
+
+
+    "wide": (
+        "padding": 0 2rem
+    ),
+
+    "narrow": (
+        "padding": 0 0.6rem
+    )
+
+);
+
+
+
+// Define some base titles.
+
+$title: (
+    
+    "m": (
+        "font-family": map-get($font-family, "bold"),
+        "font-size": map-get($font-size, "m"),
+        "font-weight": normal,
+        "letter-spacing": inherit,
+        "line-height": map-get($line-height, "s")
+    ),
+
+    "l": (
+        "font-family": map-get($font-family, "bold"),
+        "font-size": map-get($font-size, "l"),
+        "font-weight": normal,
+        "letter-spacing": inherit,
+        "line-height": map-get($line-height, "s")
+    ),
+
+    "xl": (
+        "font-family": map-get($font-family, "bold"),
+        "font-size": map-get($font-size, "xl"),
+        "font-weight": normal,
+        "letter-spacing": inherit,
+        "line-height": map-get($line-height, "s")
+    ),
+
+    "xxl": (
+        "font-family": map-get($font-family, "bold"),
+        "font-size": map-get($font-size, "xxl"),
+        "font-weight": normal,
+        "letter-spacing": inherit,
+        "line-height": map-get($line-height, "s")
+    )
+
+);
+
+
+
+$overlay:(
+    
+    "padding": 2rem,
+
+    // Offset from all corners
+    "offset": 0,
+
+    "background-color": rgba(255,255,255,0.85)
+
+);
+
+
+
+$hamburger:(
+
+    "width": 30px,
+
+    "padding": 1rem,
+
+    "line":(
+        "background-color": map-get($color, "black"),
+        "height": 2px,
+        "spacing": 4px
+    )
+
+);
+
+
+
+$close-icon:(
+
+    "padding": 10px,
+
+    "font-size": map-get($font-size, "l"),
+
+    "color": map-get($color, "black"),
+
+    "icon":(
+        "symbol": "×",
+        "line-height": 0.558em
+    )
+
+);
+
+
+
+/*------------------------------------*\
+    #Z-INDEX
+\*------------------------------------*/
+
+
+
+$z-index: (
+
+    "negative":      -1,
+
+    "base":          1,
+
+    "header":        10,
+
+    "overlay":       20,
+
+
+    "drawer":        15,
+
+    "drawerOverlay": 13,
+
+
+    "max":           9999
+
+);
+
+
+
+
+/*------------------------------------*\
     #CSS3
 \*------------------------------------*/
 
 
 
 // @description
-
 // All cubic-bezier transitions are easeInOut
 // See: http://easings.net/
 
@@ -480,24 +532,6 @@ $transition-speed: (
 
 
 
-/*------------------------------------*\
-    #DRAWERS
-\*------------------------------------*/
-
-
-
-$drawer: (
-
-    "width": 320px,
-
-    "padding": map-get($spacing, "m"),
-
-    "overlayColor": fade-out($base-black, 0.5)
-
-);
-
-
-
 
 /*------------------------------------*\
     GENERATED CLASSES
@@ -505,7 +539,6 @@ $drawer: (
 
 
 // @description
-
 // These values are less likely to be modifed 
 // we'll put them at the bottom of the file.
 

@@ -50,11 +50,9 @@
 
 
 // @description
-
 // Using modernizr no-flexbox class. You should
 // apply the .grid class to any grids and .grid__item
 // to any grid items.
-
 // If the browser doesnt support flexbox
 // we'll fallback to a floated grid.
 // When creating grids using the createGrid
@@ -182,21 +180,22 @@
 
 
 /*------------------------------------*\
-    #ICONS & IMAGES
+    #ICONS
 \*------------------------------------*/
 
 
 
 .menu-icon{
-    width: 30px;
+    width: map-get($hamburger, "width");
+    padding: map-get($hamburger, "padding");
     cursor: pointer;
 }
 
 
 .menu-icon__line{
-    background: map-get($color, "black");
-    height: 2px;
-    margin-top: 4px;
+    background-color: map-deep-get($hamburger, "line" "background-color");
+    height: map-deep-get($hamburger, "line" "height");
+    margin-top: map-deep-get($hamburger, "line" "spacing");
     display: block;
 
     &:nth-of-type(1){
@@ -210,19 +209,22 @@
     position: absolute;
     top:   0;
     right: 0;
-    margin-top:   -10px;
-    margin-right: -10px;
-    padding: 10px;
+    margin-top:   -#{map-get($close-icon, "padding")};
+    margin-right: -#{map-get($close-icon, "padding")};
+
+    // Padding is for clickability, not for offset from corners.
+    // Apply class of close-icon--no-icon to add offsets.
+    padding: map-get($close-icon, "padding");
     display: inline-block;
     cursor: pointer;
     transition: transform map-get($transition-speed, "extra-fast") map-get($transition-type, "cubic");
-    font-size: map-get($font-size, "l");
-    color: map-get($color, "black");
+    font-size: map-get($close-icon, "font-size");
+    color: map-get($close-icon, "color");
 
     &:after{
-        content: "×";
+        content: map-deep-get($close-icon, "icon" "symbol");
         font-size: inherit;
-        line-height: 0.558em;
+        line-height: map-deep-get($close-icon, "icon" "line-height");
         display: block;
     }
 
@@ -234,11 +236,20 @@
         transform: scale3D(0.9, 0.9, 0.9);
     }
 
-    &.no-icon{
+    &.close-icon--to-left{
+        right: inherit;
+        left: 0;
+    }
+
+    &.close-icon--no-icon{
 
         &:after{
             display: none;
         }
+    }
+
+    &.close-icon--no-offset{
+        margin: 0;
     }
 
 }
@@ -299,19 +310,11 @@
 
 .list-item--smaller{
     margin-right: map-get($spacing, "xs");
-
-    &:nth-last-child(1){
-        margin-right: 0;
-    }
 }
 
 
 .list-item--larger{
     margin-right: map-get($spacing, "m");
-
-    &:nth-last-child(1){
-        margin-right: 0;
-    }
 }
 
 
@@ -327,19 +330,11 @@
 
 .list-item--vertical--smaller{
     margin-bottom: map-get($spacing, "xs");
-
-    &:nth-last-child(1){
-        margin-bottom: 0;
-    }
 }
 
 
 .list-item--vertical--larger{
     margin-bottom: map-get($spacing, "m");
-
-    &:nth-last-child(1){
-        margin-bottom: 0;
-    }
 }
 
 
@@ -369,10 +364,9 @@
 
 .button{
     cursor: pointer;
-    border: solid 1px transparent;
+    border: solid map-get($button, "border-width") transparent;
     display: inline-block;
     white-space: nowrap;
-    line-height: 0.7em;
     text-align: center;
     padding: map-deep-get($button, "base" "padding");
     height: map-deep-get($button, "base" "height");
@@ -411,27 +405,62 @@
 
 .button--black{
     background-color: map-get($color, "black");
-    color: #fff;
+    color: map-get($color, "white");
     border-color: map-get($color, "black");
     transition: all map-get($transition-speed, "fast") map-get($transition-type, "linear");
 
     &:hover{
-        background-color: #fff;
+        background-color: map-get($color, "white");
         color: map-get($color, "black");
     }
 }
 
 
 .button--white{
-    background-color: #fff;
+    background-color: map-get($color, "white");
     color: map-get($color, "black");
     border-color: map-get($color, "black");
     transition: all map-get($transition-speed, "fast") map-get($transition-type, "linear");
 
     &:hover{
         background-color: map-get($color, "black");
-        color: #fff;
+        color: map-get($color, "white");
     }
+}
+
+
+
+/*------------------------------------*\
+    #OVERLAY
+\*------------------------------------*/
+
+
+
+.overlay__wrap{
+    position: relative;
+
+    &:hover{
+
+        .overlay{
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+
+.overlay{
+    position: absolute;
+    left:   map-get($overlay, "offset");
+    right:  map-get($overlay, "offset");
+    top:    map-get($overlay, "offset");
+    bottom: map-get($overlay, "offset");
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity map-get($transition-speed, "fast") map-get($transition-type, "linear");
+    z-index: map-get($z-index, "overlay");
+    padding: map-get($overlay, "padding");
+    background-color: map-get($overlay, "background-color");
 }
 
 
@@ -443,7 +472,6 @@
 
 
 // @description
-
 // Wrapper for user entered content to "reset" styles.
 
 .wysiwyg{
@@ -559,7 +587,7 @@
 
 
 .modal__inner{
-    background-color: #fff;
+    background-color: map-get($color, "white");
     padding: map-get($spacing, "m");
     max-width: 500px;
     width: 100%;
@@ -643,7 +671,7 @@
 
 
 
-// Visually hidden drawer until activated via .js-drawer-open-* classes
+// Slide out from left or right drawers.
 
 .drawer {
     position: fixed;
@@ -652,7 +680,7 @@
     overflow-y: auto;
     overflow-x: hidden;
     z-index: map-get($z-index, "drawer");
-    background-color: #fff;
+    background-color: map-get($color, "white");
     transition: transform map-get($transition-speed, "medium") map-get($transition-type, "cubic");
     padding: map-get($drawer, "padding");
     transform: translateZ(0);

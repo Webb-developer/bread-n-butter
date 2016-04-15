@@ -47,7 +47,7 @@ canvas,
 progress,
 video {
     display: inline-block; /* 1 */
-    vertical-align: baseline; /* 2 */
+    vertical-align: middle; /* 2 */
 }
 
 
@@ -281,15 +281,10 @@ table {
 
 
 
-audio,
-canvas,
 iframe,
-img,
-svg,
-video {
+img{
     vertical-align: middle;
 }
-
 
 
 iframe{
@@ -374,20 +369,11 @@ video{
 
 
 a, .a{
-    color: inherit;
-    text-decoration: underline;
-
-    &:hover{
-        opacity: 0.6;
-    }
-}
-
-
-a.plain{
+    color: map-get($color, "grey-50");
     text-decoration: none;
 
     &:hover{
-        opacity: inherit;
+        color: inherit;
     }
 }
 

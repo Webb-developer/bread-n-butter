@@ -79,6 +79,8 @@ function callInstafeed(callback){
 
     if($("#instafeed").length){
 
+        var $loadMore = $(".js-instafeed-load");
+
         var userFeed = new Instafeed({
             get: 'user',
             userId: globalSettings.instafeed.userID,
@@ -97,6 +99,11 @@ function callInstafeed(callback){
         });
 
         userFeed.run();
+
+
+        $loadMore.on("click", function(){
+            userFeed.next();
+        });
 
     }
 
