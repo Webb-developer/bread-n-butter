@@ -3,19 +3,28 @@
 
 @guide
 Place any and all variables here, with minimal exception.
-This file is the key to everything. Nearly all of these SASS maps generate CSS
-classes based on their key-value pairs.
+
+@description
+Nearly all of the SASS maps generate CSS classes based on their key-value pairs.
+Our createClassesFromMap() mixin will loop through each key in a given map and create a class based on the value. This is powerful because it makes creating markup usable classes very easy, as well as values we can fetch in our SASS file using SASS's map-get function.
+NOTE: deep maps cannot generate classes. They can only be fetched using the map-deep-get() function. See bbui-functions for more on these mixins/functions.
 
 @example
 $font-size: (
     "s":    0.9rem,
-    "m":    1.2rem,
-    "l":    1.7rem
+    "m":    1.2rem
 );
 
-Our createClassesFromMap() mixin will loop through each key in the $font-size map and create a class based on the value. This is powerful because it makes creating markup usable classes very easy, as well as values we can fetch in our SASS file using SASS's map-get function.
-NOTE: deep maps cannot generate classes. They can only be fetched using the map-deep-get() function.
+Will produce:
+
+.font-size--s{
+    font-size: 0.9rem;
+}
+.font-size--m{
+    font-size: 1.2rem;
+}
 */
+
 
 
 
@@ -103,7 +112,7 @@ $font-family: (
 
     "sans-serif":     unquote(""),
 
-    "medium":         unquote(""),
+    "light":          unquote(""),
 
     "bold":           unquote(""),
 
@@ -198,8 +207,10 @@ $spacing: (
 
 
 
-// Lighter/darker variations of the 
-// $base-* colors will be created.
+/*
+Lighter variations of the 
+$base-black color will be created.
+*/
 
 $base-black: #000;
 
@@ -291,7 +302,9 @@ $sizes: (
 
 
 
-// Used for borders and HR elements.
+/*
+Used for border widths
+*/
 
 $line-width: (
 
@@ -375,7 +388,9 @@ $button: (
 
 
 
-// Define some base titles.
+/*
+Define some base titles.
+*/
 
 $title: (
     
@@ -449,6 +464,11 @@ $overlay:(
 );
 
 
+
+/*
+@description
+Hamburger icon
+*/
 
 $hamburger:(
 

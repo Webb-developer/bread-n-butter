@@ -168,12 +168,8 @@ they help form them.
 }
 
 
-.aspect-ratio--4-5-to-16-9{
-    @include aspect-ratio(4, 5);
-
-    @include query("s"){
-        @include aspect-ratio(16, 9);
-    }
+.aspect-ratio--1-1{
+    @include aspect-ratio(1, 1);
 }
 
 
@@ -203,9 +199,6 @@ they help form them.
 
 
 
-// This class does not prevent functionality
-// Disable functionality using javascript
-
 .disabled{
     opacity: 0.5;
     pointer-events: none;
@@ -225,9 +218,6 @@ they help form them.
 \*------------------------------------*/
 
 
-
-// Anything that has toggle functionality
-// should have a pointer cursor.
 
 // data-toggle attributes are used in _bbjs-utilities.js
 

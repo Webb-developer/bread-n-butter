@@ -84,6 +84,8 @@ if were using flexbox to create grids using createGrid()
 
     .grid{
         display: block;
+
+        // clearfix
         overflow: hidden;
     }
 
@@ -540,7 +542,8 @@ Wrapper for user entered content to "reset" styles.
 
 .wysiwyg{
     line-height: map-get($line-height, "l");
-
+    
+    // h1-h4 styles will be inherited from bbui_base
     h1, h2{
         margin-bottom: map-get($spacing, "l");
     }
@@ -841,7 +844,6 @@ Slide out from left or right drawers.
 
 
 // The overlay that appears when a drawer is open
-
 .drawer__overlay{
     position: fixed;
     top:    0;
@@ -867,8 +869,7 @@ Slide out from left or right drawers.
 }
 
 
-// left drawer open state
-
+// Left drawer open state
 .drawer--left--toggled{
 
     .drawer--left{
@@ -881,8 +882,7 @@ Slide out from left or right drawers.
 }
 
 
-// right drawer open state
-
+// Right drawer open state
 .drawer--right--toggled{
 
     .drawer--right{
@@ -897,7 +897,6 @@ Slide out from left or right drawers.
 
 // Anything with this class will be 
 // pushed left or right when a drawer is open
-
 .will-move{
     transition: transform map-get($transition-speed, "medium") map-get($transition-type, "cubic");
 }

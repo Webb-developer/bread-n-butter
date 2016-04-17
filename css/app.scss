@@ -1,34 +1,35 @@
 /*
-*
+@name app
+
+@guide
+Use css autoprefixer when compiling
+with browser string: "last 3 versions, ie 9"
+
 * CONTENTS
 *
-* BBUI...................Our UI library. Any CSS here will usually override BBUI.
+* BBUI...................Our UI library.
 *
-* FONTS..................Import our custom fonts.
+* VENDOR.................Any third party styles.
+*
+* FONTS..................Import any custom font faces.
 *
 * VARIABLES..............Globally available variables and config.
 *
 * FUNCTIONS..............Useful mixins and functions.
 *
-* BASE...................Default element styling.
+* BASE...................Default element styling and a custom normalize.css.
 *
 * OBJECTS................Complete elements.
 *
 * COMPONENTS.............Small modular pieces.
 *
-* TRUMPS.................Misc little helpers. These will triumph over other styles with !important.
-                         Ideally they have one job.
-*
-*
+* TRUMPS.................One job helpers. These will triumph over other styles with !important.
 */
-
 
 
 @import "BBUI/bbui-app.scss";
 
-
 @import "vendor/owl-carousel.scss";
-
 
 @import "fonts.scss";
 
@@ -44,15 +45,6 @@
 
 @import "trumps.scss";
 
-
-
-/*-------------------*\
-    AUTHOR'S CODE
-\*-------------------*/
-
-
-
-// USE CSS AUTOPREFIXER WHEN COMPILING WITH BROWSER STRING: "last 3 versions, ie 9"
 
 
 

@@ -1,45 +1,54 @@
+███████████████████████████
+███████▀▀▀░░░░░░░▀▀▀███████
+████▀░░░░░░░░░░░░░░░░░▀████
+███│░░░░░░░░░░░░░░░░░░░│███
+██▌│░░░░░░░░░░░░░░░░░░░│▐██
+██░└┐░░░░░░░░░░░░░░░░░┌┘░██
+██░░└┐░░░░░░░░░░░░░░░┌┘░░██
+██░░┌┘▄▄▄▄▄░░░░░▄▄▄▄▄└┐░░██
+██▌░│██████▌░░░▐██████│░▐██
+███░│▐███▀▀░░▄░░▀▀███▌│░███
+██▀─┘░░░░░░░▐█▌░░░░░░░└─▀██
+██▄░░░▄▄▄▓░░▀█▀░░▓▄▄▄░░░▄██
+████▄─┘██▌░░░░░░░▐██└─▄████
+█████░░▐█─┬┬┬┬┬┬┬─█▌░░█████
+████▌░░░▀┬┼┼┼┼┼┼┼┬▀░░░▐████
+█████▄░░░└┴┴┴┴┴┴┴┘░░░▄█████
+███████▄░░░░░░░░░░░▄███████
+██████████▄▄▄▄▄▄▄██████████
+███████████████████████████
 /*
-*
 * CONTENTS
-*
 *
 * VARIABLES..............Globally available variables and config.
 *
-* FUNCTIONS..............Useful mixins and essential functions.
+* FUNCTIONS..............Useful mixins and functions.
 *
 * BASE...................Default element styling and a custom normalize.css.
 *
-* OBJECTS................Complete elements and wrappers.
+* OBJECTS................Complete elements.
 *
 * COMPONENTS.............Small modular pieces.
 *
-* TRUMPS.................Misc little helpers. These will triumph over other styles.
-*
-*
-*/
+* TRUMPS.................One job helpers. These will triumph over other styles with !important.
 
 
+@author Andrew Puig [https://github.com/puigandrew1/BBUI-JS]
+@version 1.45
 
-
-
-$version: 1.45;
-
-
-
-
-
-/*
-@author Andrew Puig
-
-I recommend not editing BBUI itself, but rather
+@description
+I recommend not editing BBUI itself (except for variables), but rather
 putting your overrides or custom code in the non-prefixed
-includes. Ex: _trump.scss,  _objects.scss
+includes. Ex: _trump.scss,  _objects.scss.
 
-https://github.com/puigandrew1/BBUI-JS
+The goal of BBUI is to create more abstract
+and reusable CSS.
+
+I strongly urge you to read this style guide:
+http://cssguidelin.es/
+
+Also... you shouldn't put anything in this file...
 */
-
-
-
 
 
 @import "bbui-variables.scss";
