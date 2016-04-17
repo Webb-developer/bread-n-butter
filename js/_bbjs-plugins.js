@@ -2,9 +2,9 @@
 
     'use strict';
 
-
-    // @name Fast Click
-    // https://github.com/ftlabs/fastclick
+    /**
+    @name Fast Click [https://github.com/ftlabs/fastclick]
+    */
 
     if(globalSettings.fastclick){
         FastClick.attach(document.body);
@@ -16,8 +16,9 @@
 
 
 
-// @name Lazy Load
-// http://www.appelsiini.net/projects/lazyload
+/**
+@name Lazy Load [http://www.appelsiini.net/projects/lazyload]
+*/
 
 function callLazy(options){
 
@@ -39,8 +40,9 @@ function callLazy(options){
 
 
 
-// @name Owl Carousel
-// http://www.owlcarousel.owlgraphic.com/
+/**
+@name Owl Carousel [http://www.owlcarousel.owlgraphic.com]
+*/
 
 function callCarousel(){
 
@@ -69,8 +71,9 @@ function callCarousel(){
 
 
 
-// @name Instafeed
-// http://instafeedjs.com/
+/**
+@name Instafeed [http://instafeedjs.com]
+*/
 
 function callInstafeed(callback){
 

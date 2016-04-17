@@ -285,15 +285,15 @@ var forms = function(){
 @name cookies
 
 @description
-Create, remove and check the status of cookies.
+Create, remove and check if a cookie is set.
 
 @example
-Cookies.create("name", "value");
-Cookies.remove("name");
-Cookies.isSet("name");
+cookies.create("name", "value");
+cookies.remove("name");
+cookies.isSet("name");
 */
 
-var Cookies = (function(document){
+var cookies = (function(document){
 
     'use strict';
 
@@ -350,128 +350,134 @@ var Cookies = (function(document){
 Shows and hides modals with cookie based detection.
 
 @example
-<div class='modal  js-modal  transparent  invisible'>
-    <span class='modal__close  js-modal-close'>X</span>
-    <div class='modal__inner'></div>
+<div class="modal  js-modal">
+    
+    <div class="center-table">
+        <div class="center-table-cell">
+            <div class="modal__inner">
+                <span class="modal__close  js-modal__close"></span>
+                Modal content
+            </div>
+        </div>
+    </div>
+
 </div>
 */
 
-var Modals = function(){
+var modals = function(){
 
     'use strict';
     
 
     var settings = {
-        enabled: true,
 
-        modal: ".js-modal",
-        close: ".js-modal-close",
+        element: {
+            // @property {string} settings.element.modal - the modal selector.
+            modal: ".js-modal",
 
-        showClass: "visible opaque", // class/classes to make the modal and overlay visible
-        hideClass: "transparent invisible", // class/classes to make the modal and overlay hidden
+            // @property {string} settings.element.close - the modal close trigger selector.
+            close: ".js-modal__close",
 
-        hideOnRevisit: true, // Set to true to show the modal once per session (Cookie based)
+            // @property {string} settings.element.closeOverlay - additional modal close
+            // trigger. This is the overlay that surrounds the modal. This is a class, not
+            // a selector.
+            closeOverlay: "center-table-cell",
+        },
 
-        hideOnPage: false, // Set true to hide the modal on certain page(s)
-        pageToHideOn: ".js-hide-modal", // Class within the page(s) to signify its the page we're looking for.
+        // @property {boolean} settings.hideOnRevisit - Determines whether to hide
+        // the modal or keep showing it if our cookie has been set.
+        // Set to true to show the modal once per session.
+        hideOnRevisit: false,
 
-        cookieName: "modal",
-        cookieVal: "true"
+        // @property {object} settings.cookie - The cookie that we'll create
+        // so we can allow the modal to be shown only once. It's values don't really matter.
+        cookie: {
+            "name": "modal",
+            "value": "set"
+        }
+
     };
 
 
-    var modals = {
+    function _bindUI(){
 
-        _bindUI: function(){
+        $(document).on('click', settings.element.close, function(){
+            hide();
+        })
+        .on('click', settings.element.modal, function(e){
 
-            $(document).on('click', settings.close, function(){
-                modals.hide();
-            });
-
-
-            $(document).on('click', settings.modal, function(e){
-
-                // If we click the overlay hide the modal.
-                if($(e.target).hasClass(settings.modal.replace(".", ""))){
-                    modals.hide();
-                }
-
-            });
-
-
-            $(document).keyup(function(e){
-
-                if (e.which === 27){ // ESC key
-                    modals.hide();
-                }
-
-            });
-
-        },
-
-
-        _wasVisited: function(){
-
-            if(Cookies.isSet(settings.cookieName)){
-                return true;
-            } else {
-                return false;
+            // If we click the overlay hide the modal.
+            if($(e.target).hasClass(settings.element.closeOverlay)){
+                hide();
             }
 
-        },
+        })
+        .on("keyup", function(e){
+
+            if (e.which === 27){ // ESC key
+                hide();
+            }
+
+        });
+
+    }
 
 
-        show: function(){
+    // @returns {boolean} - true if the cookie is set,
+    // or false if not set.
+    function _wasVisited(){
 
-            $(settings.modal).removeClass(settings.hideClass).addClass(settings.showClass);
+        if(cookies.isSet(settings.cookie.name)){
+            return true;
+        } else {
+            return false;
+        }
 
-        },
-
-
-        hide: function(){
-
-            $(settings.modal).addClass(settings.hideClass).removeClass(settings.showClass);
-
-        },
+    }
 
 
-        init: function(){
+    function show(){
+        $(settings.element.modal).css('display', 'block');
+    }
 
-            if($(settings.modal).length && settings.enabled){
 
-                if(settings.hideOnPage && $(settings.pageToHideOn).length){
+    function hide(){
+        $(settings.element.modal).css('display', 'none');
+    }
 
-                    modals.hide();
 
+    function init(){
+
+        if($(settings.element.modal).length){
+
+            _bindUI();
+
+            if(_wasVisited()){
+
+                if(settings.hideOnRevisit){
+                    hide();
                 } else {
-
-                    modals._bindUI();
-
-                    if(modals._wasVisited()){
-
-                        if(settings.hideOnRevisit){
-                            modals.hide();
-                        } else {
-                            modals.show();
-                        }
-
-                    } else {
-
-                        Cookies.create(settings.cookieName, settings.cookieVal);
-
-                        modals.show();
-
-                    }
-
+                    show();
                 }
+
+            } else {
+
+                cookies.create(settings.cookie.name, settings.cookie.value);
+
+                show();
 
             }
 
         }
 
-    };
+    }
 
-    return modals;
+
+    return {
+        show: show,
+        hide: hide,
+        init: init
+    };
 
 }();
 

@@ -1,5 +1,4 @@
-
-/* 
+/*
 @name variables
 
 @description
@@ -20,17 +19,19 @@ NOTE: deep maps cannot generate classes. They can only be fetched using the map-
 
 
 
-
 /*------------------------------------*\
     #MEDIA-QUERIES
 \*------------------------------------*/
 
 
-// @description
-// WARNING: Adding too many media queries here will
-// dramatically increase the file size. Please check 
-// the minified file size if you are adding additional
-// media queries.
+
+/*
+@description
+WARNING: Adding too many media queries here will
+dramatically increase the file size. Please check 
+the minified file size if you are adding additional
+media queries.
+*/
 
 $media-query: (
     
@@ -53,13 +54,16 @@ $media-query: (
 \*------------------------------------*/
 
 
-// @description
-// Define the breakpoint in which you decide
-// you've moved from mobile to a desktop. Useful
-// for when you have multiple fixed site headers with different
-// heights. The $header map will use this breakpoint to change
-// the .page-content margin from mobile to desktop offset when
-// $header => "isFixed" == true.
+/*
+@description
+Define the breakpoint in which you decide
+you've moved from mobile to a desktop. Useful
+for when you have multiple fixed site headers with different
+heights. The $header map will use this breakpoint to change
+the .page-content margin from mobile to desktop offset when
+$header => "isFixed" == true.
+*/
+
 $mobileToDesktopBreakPoint: map-get($media-query, "m");
 
 
@@ -156,10 +160,12 @@ $line-height: (
 \*------------------------------------*/
 
 
-// @description
-// This map's values are used to create margin
-// and padding classes. They are also referenced
-// throughout BBUI.
+/*
+@description
+This map's values are used to create margin
+and padding classes. They are also referenced
+throughout BBUI.
+*/
 
 $spacing: (
 
@@ -245,9 +251,11 @@ $color: (
 
 
 
-// @description
-// This map's values are used to create width
-// and height classes.
+/*
+@description
+This map's values are used to create width
+and height classes.
+*/
 
 $sizes: (
 
@@ -404,6 +412,28 @@ $title: (
 
 
 
+$modal:(
+    
+    "padding": map-get($spacing, "s"),
+
+    "background-color": fade-out(map-get($color, "black"), 0.5),
+
+    "inner":(
+        "max-width": 500px,
+        "background-color": #fff,
+        "padding": map-get($spacing, "m")
+    )
+    
+);
+
+
+
+/*
+@description
+This is a hover triggered overlay. See .overlay
+in bbui-objects.
+*/
+
 $overlay:(
     
     "padding": 2rem,
@@ -485,9 +515,11 @@ $z-index: (
 
 
 
-// @description
-// All cubic-bezier transitions are easeInOut
-// See: http://easings.net/
+/*
+@description
+All cubic-bezier transitions are easeInOut
+See: http://easings.net/
+*/
 
 $transition-type: (
 
@@ -538,9 +570,16 @@ $transition-speed: (
 \*------------------------------------*/
 
 
-// @description
-// These values are less likely to be modifed 
-// we'll put them at the bottom of the file.
+
+/*
+@name generated classes
+
+@description
+These values are less likely to be modifed 
+we'll put them at the bottom of the file.
+*/
+
+
 
 $display: (
     

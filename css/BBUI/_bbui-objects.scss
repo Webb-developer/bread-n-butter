@@ -4,6 +4,11 @@
 
 
 
+/*
+@example
+<h4 class='title--m'></h4>
+*/
+
 .title--m{
     font-family:    map-deep-get($title, "m" "font-family");
     font-size:      map-deep-get($title, "m" "font-size");
@@ -141,10 +146,11 @@ Functionality for this is in _bbjs-utilities.js
     height: 3px;
     background-color: map-get($color, "black");
     transform: translateZ(0);
-    transition: width 0.4s linear;
+    transition: all 0.4s linear;
+    pointer-events: none;
     
     &.done{
-        visibility: hidden;
+        opacity: 0;
     }
 }
 
@@ -156,6 +162,12 @@ Functionality for this is in _bbjs-utilities.js
 \*------------------------------------*/
 
 
+
+/*
+@example
+<label class='label'></label>
+<input class='input'></div>
+*/
 
 .label{
     display: block;
@@ -283,6 +295,11 @@ Functionality for this is in _bbjs-utilities.js
 
 
 
+/*
+@example
+<hr class='hr  hr--medium'>
+*/
+
 .hr{
     border:  none;
     outline: none;
@@ -316,6 +333,19 @@ Functionality for this is in _bbjs-utilities.js
 \*------------------------------------*/
 
 
+
+/*
+@example
+<ul>
+    <li class='list-item  list-item--smaller'></li>
+    <li class='list-item  list-item--smaller'></li>
+</ul>
+
+<ul>
+    <li class='list-item--vertical'></li>
+    <li class='list-item--vertical'></li>
+</ul>
+*/
 
 .list-item{
     display: inline-block;
@@ -357,22 +387,6 @@ Functionality for this is in _bbjs-utilities.js
 }
 
 
-.list-item--padded{
-    padding: map-get($spacing, "s");
-}
-
-
-.list-item--padded--smaller{
-    padding: map-get($spacing, "xs");
-}
-
-
-.list-item--padded--larger{
-    padding: map-get($spacing, "m");
-}
-
-
-
 
 
 /*------------------------------------*\
@@ -380,6 +394,11 @@ Functionality for this is in _bbjs-utilities.js
 \*------------------------------------*/
 
 
+
+/*
+@example
+<div class="button  button--black  button--tall">Click Me</div>
+*/
 
 .button{
     cursor: pointer;
@@ -497,8 +516,14 @@ Functionality for this is in _bbjs-utilities.js
 \*------------------------------------*/
 
 
-// @description
-// Wrapper for user entered content to "reset" styles.
+
+/*
+@description
+Wrapper for user entered content to "reset" styles.
+
+@example
+<div class="wysiwyg">Im user generated content.</div>
+*/
 
 .wysiwyg{
     line-height: map-get($line-height, "l");
@@ -549,6 +574,14 @@ Functionality for this is in _bbjs-utilities.js
 
 
 
+/*
+@example
+<ul>
+    <li class='breadcrumb'></li>
+    <li class='breadcrumb'></li>
+</ul>
+*/
+
 .breadcrumb{
     display: inline-block;
 
@@ -575,74 +608,66 @@ Functionality for this is in _bbjs-utilities.js
 
 
 
-.no-flexbox{
-    
-    // .modal__inner is no longer vertically centered
-    // without flexbox support. We'll add some padding 
-    // so its not too close to the top edge of the screen.
-    // Alternatively, by wrapping the .modal__inner with two elements
-    // in the markup and adding .center-table
-    // and .center-table-cell classes to the respective elements,
-    // you can center it.
-    .modal{
-        padding-top: 15%;
-        display: block;
-    }
-}
-
 /*
+@description
+Simple modal. For hide functionality apply a js-toggle class
+to the close trigger. See example below.
+
 @example
 <div class="modal">
             
-    <div class="modal__inner">
-        <span class="modal__close  js-modal-close"></span>
-        Modal content
+    <div class="center-table">
+        <div class="center-table-cell">
+            
+            <div class="modal__inner">
+                <span class="modal__close  js-toggle" data-toggle="newsletter"></span>
+            </div>
+
+        </div>
     </div>
 
 </div>
 
 
-Can be used in conjunction with Modals() in
-bbjs-functions.js by applying a js-modal class to the modal.
-Do this if you want to have the modal to appear on page load.
+Apply a js-modal class to the modal if you want the modal
+to appear on page load rather then from a user triggered event.
 
 @example
-<div class="modal  js-modal  invisible  transparent">
-            
-    <div class="modal__inner">
-        <span class="modal__close  js-modal-close"></span>
-        Modal content
+<div class="modal  js-modal">
+    
+    <div class="center-table">
+        <div class="center-table-cell">
+            <div class="modal__inner">
+                <span class="modal__close  js-modal__close"></span>
+                Modal content
+            </div>
+        </div>
     </div>
 
 </div>
 */
 
 .modal{
-    background-color: fade-out($base-black, 0.5);
+    background-color: map-get($modal, "background-color");
     z-index: map-get($z-index, "max");
     position: fixed;
     top:    0;
     left:   0;
     right:  0;
     bottom: 0;
-    padding-left:  map-get($spacing, "s");
-    padding-right: map-get($spacing, "s");
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
+    padding: map-get($modal, "padding");
+    display: none;
 }
 
 
 .modal__inner{
-    background-color: map-get($color, "white");
-    padding: map-get($spacing, "m");
-    max-width: 500px;
+    background-color: map-deep-get($modal, "inner" "background-color");
+    padding: map-deep-get($modal, "inner" "padding");
+    max-width: map-deep-get($modal, "inner" "max-width");
     width: 100%;
     margin-left:  auto;
     margin-right: auto;
     position: relative;
-    box-shadow: 0 2px 4px rgba(0,0,0,.2);
     text-align: center;
 }
 
@@ -664,6 +689,7 @@ Do this if you want to have the modal to appear on page load.
 
 .modal__close{
     @extend .close-icon;
+    margin: 0;
 }
 
 
@@ -769,8 +795,9 @@ tabs functionality is in bbjs-utilities.js
 Slide out from left or right drawers.
 
 @example
-<div class='js-toggle' data-toggle='drawer--right'>Toggle drawer</div>
-<div class='drawer  drawer--right' data-tab='0'>Im a drawer</div>
+<div class='js-toggle' data-toggle='drawer--right'></div>
+<div class='drawer  drawer--right'></div>
+<div class='drawer__overlay'></div>
 */
 
 .drawer {

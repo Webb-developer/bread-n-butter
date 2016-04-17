@@ -26,7 +26,7 @@
     'use strict';
     
 
-    Modals.init();
+    modals.init();
 
     animateIn();
 

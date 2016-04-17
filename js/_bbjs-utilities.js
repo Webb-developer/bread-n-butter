@@ -137,7 +137,7 @@ Read further documentation below.
 
 
     // The visual progress bar
-    var $progress = $(".load-progress-bar");
+    var $progress = $(".load-bar");
 
 
     if($progress.length){
@@ -277,8 +277,12 @@ Would output: "search--toggled" class on the html element.
 
     $(document).on("click", settings.element.selector, function(){
 
-        var $self   = $(this),
-            classes = $self.attr(settings.element.classes).split(" ");
+        var $self = $(this);
+
+
+        if($self.attr(settings.element.classes)){
+            
+            var classes = $self.attr(settings.element.classes).split(" ");
 
             $.each(classes, function(index, element){
 
@@ -290,9 +294,14 @@ Would output: "search--toggled" class on the html element.
 
             });
 
+        } else {
+            throw new Error("Missing " + settings.element.classes + " attribute on " + settings.element.selector);
+        }
+
     });
 
 }());
+
 
 
 
