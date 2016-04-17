@@ -1,7 +1,7 @@
 /**
 @author Andrew Puig [andrew.lpuig@gmail.com]
 
-@version 1.35
+@version 1.36
 */
 
 
@@ -84,29 +84,6 @@ var cache = {
 
 
 
-
-
-/**
-@name touchTest
-
-@returns {boolean}
-
-@description
-Returns true only on mobile touch not desktop touch
-Requires touch support in Modernizr (Built In) and device sniffing.
-For device sniffing we use device.js (Built In)
-*/
-
-function touchTest(){
-
-    'use strict';
-
-    return cache.$html.hasClass("touchevents") && !cache.$html.hasClass("desktop");
-}
-
-
-
-
 /*------------------------------------*\
     #VENDORS
 \*------------------------------------*/
@@ -138,6 +115,7 @@ function touchTest(){
 
 
 // End required includes.
+
 
 
 

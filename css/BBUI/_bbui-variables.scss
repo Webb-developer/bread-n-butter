@@ -1,7 +1,8 @@
 /*
 @name variables
 
-@description
+@guide
+Place any and all variables here, with minimal exception.
 This file is the key to everything. Nearly all of these SASS maps generate CSS
 classes based on their key-value pairs.
 
@@ -37,9 +38,9 @@ $media-query: (
     
     "s":  unquote("(min-width: 600px)"),
 
-    "m":  unquote("(min-width: 1000px)"),
+    "m":  unquote("(min-width: 900px)"),
 
-    "l":  unquote("(min-width: 1300px)"),
+    "l":  unquote("(min-width: 1200px)"),
 
     "xl": unquote("(min-width: 1500px)")
 
@@ -52,6 +53,7 @@ $media-query: (
 /*------------------------------------*\
     #CONFIG
 \*------------------------------------*/
+
 
 
 /*
@@ -158,6 +160,7 @@ $line-height: (
 /*------------------------------------*\
     #SPACING
 \*------------------------------------*/
+
 
 
 /*
@@ -477,6 +480,23 @@ $close-icon:(
     )
 
 );
+
+
+
+$hr: (
+
+    "height": map-get($line-width, "s"),
+
+    "background-color": map-get($color, "grey-20"),
+    
+    // Top and bottom
+    "margin": 0.4rem,
+    
+    "max-width": none
+
+);
+
+
 
 
 

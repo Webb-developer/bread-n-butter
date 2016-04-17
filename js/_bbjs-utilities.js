@@ -87,8 +87,8 @@ Only one tab can be open at a time.
     var $tab     = $(".js-tab-toggle"),
         $content = $(".js-tab-content");
 
-    var ACTIVE_CLASS = "tabs__summary--active",
-        HIDDEN_CLASS = "hidden";
+    var activeClass = "tabs__summary--active",
+        hiddenClass = "hidden";
 
 
     $tab.on("click", function(){
@@ -96,21 +96,21 @@ Only one tab can be open at a time.
         var $self = $(this);
 
 
-        if($self.hasClass(ACTIVE_CLASS)){
+        if($self.hasClass(activeClass)){
 
             // Remove any active states from clicked tab.
-            $self.removeClass(ACTIVE_CLASS);
-            $(".js-tab-content[data-tab=" + $self.data("tab") + "]").addClass(HIDDEN_CLASS);
+            $self.removeClass(activeClass);
+            $(".js-tab-content[data-tab=" + $self.data("tab") + "]").addClass(hiddenClass);
 
         } else {
 
             // Remove any active states from all tabs.
-            $tab.removeClass(ACTIVE_CLASS);
-            $content.addClass(HIDDEN_CLASS);
+            $tab.removeClass(activeClass);
+            $content.addClass(hiddenClass);
 
             // Add active states to clicked tab.
-            $self.addClass(ACTIVE_CLASS);
-            $(".js-tab-content[data-tab=" + $self.data("tab") + "]").removeClass(HIDDEN_CLASS);
+            $self.addClass(activeClass);
+            $(".js-tab-content[data-tab=" + $self.data("tab") + "]").removeClass(hiddenClass);
 
         }
 
@@ -128,7 +128,7 @@ Only one tab can be open at a time.
 This function updates a given element's width
 every x milliseconds, like a progress bar. Ideally,
 the element should be styles to appear like a progess bar.
-Read further documentation below. 
+Read further documentation below.
 */
 
 (function(){
@@ -240,7 +240,7 @@ Clear input placeholders on focus.
 
 /**
 @description
-This function adds basic toggleClass() functionality 
+This function adds basic toggleClass() functionality
 on a click event to an element (settings.selector).
 
 The element (settings.selector) should have an attribute (settings.classes)
@@ -281,7 +281,7 @@ Would output: "search--toggled" class on the html element.
 
 
         if($self.attr(settings.element.classes)){
-            
+
             var classes = $self.attr(settings.element.classes).split(" ");
 
             $.each(classes, function(index, element){
@@ -327,9 +327,7 @@ This function hides a .drawer by click of the .drawer__overlay
 
 
     $(document).on("click", settings.overlay, function(){
-
         cache.$html.removeClass(settings.classes);
-
     });
 
 })();

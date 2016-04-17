@@ -45,6 +45,28 @@ function debounce(func, wait, immediate) {
 
 
 /**
+@name touchTest
+
+@returns {boolean}
+
+@description
+Returns true only on mobile touch not desktop touch
+Requires touch support in Modernizr (Built In) and device sniffing.
+For device sniffing we use device.js (Built In)
+*/
+
+function touchTest(){
+
+    'use strict';
+
+    return cache.$html.hasClass("touchevents") && !cache.$html.hasClass("desktop");
+    
+}
+
+
+
+
+/**
 @name animateScroll
 
 @description
@@ -81,9 +103,9 @@ function animateScroll(pos, speed){
 var myArray = ["fuck", "fuck", "shit"];
 uniqueArray(myArray);
 
-@returns {array} - a unique array, meaning, no key is the same.
+@param {array} array - the array we will be making unique.
 
-@param {array} array
+@returns {array} - a unique array, meaning, no key is the same.
 */
 
 function uniqueArray(array){
@@ -111,7 +133,6 @@ Adds error and success classes to inputs
 @example
 <input type='text' data-handle-field='true'>
 
-@example
 forms.process({
     form: "#customer_login",
     ajax: true,
@@ -336,7 +357,7 @@ var cookies = (function(document){
         create: create,
         isSet:  isSet,
         remove: remove
-    }
+    };
 
 })(document);
 

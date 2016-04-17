@@ -1,4 +1,14 @@
 /*
+@name functions
+
+@guide
+Place SASS mixins and functions here.
+*/
+
+
+
+
+/*
 @name query
 
 @description
@@ -55,7 +65,6 @@ Add media queries independently as you would for anything.
 See _bbui-objects.scss for more examples.
 
 @param {number} cols - the number of columns in the grid
-
 @param {number} gutter - the spacing between the columns
 
 @param {string} className - the class name of the grid that will be outputted.
@@ -68,14 +77,14 @@ if false it will use a floated grid.
 With static number of columns
 @include createGrid(2, 1rem, "grid--2-4");
 
-With changing number of columns and independent media query.
-@include createGrid(2, 1rem, "grid--2-4");
-
-.grid--2-4__item{
+@example
+With changing number of columns.
+@include createGrid(2, 1rem, "grid--2-4"){
 
     @include query("m"){
         width: 25%;
     }
+
 }
 */
 
@@ -115,18 +124,26 @@ With changing number of columns and independent media query.
 
         }
 
+        @content;
+
     }
 
 }
 
 
 
+
 /*
 @name map-deep-get
+
 @author Hugo Giraudel
+
 @param {map} $map - Map
 @param {Arglist} $keys - Key chain
-NOTE: map-deep-get is not compatible with createClassesFromMap().
+
+@description
+map-deep-get is not compatible with createClassesFromMap().
+https://css-tricks.com/snippets/sass/deep-getset-maps/#article-header-id-0
 */
 
 @function map-deep-get($map, $keys){
@@ -211,7 +228,25 @@ media queries from our $media-query map.
 
 /*
 @name createIncrementalNumberClasses
-@todo add description
+
+@description
+Creates a series of classes like createClassesFromMap(),
+except it appends an incrementing number on each next class.
+See createClassesFromMap() for property and className parameters.
+
+@param {number} increment - the amount to increment by each loop.
+@param {number} max - the amount of times to loop. 
+
+@example
+@include createIncrementalNumberClasses(max-height, max-height, 50, 15);
+Could produce something like:
+
+.max-height--50{
+    max-height: 50px;
+}
+.max-height--100{
+    max-height: 100px;
+}
 */
 
 @mixin createIncrementalNumberClasses($property, $className, $increment, $max){

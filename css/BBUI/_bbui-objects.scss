@@ -1,3 +1,18 @@
+/*
+@name objects
+
+@guide
+Objects are the big picture, the final piece
+and they should be able to stand alone without help.
+All of an object's __elements and --modifiers should be placed
+here with them.
+When creating new objects, I recommend creating a SASS map along
+with them to provide customization in the future.
+*/
+
+
+
+
 /*------------------------------------*\
     #TYPE
 \*------------------------------------*/
@@ -55,6 +70,8 @@
 
 
 /*
+@name .no-flexbox
+
 @description
 This depends on modernizr no-flexbox class.
 Apply the .grid class to any grids and .grid__item
@@ -75,6 +92,7 @@ if were using flexbox to create grids using createGrid()
     }
 }
 
+
 /*
 @description
 Instructions for creating grids with createGrid()
@@ -83,11 +101,10 @@ When creating grids where the number of columns will change
 on a breakpoint, set the number of columns mobile first.
 
 @example
-For a grid that goes from 1 to 2 columns:
-@include createGrid(1, 2rem, "grid--1-2")
-then create a media query independently to go from 100% to 50% width.
+For a grid that goes from 1 to 2 columns
+create a media query in the block to go from 100% to 50% width.
 
-.grid--1-2__item{
+@include createGrid(1, 2rem, "grid--1-2"){
     @include query("s"){
         width: 50%;
     }
@@ -98,26 +115,22 @@ then create a media query independently to go from 100% to 50% width.
 
 
 
-@include createGrid(1, 1.5rem, "grid--1-2");
-
-
-.grid--1-2__item{
+@include createGrid(1, 1.5rem, "grid--1-2"){
 
     @include query("s"){
         width: 50%;
     }
+
 }
 
 
 
-@include createGrid(2, 1rem, "grid--2-4");
-
-
-.grid--2-4__item{
+@include createGrid(2, 1rem, "grid--2-4"){
 
     @include query("m"){
         width: 25%;
     }
+
 }
 
 
@@ -303,13 +316,13 @@ Functionality for this is in _bbjs-utilities.js
 .hr{
     border:  none;
     outline: none;
-    height: map-get($line-width, "s");
+    height: map-get($hr, "height");
     display: block;
-    background-color: map-get($color, "grey-20");
-    margin-top:    0.4rem;
-    margin-bottom: 0.4rem;
+    background-color: map-get($hr, "background-color");
+    margin-top:    map-get($hr, "margin");
+    margin-bottom: map-get($hr, "margin");
+    max-width: map-get($hr, "max-width");
 }
-
 
 .hr--medium{
     height: map-get($line-width, "m");
