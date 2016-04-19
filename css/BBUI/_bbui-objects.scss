@@ -516,6 +516,7 @@ Functionality for this is in _bbjs-utilities.js
     top:    map-get($overlay, "offset");
     bottom: map-get($overlay, "offset");
     opacity: 0;
+    overflow: hidden;
     visibility: hidden;
     transition: opacity map-get($transition-speed, "fast") map-get($transition-type, "linear");
     z-index: map-get($z-index, "overlay");
