@@ -4,7 +4,7 @@ https://davidwalsh.name/javascript-debounce-function
 
 @example
 var myFunction = debounce(function(){
-    // Do something
+    
 }, 150);
 
 myFunction();
@@ -45,29 +45,37 @@ function debounce(func, wait, immediate) {
 
 
 /**
-@name touchTest
-
-@returns {boolean}
+@property bbjs.touchTest
 
 @description
-Returns true only on mobile touch not desktop touch
+Returns true if the user device has touch events.
 Requires touch support in Modernizr (Built In) and device sniffing.
-For device sniffing we use device.js (Built In)
+For device sniffing we're using device.js (Built In)
+
+@param {boolean} ignoreDesktopTouch - determines whether we want
+to ignore touch events on desktop computers.
+
+@returns {boolean}
 */
 
-function touchTest(){
+bbjs.touchTest = function(ignoreDesktopTouch){
 
     'use strict';
 
-    return cache.$html.hasClass("touchevents") && !cache.$html.hasClass("desktop");
+
+    if(ignoreDesktopTouch === true){
+        return bbjs.cache.$html.hasClass("touchevents") && !bbjs.cache.$html.hasClass("desktop");
+    } else {
+        return bbjs.cache.$html.hasClass("touchevents");
+    }
     
-}
+};
 
 
 
 
 /**
-@name animateScroll
+@property bbjs.animateScroll
 
 @description
 Animate scrollTo position.
@@ -76,28 +84,28 @@ Animate scrollTo position.
 @param {number} speed - is optional and defaults to 250
 */
 
-function animateScroll(pos, speed){
+bbjs.animateScroll = function(pos, speed){
 
     'use strict';
     
 
     if(!isNaN(pos)){
 
-        cache.$body.add(cache.$html).animate({
+        bbjs.cache.$body.add(bbjs.cache.$html).animate({
             scrollTop: pos
         }, typeof(speed) === "undefined" ? 250 : speed);
 
     } else {
         throw new Error("animateScroll pos is NaN");
     }
-}
+};
 
 
 
 
 
 /**
-@name uniqueArray
+@property bbjs.uniqueArray
 
 @example
 var myArray = ["fuck", "fuck", "shit"];
@@ -108,7 +116,7 @@ uniqueArray(myArray);
 @returns {array} - a unique array, meaning, no key is the same.
 */
 
-function uniqueArray(array){
+bbjs.uniqueArray = function(array){
 
     'use strict';
 
@@ -117,21 +125,21 @@ function uniqueArray(array){
         return index === arr.indexOf(el);
     });
 
-}
+};
 
 
 
 
 /**
-@name forms
+@property bbjs.forms
 
 @description
 Check form for empty fields.
 Submit form via AJAX or standard submit
-Adds error and success classes to inputs
+Adds error or success classes to inputs.
 
 @example
-<input type='text' data-handle-field='true'>
+<input type='text' class='js-handle'>
 
 forms.process({
     form: "#customer_login",
@@ -142,18 +150,16 @@ forms.process({
     },
     error: function(){
         console.log("oh no");
-    },
+    }
 });
 */
 
-var forms = function(){
+bbjs.forms = function(){
 
     'use strict';
 
 
     var settings = {
-
-        enabled: true,
 
         element: {
             "selector": ".js-handle",
@@ -165,7 +171,7 @@ var forms = function(){
     };
 
 
-    function _submitAJAX(){
+    function _processAJAX(){
 
         var form = $(settings.options.form);
 
@@ -174,7 +180,7 @@ var forms = function(){
 
             e.preventDefault();
 
-            _checkFields();
+            _validate();
 
 
             $.ajax({
@@ -185,7 +191,7 @@ var forms = function(){
             }).done(function(data){
 
                 if(data.success === true){
-                    _onSuccess();
+                    _onAJAXSuccess();
                 } else {
                     _onError();
                 }
@@ -197,19 +203,37 @@ var forms = function(){
     }
 
 
-    // Only called on AJAX forms
-    function _onSuccess(){
+    /**
+    @name _onAJAXSuccess
 
+    @description
+    This function is only called on AJAX success.
+    There's no regular form success function because form submission
+    depending on the form action would take us somewhere.
+    */
+
+    function _onAJAXSuccess(){
+
+        // If the user set resetOnSuccess to true
+        // reset the form.
         if(settings.options.resetOnSuccess){
             $(settings.options.form)[0].reset();
         }
 
+        // If the user set a success function, call it.
         if(typeof(settings.options.success) === "function"){
             settings.options.success();
         }
 
     }
 
+
+    /**
+    @name _onError
+
+    @description
+    This function is called on both AJAX and regular form submit.
+    */
 
     function _onError(){
 
@@ -219,11 +243,12 @@ var forms = function(){
 
     }
 
-    /**
-    @name _checkFields
 
+    /**
+    @name _validate
+    
     @description
-    This function does not validate any data.
+    This function does not actually validate any data.
     It simply checks if the field is empty or not.
 
     @returns {object}
@@ -231,7 +256,7 @@ var forms = function(){
     @property fields.valid - the amount of valid fields in the form
     */
 
-    function _checkFields(){
+    function _validate(){
 
         var fields = {
             inputs: $(settings.options.form).find(settings.element.selector),
@@ -262,9 +287,13 @@ var forms = function(){
 
         $(settings.options.form).on('submit', function(e){
 
+            // Store the check in a variable
+            var check = _validate();
+
+
             // The length of the valid fields does not match
             // the length of the fields. Process error.
-            if(_checkFields().valid.length !== _checkFields().inputs.length){
+            if(check.valid.length !== check.inputs.length){
 
                 e.preventDefault();
 
@@ -278,20 +307,18 @@ var forms = function(){
 
     function init(options){
 
-        if(settings.enabled){
-
-            // Set our settings options to the users options.
-            settings.options = options;
+        // Set our settings options to the users options.
+        settings.options = options;
 
 
-            if(settings.options.ajax){
-                _submitAJAX();
-            } else {
-                _processForm();
-            }
-
+        if(settings.options.ajax){
+            _processAJAX();
+        } else {
+            _processForm();
         }
+
     }
+
 
     return {
         process: init
@@ -303,7 +330,7 @@ var forms = function(){
 
 
 /**
-@name cookies
+@property bbjs.cookies
 
 @description
 Create, remove and check if a cookie is set.
@@ -314,7 +341,7 @@ cookies.remove("name");
 cookies.isSet("name");
 */
 
-var cookies = (function(document){
+bbjs.cookies = (function(document){
 
     'use strict';
 
@@ -365,7 +392,7 @@ var cookies = (function(document){
 
 
 /**
-@name modals
+@property bbjs.modals
 
 @description
 Shows and hides modals with cookie based detection.
@@ -385,7 +412,7 @@ Shows and hides modals with cookie based detection.
 </div>
 */
 
-var modals = function(){
+bbjs.modals = function(){
 
     'use strict';
     
@@ -448,7 +475,7 @@ var modals = function(){
     // or false if not set.
     function _wasVisited(){
 
-        if(cookies.isSet(settings.cookie.name)){
+        if(bbjs.cookies.isSet(settings.cookie.name)){
             return true;
         } else {
             return false;
@@ -483,7 +510,7 @@ var modals = function(){
 
             } else {
 
-                cookies.create(settings.cookie.name, settings.cookie.value);
+                bbjs.cookies.create(settings.cookie.name, settings.cookie.value);
 
                 show();
 
@@ -506,7 +533,7 @@ var modals = function(){
 
 
 /**
-@name animateIn
+@property bbjs.animateIn
 
 @description
 Perform actions to elements when images in a container
@@ -517,7 +544,7 @@ http://imagesloaded.desandro.com/
 <div class="js-animate" animate-class="animated  fadeInUp" animate-offset="1.5">I'll fadeUp soon</div>
 */
 
-var animateIn = (function(){
+bbjs.animateIn = function(){
 
     'use strict';
 
@@ -526,7 +553,7 @@ var animateIn = (function(){
 
         // @property {object} settings.imagesLoadedContainer
         // Set to window to use window.load() to wait for page load.
-        imagesLoadedContainer: cache.$main,
+        imagesLoadedContainer: bbjs.cache.$main,
 
         item: {
             // @property {string} settings.item.selector - the element
@@ -545,7 +572,7 @@ var animateIn = (function(){
     };
 
 
-    function run(){
+    function _run(){
 
         $(settings.imagesLoadedContainer).find($(settings.item.selector).each(function(index, el){
 
@@ -561,18 +588,27 @@ var animateIn = (function(){
     }
 
 
-    if(settings.imagesLoadedContainer === window){
-        
-        cache.$window.on("load", function(){
-            run();
-        });
+    function init(){
 
-    } else {
+        if(settings.imagesLoadedContainer === window){
+            
+            bbjs.cache.$window.on("load", function(){
+                _run();
+            });
 
-        $(settings.imagesLoadedContainer).imagesLoaded(function(){
-            run();
-        });
+        } else {
+
+            $(settings.imagesLoadedContainer).imagesLoaded(function(){
+                _run();
+            });
+
+        }
 
     }
 
-});
+
+    return{
+        init: init
+    };
+
+}();

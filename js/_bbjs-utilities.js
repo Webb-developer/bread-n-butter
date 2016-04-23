@@ -16,7 +16,7 @@ Smooth anchor link scrolling.
         var id     = $(this).attr("href"),
             scroll = $(id).offset().top;
 
-        animateScroll(scroll);
+        bbjs.animateScroll(scroll);
 
     });
 
@@ -83,6 +83,9 @@ Only one tab can be open at a time.
 */
 
 (function(){
+
+    'use strict';
+
 
     var $tab     = $(".js-tab-toggle"),
         $content = $(".js-tab-content");
@@ -156,7 +159,7 @@ Read further documentation below.
         // that the page has loaded. Alternatively,
         // you can use $(window).load() to wait for
         // everything to load.
-        var $imgsLoadedContainer = cache.$main;
+        var $imgsLoadedContainer = bbjs.cache.$main;
 
 
         setInterval(function(){
@@ -287,7 +290,7 @@ Would output: "search--toggled" class on the html element.
             $.each(classes, function(index, element){
 
                 if($self.attr(settings.element.parentAttribute) !== "true"){
-                    cache.$html.toggleClass(element.concat(settings.toggledClass));
+                    bbjs.cache.$html.toggleClass(element.concat(settings.toggledClass));
                 } else {
                     $self.parent().toggleClass(element.concat(settings.toggledClass));
                 }
@@ -327,7 +330,7 @@ This function hides a .drawer by click of the .drawer__overlay
 
 
     $(document).on("click", settings.overlay, function(){
-        cache.$html.removeClass(settings.classes);
+        bbjs.cache.$html.removeClass(settings.classes);
     });
 
 })();

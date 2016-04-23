@@ -1,7 +1,7 @@
 /**
 @author Andrew Puig [andrew.lpuig@gmail.com]
 
-@version 1.36
+@version 1.4
 */
 
 
@@ -24,15 +24,21 @@
 
 
 
+// Declare BBJS as global object
+window.bbjs = {};
+
+
+
+
 
 /**
-@name globalSettings
+@property bbjs.settings
 
 @description
-Some basic configuration
+Some basic bbjs configuration
 */
 
-var globalSettings = {
+bbjs.settings = {
 
     lazyload: {
         enable: true,
@@ -60,8 +66,9 @@ var globalSettings = {
 
 
 
+
 /**
-@name cache
+@property bbjs.cache
 
 @description
 Create an object for caching of common variables
@@ -69,7 +76,7 @@ I recommend using these cached variables for setting
 rather then getting to ensure up to date results.
 */
 
-var cache = {
+bbjs.cache = {
 
     $html:   $("html"),
 

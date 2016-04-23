@@ -21,25 +21,38 @@
 
 
 
-(function(){
+/**
+@property bbjs.init
+
+@description
+Function to init all of our BBJS namespaced functions.
+*/
+
+bbjs.init = function(){
 
     'use strict';
     
 
-    modals.init();
+    bbjs.modals.init();
 
-    animateIn();
+    bbjs.animateIn.init();
 
-    if(globalSettings.lazyload.enable){
-        callLazy(); // Accepts lazyloads options parameter
+
+    // [http://www.appelsiini.net/projects/lazyload]
+    if(bbjs.settings.lazyload.enable){
+        bbjs.callLazy();
     }
 
-    if(globalSettings.instafeed.enable){
-        callInstafeed(); // Has optional parameters
+    // [http://instafeedjs.com]
+    if(bbjs.settings.instafeed.enable){
+        bbjs.callInstafeed();
     }
 
-    if(globalSettings.carousels.enable){
-        callCarousel();
+    // [http://www.owlcarousel.owlgraphic.com]
+    if(bbjs.settings.carousels.enable){
+        bbjs.callCarousel();
     }
 
-}());
+};
+
+bbjs.init();
