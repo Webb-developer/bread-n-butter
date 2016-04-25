@@ -647,7 +647,7 @@ to the close trigger. See example below.
 
 
 Apply a js-modal class to the modal if you want the modal
-to appear on page load rather then from a user triggered event.
+to appear on immediately rather than from a user triggered event.
 
 @example
 <div class="modal  js-modal">
@@ -689,21 +689,6 @@ to appear on page load rather then from a user triggered event.
 }
 
 
-.modal__inner--warning{
-    background-color: map-get($color, "light-yellow");
-}
-
-
-.modal__inner--error{
-    background-color: map-get($color, "light-red");
-}
-
-
-.modal__inner--success{
-    background-color: map-get($color, "light-green");
-}
-
-
 .modal__close{
     @extend .close-icon;
     margin: 0;
@@ -724,7 +709,7 @@ Simple content dropdowns
 
 @example
 <div class='dropdown'>
-    <div class='dropdown__summary  js-toggle' data-tab='dropdown__content' use-parent="true">Toggle</div>
+    <div class='dropdown__summary  js-toggle' data-toggle='dropdown__content' use-parent="true">Toggle</div>
     <div class='dropdown__content'>Im some content</div>
 </div>
 */
@@ -751,19 +736,10 @@ Simple content dropdowns
 .dropdown__content{
     display: none;
     margin-top: map-get($spacing, "s");
+    max-height: map-get($dropdown, "max-height");
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
-
-
-// Optional, to create a list like structure.
-.dropdown__item{
-    display: block;
-    margin-top: map-get($spacing, "xs");
-
-    &:nth-of-type(1){
-        margin-top: 0;
-    }
-}
-
 
 
 

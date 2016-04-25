@@ -30,7 +30,7 @@ Smooth anchor link scrolling.
 JS version for CSS vh unit.
 
 @example
-<div class='js-set-vh' data-vh='70'><div>
+<div class='js-set-vh' data-vh='70' set-max-height='true'><div>
 This will set the element's height to 70% of
 the window height. If the data-vh attribute is missing
 or 0, the height of 100% of the window will be set.
@@ -53,7 +53,13 @@ or 0, the height of 100% of the window will be set.
                 var percent = $(el).data("vh") || 100,
                     calc    = $(window).outerHeight() * (percent / 100);
 
-                $(el).css('height', calc);
+
+                // Double equals here for a less strict match.
+                if($el.attr("set-max-height") == "true"){
+                    $(el).css('max-height', calc);
+                } else {
+                    $(el).css('height', calc);
+                }
 
             });
 
@@ -129,9 +135,11 @@ Only one tab can be open at a time.
 
 @description
 This function updates a given element's width
-every x milliseconds, like a progress bar. Ideally,
-the element should be styles to appear like a progess bar.
+every x milliseconds, like a progress bar.
 Read further documentation below.
+
+@example
+<div class='load-bar'></div>
 */
 
 (function(){
@@ -139,45 +147,47 @@ Read further documentation below.
     'use strict';
 
 
-    // The visual progress bar
+    // The visual progress bar.
+    // This element's width will be updated
+    // as the page loads.
     var $progress = $(".load-bar");
 
 
     if($progress.length){
 
         var counter = {
+            // Initial counter value.
             value: 0,
+
+            // Increment by this amount.
             increment: 5,
-            // Max should be less then 100 otherwise the progress bar may
+
+            // Max should be less than 100 otherwise the progress bar may
             // finish before the window/images are loaded.
-            max: 80
+            max: 80,
+
+            // Rate at which the counter increments.
+            rate: 400
         };
-
-
-        // The main page container where we wait for
-        // images to load. Once the images are loaded we determine
-        // that the page has loaded. Alternatively,
-        // you can use $(window).load() to wait for
-        // everything to load.
-        var $imgsLoadedContainer = bbjs.cache.$main;
 
 
         setInterval(function(){
 
             // Increase the counter by x every x ms.
             // When the counter reaches counter.max stop and
-            // wait for the images or window to actually load
+            // wait for the window to actually load
             // before setting the progress bar to done.
             if((counter.value += counter.increment) <= counter.max){
+                // Set the progress bar's width to the counter value.
                 $progress.css("width", counter.value + "%");
             }
 
-        }, 400); // Increase the counter every x ms here.
+        }, counter.rate); // Increase the counter every x ms/s here.
 
 
-        // Once the images have loaded set the counter to its target
+        // Once the page has loaded set the counter to its target
         // mark of counter.max. Then set the width of the progress bar to 100%.
-        $imgsLoadedContainer.imagesLoaded(function() {
+        bbjs.cache.$window.on("load", function() {
             counter.value = counter.max;
             $progress.css("width", "100%").addClass('done');
         });
@@ -310,7 +320,10 @@ Would output: "search--toggled" class on the html element.
 
 /**
 @description
-This function hides a .drawer by click of the .drawer__overlay
+This function hides a .drawer via click of settings.overlay
+
+@example
+<div class='drawer__overlay'></div>
 */
 
 (function(){
@@ -323,7 +336,7 @@ This function hides a .drawer by click of the .drawer__overlay
         // The element that we click to hide the drawer.
         overlay: ".drawer__overlay",
 
-        // The class(es) that make the drawer visible
+        // The class(es) that make the drawer visible. We remove these.
         classes: "drawer--right--toggled  drawer--left--toggled"
 
     };

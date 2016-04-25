@@ -138,9 +138,10 @@ Check form for empty fields.
 Submit form via AJAX or standard submit
 Adds error or success classes to inputs.
 
-@example
+@example [html]
 <input type='text' class='js-handle'>
 
+@example [js]
 forms.process({
     form: "#customer_login",
     ajax: true,
@@ -537,10 +538,10 @@ bbjs.modals = function(){
 
 @description
 Perform actions to elements when images in a container
-or the window is loaded. Requires imagesLoaded.js (Built in to BBJS):
+or the window is loaded. May require imagesLoaded.js (Built in to BBJS):
 http://imagesloaded.desandro.com/
 
-@example:
+@example
 <div class="js-animate" animate-class="animated  fadeInUp" animate-offset="1.5">I'll fadeUp soon</div>
 */
 
@@ -552,7 +553,7 @@ bbjs.animateIn = function(){
     var settings = {
 
         // @property {object} settings.imagesLoadedContainer
-        // Set to window to use window.load() to wait for page load.
+        // Set to "window" to use window.load() to wait for page load.
         imagesLoadedContainer: bbjs.cache.$main,
 
         item: {
