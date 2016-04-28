@@ -162,8 +162,10 @@ Read further documentation below.
             // Increment by this amount.
             increment: 5,
 
-            // Max should be less than 100 otherwise the progress bar may
-            // finish before the window/images are loaded.
+            // The progress will pause at this amount until
+            // the window has actually loaded.
+            // This value should be less than 100 otherwise the progress bar may
+            // finish before the window is loaded.
             max: 80,
 
             // Rate at which the counter increments.
