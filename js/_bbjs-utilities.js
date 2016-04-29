@@ -55,10 +55,16 @@ or 0, the height of 100% of the window will be set.
 
 
                 // Double equals here for a less strict match.
-                if($el.attr("set-max-height") == "true"){
-                    $(el).css('max-height', calc);
+                if($el.attr("set-max-height")){
+                    $(el).css({
+                        'max-height': calc,
+                        'overflow-y': "hidden"
+                    });
                 } else {
-                    $(el).css('height', calc);
+                    $(el).css({
+                        'height': calc,
+                        'overflow-y': "hidden"
+                    });
                 }
 
             });

@@ -468,6 +468,16 @@ $overlay:(
 
 
 
+$load-bar: (
+
+    "background-color": map-get($color, "black"),
+
+    "height": 3px
+
+);
+
+
+
 /*
 @description
 Hamburger icon
@@ -604,7 +614,7 @@ $transition-speed: (
 
     "slow":       0.6s,
 
-    "medium":     0.3s,
+    "medium":     0.35s,
 
     "fast":       0.2s,
 
