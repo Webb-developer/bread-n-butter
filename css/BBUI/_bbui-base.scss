@@ -331,6 +331,27 @@ textarea{
 
 
 
+::-webkit-input-placeholder {
+   color: inherit;
+}
+
+
+:-moz-placeholder {
+   color: inherit;  
+}
+
+
+::-moz-placeholder {
+   color: inherit;  
+}
+
+
+:-ms-input-placeholder {  
+   color: inherit;  
+}
+
+
+
 .touchevents:not(.desktop){
 
     input:not([type='submit']),
