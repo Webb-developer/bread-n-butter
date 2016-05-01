@@ -186,20 +186,20 @@ Functionality for this is in _bbjs-utilities.js
 
 .label{
     display: block;
-    color: map-get($color, "grey-75");
-    margin-bottom: 4px;
+    color: map-deep-get($forms, "label" "color");
+    margin: map-deep-get($forms, "label" "margin");
 }
 
 
 .input{
-    border: solid map-get($line-width, "s") rgba(0,0,0,0.2);
-    padding: 0.3rem 0.8rem;
-    color: map-get($color, "grey-75");
+    border: map-deep-get($forms, "input" "border");
+    padding: map-deep-get($forms, "input" "padding");
+    color: map-deep-get($forms, "input" "color");
     transition: border-color map-get($transition-speed, "extra-fast") map-get($transition-type, "cubic");
 
     &:hover,
     &:focus{
-        border-color: map-get($color, "grey-50");
+        border-color: map-deep-get($forms, "input" "hover" "border-color");
     }
 }
 
@@ -305,7 +305,7 @@ Functionality for this is in _bbjs-utilities.js
 
 
 /*------------------------------------*\
-    #RULES & #BORDERS
+    #RULES
 \*------------------------------------*/
 
 
@@ -326,6 +326,7 @@ Functionality for this is in _bbjs-utilities.js
     max-width: map-get($hr, "max-width");
 }
 
+
 .hr--medium{
     height: map-get($line-width, "m");
 }
@@ -333,11 +334,6 @@ Functionality for this is in _bbjs-utilities.js
 
 .hr--thick{
     height: map-get($line-width, "l");
-}
-
-
-.hr--short{
-    max-width: 100px;
 }
 
 
@@ -800,8 +796,8 @@ Slide out from left or right drawers.
     overflow-y: auto;
     overflow-x: hidden;
     z-index: map-get($z-index, "drawer");
-    background-color: map-get($color, "white");
-    transition: transform map-get($transition-speed, "medium") map-get($transition-type, "cubic");
+    background: map-get($drawer, "background");
+    transition: transform map-get($drawer, "transition");
     padding: map-get($drawer, "padding");
     transform: translateZ(0);
     -webkit-overflow-scrolling: touch;
@@ -831,8 +827,8 @@ Slide out from left or right drawers.
     opacity: 0;
     transform: translateZ(0);
     z-index: map-get($z-index, "drawerOverlay");
-    transition: opacity map-get($transition-speed, "medium") map-get($transition-type, "cubic");
-    background-color: map-get($drawer, "overlayColor");
+    transition: opacity map-get($drawer, "transition");
+    background: map-deep-get($drawer, "overlay" "background");
 }
 
 
@@ -875,6 +871,6 @@ Slide out from left or right drawers.
 // Anything with this class will be 
 // pushed left or right when a drawer is open
 .will-move{
-    transition: transform map-get($transition-speed, "medium") map-get($transition-type, "cubic");
+    transition: transform map-get($drawer, "transition");
 }
 

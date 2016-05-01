@@ -336,10 +336,73 @@ $border-radius: (
 
 
 
+/*------------------------------------*\
+    #TRANSITIONS
+\*------------------------------------*/
+
+
+
+/*
+@description
+All cubic-bezier transitions are easeInOut
+See: http://easings.net/
+*/
+
+$transition-type: (
+
+    "linear": unquote("linear"),
+
+    "sine":   unquote("cubic-bezier(0.445, 0.05, 0.55, 0.95)"),
+
+    "quad":   unquote("cubic-bezier(0.455, 0.03, 0.515, 0.955)"),
+
+    "cubic":  unquote("cubic-bezier(0.645, 0.045, 0.355, 1)"),
+
+    "quart":  unquote("cubic-bezier(0.77, 0, 0.175, 1)"),
+
+    "quint":  unquote("cubic-bezier(0.86, 0, 0.07, 1)"),
+
+    "expo":   unquote("cubic-bezier(1, 0, 0, 1)"),
+
+    "circ":   unquote("cubic-bezier(0.785, 0.135, 0.15, 0.86)"),
+
+    "back":   unquote("cubic-bezier(0.68, -0.55, 0.265, 1.55)")
+    
+);
+
+
+
+$transition-speed: (
+    
+    "none":       0s,
+
+    "extra-slow": 1s,
+
+    "slow":       0.6s,
+
+    "medium":     0.35s,
+
+    "fast":       0.2s,
+
+    "extra-fast": 0.1s
+    
+);
+
+
+
+
 
 /*------------------------------------*\
     #OBJECTS
 \*------------------------------------*/
+
+
+
+/*
+@name objects
+@description
+For examples on usage see: bbui-objects.scss
+*/
 
 
 
@@ -349,7 +412,13 @@ $drawer: (
 
     "padding": map-get($spacing, "m"),
 
-    "overlayColor": fade-out($base-black, 0.5)
+    "background": map-get($color, "white"),
+
+    overlay: (
+        "background": fade-out($base-black, 0.5)
+    ),
+
+    "transition": map-get($transition-speed, "medium") map-get($transition-type, "cubic")
 
 );
 
@@ -393,6 +462,7 @@ $button: (
 
 /*
 Define some base titles.
+These styles will be extended to h1/.h1 - h4/.h4
 */
 
 $title: (
@@ -427,6 +497,27 @@ $title: (
         "font-weight": normal,
         "letter-spacing": inherit,
         "line-height": map-get($line-height, "s")
+    )
+
+);
+
+
+
+$forms: (
+
+    label: (
+        "color": map-get($color, "grey-75"),
+        "margin": 0 0 4px 0
+    ),
+    
+    input: (
+        "border": solid map-get($line-width, "s") rgba(0,0,0,0.2),
+        "padding": 0.3rem 0.8rem,
+        "color": map-get($color, "grey-75"),
+
+        hover: (
+            "border-color": rgba(0,0,0,0.5)
+        )
     )
 
 );
@@ -566,62 +657,6 @@ $z-index: (
     "max":           9999
 
 );
-
-
-
-
-/*------------------------------------*\
-    #CSS3
-\*------------------------------------*/
-
-
-
-/*
-@description
-All cubic-bezier transitions are easeInOut
-See: http://easings.net/
-*/
-
-$transition-type: (
-
-    "linear": unquote("linear"),
-
-    "sine":   unquote("cubic-bezier(0.445, 0.05, 0.55, 0.95)"),
-
-    "quad":   unquote("cubic-bezier(0.455, 0.03, 0.515, 0.955)"),
-
-    "cubic":  unquote("cubic-bezier(0.645, 0.045, 0.355, 1)"),
-
-    "quart":  unquote("cubic-bezier(0.77, 0, 0.175, 1)"),
-
-    "quint":  unquote("cubic-bezier(0.86, 0, 0.07, 1)"),
-
-    "expo":   unquote("cubic-bezier(1, 0, 0, 1)"),
-
-    "circ":   unquote("cubic-bezier(0.785, 0.135, 0.15, 0.86)"),
-
-    "back":   unquote("cubic-bezier(0.68, -0.55, 0.265, 1.55)")
-    
-);
-
-
-
-$transition-speed: (
-    
-    "none":       0s,
-
-    "extra-slow": 1s,
-
-    "slow":       0.6s,
-
-    "medium":     0.35s,
-
-    "fast":       0.2s,
-
-    "extra-fast": 0.1s
-    
-);
-
 
 
 
