@@ -834,6 +834,7 @@ Slide out from left or right drawers.
 
 .drawer--left--toggled,
 .drawer--right--toggled{
+    @extend %scroll-locked;
 
     .drawer__overlay{
         visibility: visible;

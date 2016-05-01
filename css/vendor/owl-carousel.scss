@@ -87,6 +87,7 @@
   -webkit-backface-visibility: hidden;
   -webkit-touch-callout: none;
   user-select: none;
+  z-index: 1;
 }
 .owl-carousel .owl-item img {
   display: block;

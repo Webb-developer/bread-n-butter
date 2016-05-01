@@ -24,15 +24,7 @@ bbjs.callLazy = function(options){
 
     'use strict';
 
-
-    // We want to wait for other images to load before
-    // we start lazy loading. That way if were waiting for images loaded
-    // to show the page, it will show faster.
-    bbjs.cache.$main.imagesLoaded(function(){
-
-        $(".js-lazy").lazyload(typeof(options) === "undefined" ? bbjs.settings.lazyload.options : options);
-
-    });
+    $(".js-lazy").lazyload(typeof(options) === "undefined" ? bbjs.settings.lazyload.options : options);
 
 };
 
@@ -76,6 +68,9 @@ bbjs.callCarousel = function(){
 
 /**
 @name callInstafeed [http://instafeedjs.com]
+
+@description
+Setup our user instafeed.
 */
 
 bbjs.callInstafeed = function(callback){

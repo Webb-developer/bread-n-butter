@@ -4,7 +4,7 @@ https://davidwalsh.name/javascript-debounce-function
 
 @example
 var myFunction = debounce(function(){
-    
+    Do something classy here
 }, 150);
 
 myFunction();
@@ -63,7 +63,7 @@ bbjs.touchTest = function(ignoreDesktopTouch){
     'use strict';
 
 
-    if(ignoreDesktopTouch === true){
+    if(ignoreDesktopTouch){
         return bbjs.cache.$html.hasClass("touchevents") && !bbjs.cache.$html.hasClass("desktop");
     } else {
         return bbjs.cache.$html.hasClass("touchevents");

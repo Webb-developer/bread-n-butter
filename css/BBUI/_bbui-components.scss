@@ -211,6 +211,29 @@ they help form them.
 }
 
 
+// Expects to be on the HTML element.
+.scroll-locked{
+    height: 100%;
+    overflow-y: hidden;
+
+    body{
+        height: 100%;
+        overflow-y: hidden;
+    }
+}
+
+
+%scroll-locked{
+    height: 100%;
+    overflow-y: hidden;
+
+    body{
+        height: 100%;
+        overflow-y: hidden;
+    }
+}
+
+
 
 
 /*------------------------------------*\

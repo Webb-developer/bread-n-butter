@@ -1,7 +1,7 @@
 /**
 @author Andrew Puig [andrew.lpuig@gmail.com]
-
-@version 1.4
+@version 1.42
+@todo Improve bbjs.forms
 */
 
 
@@ -24,7 +24,7 @@
 
 
 
-// Declare BBJS as global object
+// Declare BBJS as global object.
 window.bbjs = {};
 
 
@@ -97,33 +97,22 @@ bbjs.cache = {
 
 
 
-// Optional includes.
+/*
+Optional includes.
+*/
+
+// @codekit-prepend "vendor/fastclick.js";
+// @codekit-prepend "vendor/instafeed.js";
+// @codekit-prepend "vendor/lazyload.js";
+// @codekit-prepend "vendor/owl-carousel.js";
 
 
-    // @codekit-prepend "vendor/fastclick.js";
+/*
+Required includes.
+*/
 
-    // @codekit-prepend "vendor/instafeed.js";
-
-    // @codekit-prepend "vendor/lazyload.js";
-
-    // @codekit-prepend "vendor/owl-carousel.js";
-
-
-// End optional includes.
-
-
-
-// Required includes.
-
-
-    // @codekit-prepend "vendor/images-loaded.js";
-
-    // @codekit-prepend "vendor/device.js";
-
-
-// End required includes.
-
-
+// @codekit-prepend "vendor/images-loaded.js";
+// @codekit-prepend "vendor/device.js";
 
 
 

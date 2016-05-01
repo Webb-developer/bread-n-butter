@@ -147,6 +147,7 @@ Only one tab can be open at a time.
 
     $tab.on("click", function(){
 
+        // Save our this reference.
         var $self = $(this);
 
 
@@ -180,8 +181,7 @@ Only one tab can be open at a time.
 
 @description
 This function updates a given element's width
-every x milliseconds, like a progress bar.
-Read further documentation below.
+every x ms/s, to simulate a progress bar.
 
 @example
 <div class='load-bar'></div>
@@ -192,51 +192,71 @@ Read further documentation below.
     'use strict';
 
 
-    // The visual progress bar.
-    // This element's width will be updated
-    // as the page loads.
+    /*
+    The element whose width we will
+    be updating.
+    */
     var $progress = $(".load-bar");
 
 
     if($progress.length){
 
         var counter = {
-            // Initial counter value.
+
+            /**
+            @property {number} counter.value
+            The intitial counter value. Leave at 0.
+            */  
             value: 0,
 
-            // Increment by this amount.
-            increment: 5,
+            /**
+            @const
+            @property {number} counter.INCREMENT_BY
+            The amount we increment counter.value by each interval.
+            */
+            INCREMENT_BY: 5,
 
-            // The progress will pause at this amount until
-            // the window has actually loaded.
-            // This value should be less than 100 otherwise the progress bar may
-            // finish before the window is loaded.
-            max: 80,
+            /**
+            @const
+            @property {number} counter.MAX
+            The max amount for the counter.value
+            This value should be less than 100 otherwise
+            $progress may appear finished before the window is loaded.
+            */
+            MAX: 80,
 
-            // Rate at which the counter increments.
-            rate: 400
+            /**
+            @const
+            @property {number} counter.rate
+            The interval rate at which the counter.value increments.
+            */
+            RATE: 400
+
         };
 
 
-        setInterval(function(){
+        var interval = setInterval(function(){
 
-            // Increase the counter by x every x ms.
-            // When the counter reaches counter.max stop and
-            // wait for the window to actually load
-            // before setting the progress bar to done.
-            if((counter.value += counter.increment) <= counter.max){
-                // Set the progress bar's width to the counter value.
+            /*
+            Increase the counter.value here every counter.RATE.
+            When the counter reaches counter.MAX stop and
+            wait for the window to actually load.
+            */
+            if((counter.value += counter.INCREMENT_BY) <= counter.MAX){
+                // Set $progress's width to the counter.value.
                 $progress.css("width", counter.value + "%");
             }
 
-        }, counter.rate); // Increase the counter every x ms/s here.
+        }, counter.RATE); // Increase the counter.value every x ms/s here.
 
 
-        // Once the page has loaded set the counter to its target
-        // mark of counter.max. Then set the width of the progress bar to 100%.
+        /*
+        Once the page has loaded, set the width of $progress to 100%
+        and clear the interval.
+        */
         bbjs.cache.$window.on("load", function() {
-            counter.value = counter.max;
             $progress.css("width", "100%").addClass('done');
+            clearInterval(interval);
         });
 
     }
@@ -430,4 +450,3 @@ This function hides a .drawer via click of settings.overlay
     });
 
 })();
-
