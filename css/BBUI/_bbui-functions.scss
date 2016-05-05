@@ -133,6 +133,59 @@ With changing number of columns.
 
 
 
+
+/*
+@name createGridUnits
+
+@description
+Mixin to create grid units. Grid units are just classes with
+a given width and a margin. The idea behind it is to have
+pieces that you can place together to form a full width row
+with a gutter.
+
+@param {number} gutter - the size of the gutter. Don't include
+the unit, it will be outputted as a percentage.
+
+@example [SCSS]
+@include createGridUnits(1.53846154);
+
+@example [HTML]
+<div class='grid-unit--7'>Nav</div>
+<div class='grid-unit--2'>Logo</div>
+<div class='grid-unit--7'>Cart</div>
+*/
+
+@mixin createGridUnits($gutter){
+
+    $base: 100 - ($gutter * 2);
+    $count: round($base / ($gutter * 4));
+    
+    [class*="grid-unit"]{
+        margin-left: $gutter + 0%;
+        float: left;
+
+        &:last-child{
+            margin-right: $gutter + 0%;
+        }
+    }
+    
+    @while $base > 0{
+
+        .grid-unit--#{$count}{
+            width: $base + 0%;
+        }
+
+        $base: $base - ($gutter * 4);
+        $count: $count - 1;
+
+    }
+
+}
+
+
+
+
+
 /*
 @name map-deep-get
 
