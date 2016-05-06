@@ -60,61 +60,51 @@ Mixin to preserve aspect ratios.
 @name createGrid
 
 @description
-Mixin to create grids. Does not support media queries.
-Add media queries independently as you would for anything.
-See _bbui-objects.scss for more examples.
+Mixin to create flexbox grids.
 
-@param {number} cols - the number of columns in the grid
-@param {number} gutter - the spacing between the columns
+@param {number} cols - the number of columns in the grid.
+
+@param {number} widthOffset - the offset of the column width.
+The width of the columns will be subtracted by this amount.
+We create an offset because we are using
+flexbox with justify-content: space between.
+This will automatically create a more intelligent gutter.
 
 @param {string} className - the class name of the grid that will be outputted.
-the child will have a suffix of __item.
-
-@param {boolean} useFlex - If true, it will use flexbox for the layout
-if false it will use a floated grid.
+The child classname will have a suffix of "__item".
 
 @example
-With static number of columns
-@include createGrid(2, 1rem, "grid--2-4");
+With static number of columns.
+@include createGrid(2, 3, "grid--2");
+This will create a grid of 2 columns with
+a width of 47% each ((100 / 2) - 3)
 
 @example
 With changing number of columns.
-@include createGrid(2, 1rem, "grid--2-4"){
+@include createGrid(2, 3, "grid--2-4"){
 
     @include query("m"){
-        width: 25%;
+
+        .grid--2-4__item{
+            width: 22%;
+        }
     }
 
 }
 */
 
-@mixin createGrid($cols, $gutter, $className, $useFlex: true){
+@mixin createGrid($cols, $widthOffset, $className){
     
     .#{$className}{
-        margin-left:  -#{$gutter};
-        margin-right: -#{$gutter};
-    
-        // Use flexbox grid
-        @if $useFlex == true{
-            display: flex;
-            flex-wrap: wrap;
-            flex-direction: row;
-        } @else {
-            display: block;
-            overflow: hidden;
-        }
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
     }
 
     .#{$className}__item{
-        width: 100% / $cols;
-        padding-left:  $gutter;
-        padding-right: $gutter;
-        margin-bottom: $gutter * 2;
-    
-        // Use floating grid.
-        @if $useFlex != true{
-            float: left;
-        }
+        width: (100% / $cols) - $widthOffset;
+        margin-bottom: $widthOffset + 0%;
 
         @for $i from $cols through 1{
             
@@ -124,9 +114,20 @@ With changing number of columns.
 
         }
 
-        @content;
-
     }
+
+    @content;
+
+    // @at-root{
+
+    //     .no-flexbox{
+            
+    //         .#{$className}__item{
+    //             margin-left:  (100 - $widthOffset) % $cols + 0%;
+    //             margin-right: (100 - $widthOffset) % $cols + 0%;
+    //         }
+    //     }
+    // }
 
 }
 
@@ -141,13 +142,16 @@ With changing number of columns.
 Mixin to create grid units. Grid units are just classes with
 a given width and a margin. The idea behind it is to have
 pieces that you can place together to form a full width row
-with a gutter.
+with a gutter included.
 
 @param {number} gutter - the size of the gutter. Don't include
 the unit, it will be outputted as a percentage.
 
+@param {number} MQ - the min width media query
+for the styles to take effect.
+
 @example [SCSS]
-@include createGridUnits(1.53846154);
+@include createGridUnits(1.53846154, 750px);
 
 @example [HTML]
 <div class='grid-unit--7'>Nav</div>
@@ -155,28 +159,48 @@ the unit, it will be outputted as a percentage.
 <div class='grid-unit--7'>Cart</div>
 */
 
-@mixin createGridUnits($gutter){
+@mixin createGridUnits($gutter, $MQ){
 
     $base: 100 - ($gutter * 2);
     $count: round($base / ($gutter * 4));
     
-    [class*="grid-unit"]{
-        margin-left: $gutter + 0%;
-        float: left;
+    @media (min-width: #{$MQ}){
+        
+        [class*="grid-unit"]{
+            margin-left: $gutter + 0%;
+            float: left;
 
-        &:last-child{
-            margin-right: $gutter + 0%;
+            &:last-child{
+                margin-right: $gutter + 0%;
+            }
         }
-    }
     
-    @while $base > 0{
+        @while $base > 0{
+            
+            .grid-unit--offset-#{$count}{
+                margin-left: $base + 0%;
 
-        .grid-unit--#{$count}{
-            width: $base + 0%;
+                &:last-child{
+                    margin-right: $base + 0%;
+                }
+            }
+
+            .grid-unit--#{$count}{
+                width: $base + 0%;
+            }
+                
+            $base: $base - ($gutter * 4);
+            $count: $count - 1;
+
         }
 
-        $base: $base - ($gutter * 4);
-        $count: $count - 1;
+        .grid-unit--offset-gutter{
+            margin-left: ($gutter / 2) + $gutter + 0%;
+
+            &:last-child{
+                margin-right: ($gutter / 2) + $gutter + 0%;
+            }
+        }
 
     }
 

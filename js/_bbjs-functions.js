@@ -45,7 +45,7 @@ function debounce(func, wait, immediate) {
 
 
 /**
-@property bbjs.touchTest
+@property bbjs.itHasTouch
 
 @description
 Returns true if the user device has touch events.
@@ -58,7 +58,7 @@ to ignore touch events on desktop computers.
 @returns {boolean}
 */
 
-bbjs.touchTest = function(ignoreDesktopTouch){
+bbjs.itHasTouch = function(ignoreDesktopTouch){
 
     'use strict';
 

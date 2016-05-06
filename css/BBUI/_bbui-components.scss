@@ -8,6 +8,9 @@ they help form them.
 */
 
 
+
+
+
 /*------------------------------------*\
     #GRIDS
 \*------------------------------------*/
@@ -18,11 +21,9 @@ they help form them.
 @name .no-flexbox
 
 @description
-This depends on modernizr no-flexbox class.
-Apply the .grid class to any grids and .grid__item
-to any grid items.
-If the browser doesnt support flexbox we'll fallback to a floated grid.
-if were using flexbox to create grids using createGrid()
+This depends on modernizr no-flexbox test.
+If the browser doesnt support flexbox we'll fallback to a floated grid
+when using flexbox to create grids using createGrid()
 */
 
 .no-flexbox{
@@ -44,43 +45,46 @@ if were using flexbox to create grids using createGrid()
 /*
 @description
 Instructions for creating grids with createGrid()
-For parameter descriptions find createGrid() in _bbui-functions.
+For parameter descriptions find createGrid() in _bbui-functions.scss
 When creating grids where the number of columns will change
 on a breakpoint, set the number of columns mobile first.
 
-@example
+@example [SASS]
 For a grid that goes from 1 to 2 columns
-create a media query in the block to go from 100% to 50% width.
+create a media query in the block.
 
-@include createGrid(1, 2rem, "grid--1-2"){
+@include createGrid(2, 3, "grid--1-2"){
+
     @include query("s"){
-        width: 50%;
+
+        .grid--1-2__item{
+            width: 47%;   
+        }
     }
 }
+
+@example [HTML]
+<div class='grid  grid--1-2'>
+    <div class="grid__item  grid--1-2__item"></div>
+    <div class="grid__item  grid--1-2__item"></div>
+</div>
 */
 
-@include createGrid(2, 1.5rem, "grid--2");
-
-
-
-@include createGrid(1, 1.5rem, "grid--1-2"){
+@include createGrid(2, 3, "grid--2-4"){
 
     @include query("s"){
-        width: 50%;
+
+        .grid--2-4__item{
+            width: 23%;   
+
+            &:nth-last-of-type(3),
+            &:nth-last-of-type(4){
+                margin-bottom: 0;
+            }
+        }
     }
 
 }
-
-
-
-@include createGrid(2, 1rem, "grid--2-4"){
-
-    @include query("m"){
-        width: 25%;
-    }
-
-}
-
 
 
 
@@ -88,7 +92,7 @@ create a media query in the block to go from 100% to 50% width.
 See bbui-functions.scss for usage.
 */
 
-@include createGridUnits(1.53846154);
+@include createGridUnits(1.53846154, 750px);
 
 
 
