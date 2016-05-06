@@ -56,16 +56,6 @@ with browser string: "last 4 versions"
 
 .page-content{
     
-    // When you need to push your page content down
-    // due to a fixed header.
-    @if map-get($header, "isFixed") == true{
-        margin-top: map-deep-get($header, "height" "mobile");
-
-        @media #{$mobileToDesktopBreakPoint}{
-            margin-top: map-deep-get($header, "height" "desktop");
-        }
-    }
-
 }
 
 

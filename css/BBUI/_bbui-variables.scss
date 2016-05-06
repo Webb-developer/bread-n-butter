@@ -58,46 +58,6 @@ $media-query: (
 
 
 
-
-/*------------------------------------*\
-    #CONFIG
-\*------------------------------------*/
-
-
-
-/*
-@description
-Define the breakpoint in which you decide
-you've moved from mobile to a desktop. Useful
-for when you have multiple fixed site headers with different
-heights. The $header map will use this breakpoint to change
-the .page-content margin from mobile to desktop offset when
-$header => "isFixed" == true.
-*/
-
-$mobileToDesktopBreakPoint: map-get($media-query, "m");
-
-
-$header: (
-    
-    // Useful when you need to push your page content down
-    // due to a fixed header.
-    "isFixed": true,
-    
-    // Push the .page-content down by this amount
-    // for mobile and desktop. See $mobileToDesktopBreakPoint
-    // for additional info.
-    "height": (
-        "mobile": 50px,
-        "desktop": 75px
-    )
-
-);
-
-
-
-
-
 /*------------------------------------*\
     #TYPE
 \*------------------------------------*/
