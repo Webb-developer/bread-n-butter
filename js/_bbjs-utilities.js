@@ -129,8 +129,8 @@ This function adds toggle functionality to tabs.
 Only one tab can be open at a time.
 
 @example
-<div class='js-tab-toggle  tab__summary' data-tab='0'>Toggle</div>
-<div class='js-tab-content  tab__content' data-tab='0'>Im some content</div>
+<div class='tab__summary' data-tab='0'>Toggle</div>
+<div class='tab__content  hidden' data-tab='0'>Im some content</div>
 */
 
 (function(){
@@ -138,11 +138,10 @@ Only one tab can be open at a time.
     'use strict';
 
 
-    var $tab     = $(".js-tab-toggle"),
-        $content = $(".js-tab-content");
+    var $tab     = $(".tab__summary"),
+        $content = $(".tab__content");
 
-    var activeClass = "tabs__summary--active",
-        hiddenClass = "hidden";
+    var hiddenClass = "hidden";
 
 
     $tab.on("click", function(){
@@ -151,21 +150,21 @@ Only one tab can be open at a time.
         var $self = $(this);
 
 
-        if($self.hasClass(activeClass)){
+        if($self.hasClass("active")){
 
             // Remove any active states from clicked tab.
-            $self.removeClass(activeClass);
-            $(".js-tab-content[data-tab=" + $self.data("tab") + "]").addClass(hiddenClass);
+            $self.removeClass("active");
+            $(".tab__content[data-tab=" + $self.data("tab") + "]").addClass(hiddenClass);
 
         } else {
 
             // Remove any active states from all tabs.
-            $tab.removeClass(activeClass);
+            $tab.removeClass("active");
             $content.addClass(hiddenClass);
 
             // Add active states to clicked tab.
-            $self.addClass(activeClass);
-            $(".js-tab-content[data-tab=" + $self.data("tab") + "]").removeClass(hiddenClass);
+            $self.addClass("active");
+            $(".tab__content[data-tab=" + $self.data("tab") + "]").removeClass(hiddenClass);
 
         }
 

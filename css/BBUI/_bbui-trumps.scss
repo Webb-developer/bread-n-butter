@@ -16,23 +16,23 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(font-family, font-family, $font-family);
+@include createClassesFromMap(font-family, ff, $font-family);
 
 
 
-@include createClassesFromMap(letter-spacing, letter-spacing, $letter-spacing);
+@include createClassesFromMap(letter-spacing, ls, $letter-spacing);
 
 
 
-@include createClassesFromMap(font-size, font-size, $font-size);
+@include createClassesFromMap(font-size, fs, $font-size);
 
 
 
-@include createClassesFromMap(font-weight, font-weight, $font-weight);
+@include createClassesFromMap(font-weight, fw, $font-weight);
 
 
 
-@include createClassesFromMap(line-height, line-height, $line-height);
+@include createClassesFromMap(line-height, lh, $line-height);
 
 
 
@@ -40,19 +40,19 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(background-color, background-color, $color);
+@include createClassesFromMap(background-color, bgc, $color);
 
 
 
-@include createClassesFromMap(text-align, text-align, $text-align);
+@include createClassesFromMap(text-align, align, $text-align);
 
 
 
-@include createClassesFromMap(text-decoration, text-decoration, $text-decoration);
+@include createClassesFromMap(text-decoration, td, $text-decoration);
 
 
 
-@include createClassesFromMap(text-transform, text-transform, $text-transform);
+@include createClassesFromMap(text-transform, tt, $text-transform);
 
 
 
@@ -100,13 +100,6 @@ they do their job. Get the hint?
 .rotate---180{
     transform: rotate(-180deg) !important;
 }
-
-
-
-@include createClassesFromMap(transition-duration, transition-speed, $transition-speed);
-
-
-@include createClassesFromMap(transition-timing-function, transition-type, $transition-type);
 
 
 

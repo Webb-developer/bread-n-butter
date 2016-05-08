@@ -4,7 +4,7 @@ https://davidwalsh.name/javascript-debounce-function
 
 @example
 var myFunction = debounce(function(){
-    Do something classy here
+    // Do something classy here
 }, 150);
 
 myFunction();

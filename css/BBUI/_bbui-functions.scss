@@ -118,16 +118,16 @@ With changing number of columns.
 
     @content;
 
-    // @at-root{
+    @at-root{
 
-    //     .no-flexbox{
+        .no-flexbox{
             
-    //         .#{$className}__item{
-    //             margin-left:  (100 - $widthOffset) % $cols + 0%;
-    //             margin-right: (100 - $widthOffset) % $cols + 0%;
-    //         }
-    //     }
-    // }
+            .#{$className}__item{
+                padding-left:  $widthOffset;
+                padding-right: $widthOffset;
+            }
+        }
+    }
 
 }
 

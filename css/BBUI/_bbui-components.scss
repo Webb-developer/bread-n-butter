@@ -92,7 +92,7 @@ create a media query in the block.
 See bbui-functions.scss for usage.
 */
 
-@include createGridUnits(1.53846154, 750px);
+@include createGridUnits(1.53846154, 650px);
 
 
 
@@ -195,18 +195,15 @@ See bbui-functions.scss for usage.
 }
 
 
-.visually-visible{
-    visibility: visible;
-    opacity: 1;
-}
-
-
-// Reference the percent "classes" when
-// using SASS's @extend to avoid file bloat.
-
 %visually-hidden{
     visibility: hidden;
     opacity: 0;
+}
+
+
+.visually-visible{
+    visibility: visible;
+    opacity: 1;
 }
 
 
@@ -214,6 +211,7 @@ See bbui-functions.scss for usage.
     visibility: visible;
     opacity: 1;
 }
+
 
 
 
@@ -267,10 +265,6 @@ See bbui-functions.scss for usage.
     left: 0;
     height: 100%;
     width:  100%;
-}
-
-
-.aspect-ratio__object--cover{
     object-fit:      cover;
     background-size: cover;
     background-repeat: no-repeat;
@@ -333,6 +327,7 @@ See bbui-functions.scss for usage.
 // data-toggle attributes are used in _bbjs-utilities.js
 
 [data-toggle]{
+    @extend .a;
     cursor: pointer;
 }
 

@@ -36,6 +36,8 @@ Will produce:
 
 
 /*
+@name media-query
+
 @description
 WARNING: Adding too many media queries here will
 dramatically increase the file size. Please check 
@@ -136,6 +138,8 @@ $line-height: (
 
 
 /*
+@name spacing
+
 @description
 This map's values are used to create margin
 and padding classes. They are also referenced
@@ -177,31 +181,21 @@ $base-black color will be created.
 
 $base-black: #000;
 
-$base-white: #fff;
-
 
 $color: (
     
     "black": $base-black,
 
-    "white": $base-white,
+    "black-80": lighten($base-black, 20%),
 
+    "black-60": lighten($base-black, 40%),
 
-    "grey-90": lighten($base-black, 10%),
+    "black-40": lighten($base-black, 60%),
 
-    "grey-75": lighten($base-black, 25%),
+    "black-20": lighten($base-black, 80%),
+    
 
-    "grey-50": lighten($base-black, 50%),
-
-    "grey-40": lighten($base-black, 60%),
-
-    "grey-30": lighten($base-black, 65%),
-
-    "grey-20": lighten($base-black, 70%),
-
-    "grey-10": lighten($base-black, 90%),
-
-    "grey-05": lighten($base-black, 95%),
+    "white": #fff,
 
 
     "green":       #007e00,
@@ -213,12 +207,9 @@ $color: (
 
     "light-red": #f2dede,
 
-
-    "yellow":       #ffff3b,
-
-    "light-yellow": #fcf8e3,
-
 );
+
+
 
 
 
@@ -229,6 +220,8 @@ $color: (
 
 
 /*
+@name sizes
+
 @description
 This map's values are used to create width
 and height classes.
@@ -266,6 +259,9 @@ $sizes: (
 
 
 /*
+@name line-width
+
+@description
 Used for border widths
 */
 
@@ -303,6 +299,8 @@ $border-radius: (
 
 
 /*
+@name transition-type
+
 @description
 All cubic-bezier transitions are easeInOut
 See: http://easings.net/
@@ -333,8 +331,6 @@ $transition-type: (
 
 
 $transition-speed: (
-    
-    "none":       0s,
 
     "extra-slow": 1s,
 
@@ -388,9 +384,9 @@ $button: (
     
     // All non-themed buttons have a default
     // transparent color border.
-    "border-width": 1px,
 
     "base": (
+        "border-width": 1px,
         "height": 35px,
         "line-height": 35px,
         "padding": 0 1.2rem
@@ -466,14 +462,14 @@ $title: (
 $forms: (
 
     label: (
-        "color": map-get($color, "grey-75"),
+        "color": map-get($color, "black-80"),
         "margin": 0 0 4px 0
     ),
     
     input: (
         "border": solid map-get($line-width, "s") rgba(0,0,0,0.2),
         "padding": 0.3rem 0.8rem,
-        "color": map-get($color, "grey-75"),
+        "color": map-get($color, "black-80"),
 
         hover: (
             "border-color": rgba(0,0,0,0.5)
@@ -571,10 +567,9 @@ $hr: (
 
     "height": map-get($line-width, "s"),
 
-    "background-color": map-get($color, "grey-20"),
+    "background-color": map-get($color, "black-20"),
     
-    // Top and bottom
-    "margin": 0.4rem,
+    "margin": 0.4rem 0,
     
     "max-width": none
 
@@ -583,9 +578,7 @@ $hr: (
 
 
 $dropdown: (
-
     "max-height": 300px  
-
 );
 
 

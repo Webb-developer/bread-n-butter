@@ -118,7 +118,7 @@ Functionality for this is in _bbjs-utilities.js
     border: map-deep-get($forms, "input" "border");
     padding: map-deep-get($forms, "input" "padding");
     color: map-deep-get($forms, "input" "color");
-    transition: border-color map-get($transition-speed, "extra-fast") map-get($transition-type, "cubic");
+    transition: border-color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear");
 
     &:hover,
     &:focus{
@@ -186,7 +186,6 @@ Functionality for this is in _bbjs-utilities.js
     padding: map-get($close-icon, "padding");
     display: inline-block;
     cursor: pointer;
-    transition: transform map-get($transition-speed, "extra-fast") map-get($transition-type, "cubic");
     font-size: map-get($close-icon, "font-size");
     color: map-get($close-icon, "color");
 
@@ -198,23 +197,16 @@ Functionality for this is in _bbjs-utilities.js
     }
 
     &:hover{
-        transform: scale3D(1.1, 1.1, 1.1);
+        color: lighten(map-get($close-icon, "color"), 50%);
     }
 
     &:active{
-        transform: scale3D(0.9, 0.9, 0.9);
+        color: map-get($close-icon, "color");
     }
 
     &.close-icon--to-left{
         right: inherit;
         left: 0;
-    }
-
-    &.close-icon--no-icon{
-
-        &:after{
-            display: none;
-        }
     }
 
     &.close-icon--no-offset{
@@ -244,8 +236,7 @@ Functionality for this is in _bbjs-utilities.js
     height: map-get($hr, "height");
     display: block;
     background-color: map-get($hr, "background-color");
-    margin-top:    map-get($hr, "margin");
-    margin-bottom: map-get($hr, "margin");
+    margin: map-get($hr, "margin");
     max-width: map-get($hr, "max-width");
 }
 
@@ -271,8 +262,8 @@ Functionality for this is in _bbjs-utilities.js
 /*
 @example
 <ul>
-    <li class='list-item  list-item--smaller'></li>
-    <li class='list-item  list-item--smaller'></li>
+    <li class='list-item  list-item--s'></li>
+    <li class='list-item  list-item--s'></li>
 </ul>
 
 <ul>
@@ -291,12 +282,12 @@ Functionality for this is in _bbjs-utilities.js
 }
 
 
-.list-item--smaller{
+.list-item--s{
     margin-right: map-get($spacing, "xs");
 }
 
 
-.list-item--larger{
+.list-item--l{
     margin-right: map-get($spacing, "m");
 }
 
@@ -311,12 +302,12 @@ Functionality for this is in _bbjs-utilities.js
 }
 
 
-.list-item--vertical--smaller{
+.list-item--vertical--s{
     margin-bottom: map-get($spacing, "xs");
 }
 
 
-.list-item--vertical--larger{
+.list-item--vertical--l{
     margin-bottom: map-get($spacing, "m");
 }
 
@@ -331,12 +322,12 @@ Functionality for this is in _bbjs-utilities.js
 
 /*
 @example
-<div class="button  button--black  button--tall">Click Me</div>
+<div class="button  button--black  button--tall" role="button">Click Me</div>
 */
 
 .button{
     cursor: pointer;
-    border: solid map-get($button, "border-width") transparent;
+    border: solid map-deep-get($button, "base" "border-width") transparent;
     display: inline-block;
     white-space: nowrap;
     text-align: center;
@@ -377,28 +368,42 @@ Functionality for this is in _bbjs-utilities.js
 
 .button--black{
     background-color: map-get($color, "black");
+    border-color:     map-get($color, "black");
     color: map-get($color, "white");
-    border-color: map-get($color, "black");
-    transition: all map-get($transition-speed, "fast") map-get($transition-type, "linear");
+    transition: background-color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear"), color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear");
 
     &:hover{
         background-color: map-get($color, "white");
         color: map-get($color, "black");
+    }
+
+    &:active,
+    &.active{
+        background-color: map-get($color, "black");
+        color: map-get($color, "white");
     }
 }
 
 
 .button--white{
     background-color: map-get($color, "white");
-    color: map-get($color, "black");
+    color:        map-get($color, "black");
     border-color: map-get($color, "black");
-    transition: all map-get($transition-speed, "fast") map-get($transition-type, "linear");
+    transition: background-color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear"), color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear");
 
     &:hover{
         background-color: map-get($color, "black");
         color: map-get($color, "white");
     }
+
+    &:active,
+    &.active{
+        background-color: map-get($color, "white");
+        color: map-get($color, "black");
+    }
 }
+
+
 
 
 
@@ -409,6 +414,9 @@ Functionality for this is in _bbjs-utilities.js
 
 
 /*
+@description
+Misc overlay. Requires height.
+
 @example
 <div class="overlay__wrap">
     <div class="overlay">Overlay Content</div>
@@ -519,10 +527,11 @@ Wrapper for user entered content to "reset" styles.
 */
 
 .breadcrumb{
-    display: inline-block;
+    display: block;
+    float: left;
 
     &:after{
-        content: "|";
+        content: "/";
         display: inline-block;
         padding: 0 5px;
     }
@@ -668,14 +677,15 @@ Simple content dropdowns
 \*------------------------------------*/
 
 
+
 /*
 @description
-.tab__content should have a hidden class applied to it.
+.tab__content should have a .hidden class applied to it.
 tabs functionality is in bbjs-utilities.js
 
 @example
-<div class='js-tab-toggle  tab__summary' data-tab='0'>Toggle</div>
-<div class='js-tab-content  tab__content' data-tab='0'>Im some content</div>
+<div class='tab__summary' data-tab='0'>Toggle</div>
+<div class='tab__content  hidden' data-tab='0'>Im some content</div>
 */
 
 .tab__summary{
