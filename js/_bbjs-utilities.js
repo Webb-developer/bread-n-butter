@@ -399,7 +399,7 @@ Would output: "dropdown--toggled" class on the parent.
             classes.forEach(function(attrClass){
 
                 // Toggle the immediate parent.
-                if($self.attr(settings.element.toggleParent)){
+                if($self[0].hasAttribute(settings.element.toggleParent)){
                     $self.parent().toggleClass(attrClass.concat(settings.toggledClass));
                 } else {
                     bbjs.cache.$html.toggleClass(attrClass.concat(settings.toggledClass));

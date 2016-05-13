@@ -593,12 +593,30 @@ Simple content dropdowns
     .dropdown__content{
         display: block;
     }
+
+    .dropdown__summary{
+
+        &:after{
+            transform: rotate(90deg);
+        }
+    }
 }
 
 
 .dropdown__summary{
     display: inline-block;
+    position: relative;
     user-select: none;
+
+    &:after{
+        content: map-deep-get($dropdown, "caret" "icon");
+        position: absolute;
+        right: map-deep-get($dropdown, "caret" "right-offset");
+        font-size: map-deep-get($dropdown, "caret" "font-size");
+        line-height: map-deep-get($dropdown, "caret" "line-height");
+        top:    0;
+        bottom: 0;
+    }
 }
 
 

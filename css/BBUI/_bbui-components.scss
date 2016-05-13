@@ -55,7 +55,7 @@ create a media query in the block.
 
 @include createGrid(2, 3, "grid--1-2"){
 
-    @include query("s"){
+    @include mq("s"){
 
         .grid--1-2__item{
             width: 47%;   
@@ -72,7 +72,7 @@ create a media query in the block.
 
 @include createGrid(2, 3, "grid--2-4"){
 
-    @include query("s"){
+    @include mq("s"){
 
         .grid--2-4__item{
             width: 23%;   

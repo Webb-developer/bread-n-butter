@@ -36,6 +36,26 @@ Will produce:
 
 
 /*
+@name media-query-values
+
+@description
+Values for our $media-query map.
+*/
+
+$media-query-values: (
+
+    "s":  600px,
+
+    "m":  900px,
+
+    "l":  1200px,
+
+    "xl": 1500px
+
+);
+
+
+/*
 @name media-query
 
 @description
@@ -47,13 +67,13 @@ media queries.
 
 $media-query: (
     
-    "s":  unquote("(min-width: 600px)"),
+    "s":  (min-width: map-get($media-query-values, "s")),
 
-    "m":  unquote("(min-width: 900px)"),
+    "m":  (min-width: map-get($media-query-values, "m")),
 
-    "l":  unquote("(min-width: 1200px)"),
+    "l":  (min-width: map-get($media-query-values, "l")),
 
-    "xl": unquote("(min-width: 1500px)")
+    "xl": (min-width: map-get($media-query-values, "xl"))
 
 );
 
@@ -578,7 +598,19 @@ $hr: (
 
 
 $dropdown: (
-    "max-height": 300px  
+
+    "max-height": 300px,
+
+    "caret": (
+        // Expects a right direction facing icon.
+        // When the dropdown is toggled this icon
+        // will be rotated +90deg.
+        "icon": "›",
+        "right-offset": -15px,
+        "font-size": map-get($font-size, "m"),
+        "line-height": map-get($line-height, "s")
+    )
+
 );
 
 

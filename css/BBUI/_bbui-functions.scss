@@ -9,10 +9,11 @@ Place SASS mixins and functions here.
 
 
 /*
-@name query
+@name mq
 
 @description
-Mixin for a media query.
+Mixin for a basic media query from our $media-query
+map.
 
 @param {string} query - a key in our $media-query
 map that we are fetching.
@@ -25,7 +26,7 @@ map that we are fetching.
 }
 */
 
-@mixin query($query){
+@mixin mq($query){
     
     @media #{map-get($media-query, $query)}{
         @content;
