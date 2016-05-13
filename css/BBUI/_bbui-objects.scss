@@ -14,55 +14,6 @@ with them to provide customization in the future.
 
 
 /*------------------------------------*\
-    #TYPE
-\*------------------------------------*/
-
-
-
-/*
-@example
-<h4 class='title--m'></h4>
-*/
-
-.title--m{
-    font-family:    map-deep-get($title, "m" "font-family");
-    font-size:      map-deep-get($title, "m" "font-size");
-    font-weight:    map-deep-get($title, "m" "font-weight");
-    letter-spacing: map-deep-get($title, "m" "letter-spacing");
-    line-height:    map-deep-get($title, "m" "line-height");
-}
-
-
-.title--l{
-    font-family:    map-deep-get($title, "l" "font-family");
-    font-size:      map-deep-get($title, "l" "font-size");
-    font-weight:    map-deep-get($title, "l" "font-weight");
-    letter-spacing: map-deep-get($title, "l" "letter-spacing");
-    line-height:    map-deep-get($title, "l" "line-height");
-}
-
-
-.title--xl{
-    font-family:    map-deep-get($title, "xl" "font-family");
-    font-size:      map-deep-get($title, "xl" "font-size");
-    font-weight:    map-deep-get($title, "xl" "font-weight");
-    letter-spacing: map-deep-get($title, "xl" "letter-spacing");
-    line-height:    map-deep-get($title, "xl" "line-height");
-}
-
-
-.title--xxl{
-    font-family:    map-deep-get($title, "xxl" "font-family");
-    font-size:      map-deep-get($title, "xxl" "font-size");
-    font-weight:    map-deep-get($title, "xxl" "font-weight");
-    letter-spacing: map-deep-get($title, "xxl" "letter-spacing");
-    line-height:    map-deep-get($title, "xxl" "line-height");
-}
-
-
-
-
-/*------------------------------------*\
     #LOAD-BAR
 \*------------------------------------*/
 
@@ -408,7 +359,7 @@ Functionality for this is in _bbjs-utilities.js
 
 
 /*------------------------------------*\
-    #OVERLAY
+    #OVERLAYS
 \*------------------------------------*/
 
 
@@ -418,38 +369,28 @@ Functionality for this is in _bbjs-utilities.js
 Misc overlay. Requires height.
 
 @example
-<div class="overlay__wrap">
+<div class="overlay__parent">
     <div class="overlay">Overlay Content</div>
 </div>
+
+@example
+<div class="overlay--fullscreen">Fullscreen overlay Content</div>
 */
 
-.overlay__wrap{
-    position: relative;
-
-    &:hover{
-
-        .overlay{
-            opacity: 1;
-            visibility: visible;
-        }
-    }
-}
-
-
 .overlay{
-    position: absolute;
-    left:   map-get($overlay, "offset");
-    right:  map-get($overlay, "offset");
-    top:    map-get($overlay, "offset");
-    bottom: map-get($overlay, "offset");
-    opacity: 0;
-    overflow: hidden;
-    visibility: hidden;
-    transition: opacity map-get($transition-speed, "fast") map-get($transition-type, "linear");
-    z-index: map-get($z-index, "overlay");
-    padding: map-get($overlay, "padding");
-    background-color: map-get($overlay, "background-color");
+    @include overlay(false, false);
 }
+
+
+.overlay__parent{
+    @include overlay-parent;
+}
+
+
+.overlay--fullscreen{
+    @include overlay(true);
+}
+
 
 
 
@@ -706,6 +647,8 @@ tabs functionality is in bbjs-utilities.js
 
 
 
+
+
 /*------------------------------------*\
     #DRAWERS
 \*------------------------------------*/
@@ -717,7 +660,7 @@ tabs functionality is in bbjs-utilities.js
 Slide out from left or right drawers.
 
 @example
-<div class='js-toggle' data-toggle='drawer--right'></div>
+<div class='js-toggle' data-toggle='drawer--right'>Toggle</div>
 <div class='drawer  drawer--right'></div>
 <div class='drawer__overlay'></div>
 */
@@ -751,14 +694,7 @@ Slide out from left or right drawers.
 
 // The overlay that appears when a drawer is open
 .drawer__overlay{
-    position: fixed;
-    top:    0;
-    bottom: 0;
-    left:   0;
-    right:  0;
-    visibility: hidden;
-    opacity: 0;
-    transform: translateZ(0);
+    @include overlay;
     z-index: map-get($z-index, "drawerOverlay");
     transition: opacity map-get($drawer, "transition");
     background: map-deep-get($drawer, "overlay" "background");

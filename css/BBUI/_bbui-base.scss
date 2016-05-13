@@ -405,6 +405,7 @@ video{
 a, .a{
     color: map-get($color, "black-60");
     text-decoration: none;
+    cursor: pointer;
 
     &:hover{
         color: inherit;
@@ -413,18 +414,21 @@ a, .a{
 
 
 
-// Strong is for semantic emphasis,
-// not for visual emphasis.
+/*
+Strong is for semantic emphasis,
+not for visual emphasis.
+*/
 
 strong{
     font-weight: normal;
 }
 
 
-
-// Use .font-family--bold for true bold
-// when using custom fonts. Or use .font-weight--700
-// for regular font weight styling.
+/*
+Use .font-family--bold for true bold
+when using custom fonts. Or use .font-weight--700
+for regular font weight styling.
+*/
 
 b{
     font-weight: 700;
@@ -434,39 +438,59 @@ b{
 
 // Normalize all headers
 
-h1, h2, h3, h4, h5, h6,
-.h1, .h2, .h3, .h4, .h5, .h6{
+h1, h2, h3, h4, h5, h6{
     font-weight: normal;
     font-size: inherit;
 }
 
 
-// We extend our .titles--* classes
-// to our h1-h4 tags/classes.
+/*
+@example
+<h4 class='title--m'></h4>
+*/
 
 .h1, h1{
-    @extend .title--xxl;
+    font-family:    map-deep-get($title, "xxl" "font-family");
+    font-size:      map-deep-get($title, "xxl" "font-size");
+    font-weight:    map-deep-get($title, "xxl" "font-weight");
+    letter-spacing: map-deep-get($title, "xxl" "letter-spacing");
+    line-height:    map-deep-get($title, "xxl" "line-height");
 }
 
 
 .h2, h2{
-   @extend .title--xl;
+    font-family:    map-deep-get($title, "xl" "font-family");
+    font-size:      map-deep-get($title, "xl" "font-size");
+    font-weight:    map-deep-get($title, "xl" "font-weight");
+    letter-spacing: map-deep-get($title, "xl" "letter-spacing");
+    line-height:    map-deep-get($title, "xl" "line-height");
 }
 
 
 .h3, h3{
-    @extend .title--l;
+    font-family:    map-deep-get($title, "l" "font-family");
+    font-size:      map-deep-get($title, "l" "font-size");
+    font-weight:    map-deep-get($title, "l" "font-weight");
+    letter-spacing: map-deep-get($title, "l" "letter-spacing");
+    line-height:    map-deep-get($title, "l" "line-height");
 }
 
 
 .h4, h4{
-    @extend .title--m;
+    font-family:    map-deep-get($title, "m" "font-family");
+    font-size:      map-deep-get($title, "m" "font-size");
+    font-weight:    map-deep-get($title, "m" "font-weight");
+    letter-spacing: map-deep-get($title, "m" "letter-spacing");
+    line-height:    map-deep-get($title, "m" "line-height");
 }
 
 
 
-// Use .font-family--italic class for true italic
-// when using custom fonts.
+
+/*
+Use .font-family--italic class for true italic
+when using custom fonts.
+*/
 
 i, .i,
 em, .em{
@@ -484,11 +508,11 @@ html{
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    font-size: 90%;
+    font-size: 100%;
     line-height: map-get($line-height, "m");
 
     @include query("s"){
-        font-size: 100%;
+        font-size: 110%;
     }
 }
 

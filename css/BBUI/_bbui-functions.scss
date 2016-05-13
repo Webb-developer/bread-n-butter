@@ -56,6 +56,127 @@ Mixin to preserve aspect ratios.
 
 
 
+
+/*
+@name overlay
+
+@description
+Mixin to create an overlay.
+The overlay can be toggled with a class
+(class--toggled) or by hover. If you're
+toggling via hover, you'll need to wrap
+the overlay. See the overlay-parent mixin below.
+
+@param {boolean} hidden
+Determines whether to hide the overlay
+with display or with opacity and
+visiblility so we can transition.
+
+@example
+.overlay{
+    @include overlay(false, false);
+}
+*/
+
+@mixin overlay($hidden: false, $fixed: true){
+    
+    @if ($hidden == true){
+        display: none !important;
+    } @else {
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity map-get($transition-speed, "fast") map-get($transition-type, "linear");
+    }
+
+    @if ($fixed == true){
+        position: fixed;
+        transform: translateZ(0);
+        top:    0;
+        left:   0;
+        right:  0;
+        bottom: 0;
+    } @else {
+        position: absolute;
+        left:   map-get($overlay, "offset");
+        right:  map-get($overlay, "offset");
+        top:    map-get($overlay, "offset");
+        bottom: map-get($overlay, "offset");
+    }
+
+    background-color: map-get($overlay, "background-color");
+    overflow-x: hidden;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    z-index: map-get($z-index, "overlay");
+    padding: map-get($overlay, "padding");
+
+    &--toggled{
+
+        @if ($hidden == true){
+            display: block !important;
+        } @else {
+            opacity: 1;
+            visibility: visible;
+        }
+
+    }
+}
+
+
+
+
+
+/*
+@name overlay-parent
+
+@description
+Mixin to show an overlay. The overlay
+must be a child of the element that this mixin
+is applied to.
+
+@param {boolean} hidden
+Determines whether to show the overlay
+with display or with opacity and
+visiblility so we can transition.
+
+@param {string} child
+The class name of the overlay that we
+are trying to show. This should be a child
+of the element that you are applying this mixin to.
+
+@example
+.overlay__parent{
+    @include overlay-parent(false, myOverlay);
+}
+
+.myOverlay{
+    @include overlay(false, false);
+}
+
+This will reveal .myOverlay when we hover over .overlay__parent.
+*/
+
+@mixin overlay-parent($hidden: false, $child: overlay){
+    position: relative;
+    
+    &:hover{
+        
+        & .#{$child}{
+            @if ($hidden == true){
+                display: block !important;
+            } @else {
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
+
+}
+
+
+
+
+
 /*
 @name createGrid
 
