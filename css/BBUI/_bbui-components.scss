@@ -17,57 +17,9 @@ they help form them.
 
 
 
-/*
-@name .no-flexbox
-
-@description
-This depends on modernizr no-flexbox test.
-If the browser doesnt support flexbox we'll fallback to a floated grid
-when using flexbox to create grids using createGrid()
-*/
-
-.no-flexbox{
-
-    .grid{
-        display: block;
-
-        // clearfix
-        overflow: hidden;
-    }
-
-    .grid__item{
-        float: left;
-    }
-}
-
-
 
 /*
-@description
-Instructions for creating grids with createGrid()
-For parameter descriptions find createGrid() in _bbui-functions.scss
-When creating grids where the number of columns will change
-on a breakpoint, set the number of columns mobile first.
-
-@example [SASS]
-For a grid that goes from 1 to 2 columns
-create a media query in the block.
-
-@include createGrid(2, 3, "grid--1-2"){
-
-    @include mq("s"){
-
-        .grid--1-2__item{
-            width: 47%;   
-        }
-    }
-}
-
-@example [HTML]
-<div class='grid  grid--1-2'>
-    <div class="grid__item  grid--1-2__item"></div>
-    <div class="grid__item  grid--1-2__item"></div>
-</div>
+See bbui-functions.scss for usage.
 */
 
 @include createGrid(2, 3, "grid--2-4"){
@@ -329,4 +281,3 @@ See bbui-functions.scss for usage.
 [data-toggle]{
     @extend .a;
 }
-

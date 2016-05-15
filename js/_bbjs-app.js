@@ -52,14 +52,7 @@ bbjs.settings = {
     // Owl Carousel
     carousels: {
         enable: true,
-        arrows: ["<div class='icon' style='background-image: url(https://cdn.shopify.com/s/files/1/1165/8092/t/2/assets/brand-arrow--white.svg);'>", "<div class='icon' style='background-image: url(https://cdn.shopify.com/s/files/1/1165/8092/t/2/assets/brand-arrow--white.svg);'>"]
-    },
-
-    instafeed: {
-        enable: false,
-        userID: 2086538353,
-        token: "399162166.1677ed0.3d0c9e3cb43447618deded7ebf2eab62",
-        limit: 30
+        arrows: ["", ""]
     }
 
 };
@@ -102,7 +95,6 @@ Optional includes.
 */
 
 // @codekit-prepend "vendor/fastclick.js";
-// @codekit-prepend "vendor/instafeed.js";
 // @codekit-prepend "vendor/lazyload.js";
 // @codekit-prepend "vendor/owl-carousel.js";
 
@@ -111,7 +103,6 @@ Optional includes.
 Required includes.
 */
 
-// @codekit-prepend "vendor/images-loaded.js";
 // @codekit-prepend "vendor/device.js";
 
 

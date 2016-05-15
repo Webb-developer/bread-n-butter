@@ -67,13 +67,13 @@ media queries.
 
 $media-query: (
     
-    "s":  (min-width: map-get($media-query-values, "s")),
+    "s":  unquote('(min-width: #{map-get($media-query-values, "s")})'),
 
-    "m":  (min-width: map-get($media-query-values, "m")),
+    "m":  unquote('(min-width: #{map-get($media-query-values, "m")})'),
 
-    "l":  (min-width: map-get($media-query-values, "l")),
+    "l":  unquote('(min-width: #{map-get($media-query-values, "l")})'),
 
-    "xl": (min-width: map-get($media-query-values, "xl"))
+    "xl": unquote('(min-width: #{map-get($media-query-values, "xl")})')
 
 );
 
@@ -88,17 +88,11 @@ $media-query: (
 
 $font-family: (
 
-    "base":           unquote("Georgia"),
+    "base":       unquote("Georgia"),
 
-    "serif":          unquote(""),
+    "serif":      unquote(""),
 
-    "sans-serif":     unquote(""),
-
-    "light":          unquote(""),
-
-    "bold":           unquote(""),
-
-    "italic":         unquote(""),
+    "sans-serif": unquote("")
 
 );
 
@@ -214,18 +208,11 @@ $color: (
 
     "black-20": lighten($base-black, 80%),
     
-
     "white": #fff,
 
+    "green": #007e00,
 
-    "green":       #007e00,
-
-    "light-green": #dff0d8,
-
-
-    "red":       #c40000,
-
-    "light-red": #f2dede,
+    "red": #c40000,
 
 );
 
@@ -481,38 +468,23 @@ $title: (
 
 $forms: (
 
-    label: (
+    "label": (
         "color": map-get($color, "black-80"),
         "margin": 0 0 4px 0
     ),
     
-    input: (
+    "input": (
         "border": solid map-get($line-width, "s") rgba(0,0,0,0.2),
         "padding": 0.3rem 0.8rem,
         "color": map-get($color, "black-80"),
 
-        hover: (
+        "hover": (
             "border-color": rgba(0,0,0,0.5)
         )
     )
 
 );
 
-
-
-$modal:(
-    
-    "padding": map-get($spacing, "s"),
-
-    "background-color": fade-out(map-get($color, "black"), 0.5),
-
-    "inner":(
-        "max-width": 500px,
-        "background-color": #fff,
-        "padding": map-get($spacing, "m")
-    )
-    
-);
 
 
 
@@ -531,6 +503,22 @@ $overlay:(
 
     "background-color": rgba(255,255,255,0.85)
 
+);
+
+
+
+$modal:(
+    
+    "padding": map-get($spacing, "s"),
+
+    "background-color": map-get($overlay, "background-color"),
+
+    "inner":(
+        "max-width": 500px,
+        "background-color": #fff,
+        "padding": map-get($spacing, "m")
+    )
+    
 );
 
 
@@ -599,11 +587,15 @@ $hr: (
 
 $dropdown: (
 
-    "max-height": 300px,
+    "content": (
+        "max-height": 300px,
+        "margin-top": map-get($spacing, "s")
+    ),
 
     "caret": (
+        show: true,
         // Expects a right direction facing icon.
-        // When the dropdown is toggled this icon
+        // When the tab is toggled this icon
         // will be rotated +90deg.
         "icon": "›",
         "right-offset": -15px,
@@ -612,7 +604,6 @@ $dropdown: (
     )
 
 );
-
 
 
 
@@ -633,11 +624,9 @@ $z-index: (
 
     "overlay":       20,
 
-
     "drawer":        15,
 
     "drawerOverlay": 13,
-
 
     "max":           9999
 
@@ -658,219 +647,145 @@ $z-index: (
 @description
 These values are less likely to be modifed 
 we'll put them at the bottom of the file.
+They are just a quicker way to create and edit CSS classes.
 */
 
 
 
 $display: (
-    
     "block":        block,
-
     "inline-block": inline-block,
-
     "none":         none,
-
     "table":        table,
-
     "table-cell":   table-cell,
-
     "flex":         flex
-
 );
 
 
 
-
-
 $text-align: (
-
     "left":   left,
-
     "right":  right,
-
     "center": center
-    
 );
 
 
 
 $font-weight: (
-
     "300": 300,
-
     "500": 500,
-
     "700": 700    
-
 );
 
 
 
 $text-transform: (
-
     "lowercase":  lowercase,
-
     "capitalize": capitalize,
-
     "uppercase":  uppercase,
-
     "none":       none
-    
 );
 
 
 
 $text-decoration: (
-
     "none":      none,
-
     "underline": underline,
-
     "strike":    line-through
-
 );
 
 
 
 $align-items: (
-
     "center":     center,
-
     "flex-end":   flex-end,
-
     "flex-start": flex-start,
-
     "baseline":   baseline
-
 );
 
 
 
 $flex-wrap: (
-
     "wrap":   wrap,
-
     "nowrap": nowrap
-
 );
 
 
 
 $flex-direction: (
-
     "row":    row,
-
     "column": column
-
 );
 
 
 
 $justify-content: (
-
     "flex-end":      flex-end,
-
     "flex-start":    flex-start,
-
     "center":        center,
-
     "space-around":  space-around,
-
     "space-between": space-between
-
 );
 
 
 
 $list-style: (
-
     "none":    none,
-
     "square":  square,
-
     "disc":    disc,
-
     "decimal": decimal
-
 );
 
 
 
 $pointer-events: (
-
     "none": none,
-
     "auto": auto
-
 );
 
 
 
 $cursor: (
-
     "zoom-in":  zoom-in,
-
     "zoom-out": zoom-out,
-
     "pointer":  pointer
-
 );
 
 
 
 $border-style: (
-
     "solid":  solid,
-
     "dotted": dotted,
-
     "dashed": dashed
-
 );
 
 
 
 $overflow: (
-    
     "auto":   auto,
-
     "scroll": scroll,
-
     "hidden": hidden
-
 );
 
 
 
 $vertical-align: (
-    
     "top":    top,
-
     "bottom": bottom,
-
     "middle": middle
-
 );
 
 
 
 $float: (
-
     "none":  none,
-    
     "left":  left,
-
     "right": right
-
 );
 
 
 
 $white-space: (
-
     "nowrap": nowrap,
-
-    "pre":    pre    
-    
+    "pre":    pre
 );
-

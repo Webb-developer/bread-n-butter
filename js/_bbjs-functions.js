@@ -436,7 +436,7 @@ bbjs.modals = function(){
         // @property {boolean} settings.hideOnRevisit - Determines whether to hide
         // the modal or keep showing it if our cookie has been set.
         // Set to true to show the modal once per session.
-        hideOnRevisit: false,
+        hideOnRevisit: true,
 
         // @property {object} settings.cookie - The cookie that we'll create
         // so we can allow the modal to be shown only once. It's values don't really matter.
@@ -501,6 +501,7 @@ bbjs.modals = function(){
 
             _bindUI();
 
+
             if(_wasVisited()){
 
                 if(settings.hideOnRevisit){
@@ -537,12 +538,10 @@ bbjs.modals = function(){
 @property bbjs.animateIn
 
 @description
-Perform actions to elements when images in a container
-or the window is loaded. May require imagesLoaded.js (Built in to BBJS):
-http://imagesloaded.desandro.com/
+Perform actions to elements when the window has loaded.
 
-@example
-<div class="js-animate" animate-class="animated  fadeInUp" animate-offset="1.5">I'll fadeUp soon</div>
+@example [HTML]
+<div class="js-animate" animate-class="fadeInUp" animate-offset="1.5"></div>
 */
 
 bbjs.animateIn = function(){
@@ -552,58 +551,47 @@ bbjs.animateIn = function(){
 
     var settings = {
 
-        // @property {object} settings.imagesLoadedContainer
-        // Set to "window" to use window.load() to wait for page load.
-        imagesLoadedContainer: bbjs.cache.$main,
-
         item: {
-            // @property {string} settings.item.selector - the element
-            // that will be animated.
+            /**
+            @property {string} settings.item.selector - the element
+            that will be animated.
+            */
             selector: ".js-animate",
 
-            // @property {string} settings.item.class - the class that will be applied
-            // to item.selector once images have loaded.
+            /**
+            @property {string} settings.item.class
+            the class that will be applied to item.selector
+            once images have loaded.
+            */
             class: "animate-class",
 
-            // @property {number} settings.item.offset - the amount of time to wait
-            // after images have loaded to apply the class to item.selector.
+            /**
+            @property {number} settings.item.offset - the amount of time to wait
+            after images have loaded to apply the class to item.selector.
+            */
             offset: "animate-offset"
         }
 
     };
 
 
-    function _run(){
-
-        $(settings.imagesLoadedContainer).find($(settings.item.selector).each(function(index, el){
-
-            // Convert offset from MS to S.
-            var offset = ($(el).attr(settings.item.offset) * 1000).toFixed(0) || 0;
-                    
-            setTimeout(function(){
-                $(el).addClass($(el).attr(settings.item.class));
-            }, offset);
-
-        }));
-
-    }
-
-
     function init(){
 
-        if(settings.imagesLoadedContainer === window){
+        bbjs.cache.$window.on("load", function(){
             
-            bbjs.cache.$window.on("load", function(){
-                _run();
-            });
+            $(settings.imagesLoadedContainer)
+            .find($(settings.item.selector).each(function(index, el){
 
-        } else {
+                // Convert offset from MS to S.
+                var offset = ($(el).attr(settings.item.offset) * 1000).toFixed(0) || 0;
+                        
+                setTimeout(function(){
+                    $(el).addClass($(el).attr(settings.item.class));
+                }, offset);
 
-            $(settings.imagesLoadedContainer).imagesLoaded(function(){
-                _run();
-            });
+            }));
 
-        }
+        });
 
     }
 

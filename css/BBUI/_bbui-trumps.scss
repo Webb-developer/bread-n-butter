@@ -16,43 +16,34 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(font-family, ff, $font-family);
+@include createClassesFromMap(font-family, $font-family, ff);
 
 
-
-@include createClassesFromMap(letter-spacing, ls, $letter-spacing);
-
+@include createClassesFromMap(letter-spacing, $letter-spacing, ls);
 
 
-@include createClassesFromMap(font-size, fs, $font-size);
+@include createClassesFromMap(font-size, $font-size, fs);
 
 
-
-@include createClassesFromMap(font-weight, fw, $font-weight);
-
+@include createClassesFromMap(font-weight, $font-weight, fw);
 
 
-@include createClassesFromMap(line-height, lh, $line-height);
+@include createClassesFromMap(line-height, $line-height, lh);
 
 
-
-@include createClassesFromMap(color, color, $color);
-
+@include createClassesFromMap(color, $color);
 
 
-@include createClassesFromMap(background-color, bgc, $color);
+@include createClassesFromMap(background-color, $color, bgc);
 
 
-
-@include createClassesFromMap(text-align, align, $text-align);
-
+@include createClassesFromMap(text-align, $text-align, ta);
 
 
-@include createClassesFromMap(text-decoration, td, $text-decoration);
+@include createClassesFromMap(text-decoration, $text-decoration, td);
 
 
-
-@include createClassesFromMap(text-transform, tt, $text-transform);
+@include createClassesFromMap(text-transform, $text-transform, tt);
 
 
 
@@ -63,7 +54,7 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(list-style, list-style, $list-style);
+@include createClassesFromMap(list-style, $list-style);
 
 
 
@@ -110,29 +101,19 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(padding, padding, $spacing);
-
-    @include createMQClassesFromMap(padding, padding, $spacing);
+@include createClassesFromMap(padding, $spacing, true);
 
 
-@include createClassesFromMap(padding-left, padding-left, $spacing);
-
-   @include createMQClassesFromMap(padding-left, padding-left, $spacing);
+@include createClassesFromMap(padding-left, $spacing, true);
 
 
-@include createClassesFromMap(padding-right, padding-right, $spacing);
-
-   @include createMQClassesFromMap(padding-right, padding-right, $spacing);
+@include createClassesFromMap(padding-right, $spacing, true);
 
 
-@include createClassesFromMap(padding-top, padding-top, $spacing);
-
-    @include createMQClassesFromMap(padding-top, padding-top, $spacing);
+@include createClassesFromMap(padding-top, $spacing, true);
 
 
-@include createClassesFromMap(padding-bottom, padding-bottom, $spacing);
-
-   @include createMQClassesFromMap(padding-bottom, padding-bottom, $spacing);
+@include createClassesFromMap(padding-bottom, $spacing, true);
 
 
 
@@ -144,54 +125,36 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(margin, margin, $spacing);
-
-    @include createMQClassesFromMap(margin, margin, $spacing);
+@include createClassesFromMap(margin, $spacing, true);
 
 
-@include createClassesFromMap(margin-left, margin-left, $spacing);
-
-    @include createMQClassesFromMap(margin-left, margin-left, $spacing);
+@include createClassesFromMap(margin-left, $spacing, true);
 
 
-@include createClassesFromMap(margin-right, margin-right, $spacing);
-
-    @include createMQClassesFromMap(margin-right, margin-right, $spacing);
+@include createClassesFromMap(margin-right, $spacing, true);
 
 
-@include createClassesFromMap(margin-top, margin-top, $spacing);
-
-    @include createMQClassesFromMap(margin-top, margin-top, $spacing);
+@include createClassesFromMap(margin-top, $spacing, true);
 
 
-@include createClassesFromMap(margin-bottom, margin-bottom, $spacing);
-
-    @include createMQClassesFromMap(margin-bottom, margin-bottom, $spacing);
+@include createClassesFromMap(margin-bottom, $spacing, true);
 
 
 
 
-    
 /*------------------------------------*\
     #SIZES
 \*------------------------------------*/
 
 
 
-@include createClassesFromMap(height, height, $sizes);
+@include createClassesFromMap(height, $sizes, true);
 
-    @include createMQClassesFromMap(height, height, $sizes);
 
+@include createClassesFromMap(width, $sizes, true);
 
 
 @include createIncrementalNumberClasses(max-height, max-height, 50, 15);
-
-
-
-@include createClassesFromMap(width, width, $sizes);
-
-    @include createMQClassesFromMap(width, width, $sizes);
-
 
 
 @include createIncrementalNumberClasses(max-width, max-width, 50, 15);
@@ -205,22 +168,19 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(display, display, $display);
-
-@include createMQClassesFromMap(display, display, $display);
+@include createClassesFromMap(display, $display, true);
 
 
-
-@include createMQClassesFromMap(align-items, flex-align-items, $align-items);
-
-
-@include createMQClassesFromMap(flex-wrap, flex-wrap, $flex-wrap);
+@include createClassesFromMap(align-items, $align-items);
 
 
-@include createMQClassesFromMap(flex-direction, flex-direction, $flex-direction);
+@include createClassesFromMap(flex-wrap, $flex-wrap);
 
 
-@include createMQClassesFromMap(justify-content, justify-content, $justify-content);
+@include createClassesFromMap(flex-direction, $flex-direction);
+
+
+@include createClassesFromMap(justify-content, $justify-content);
 
 
 
@@ -297,14 +257,10 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(float, float, $float);
-
-    @include createMQClassesFromMap(float, float, $float);
+@include createClassesFromMap(float, $float, true);
 
 
-
-@include createClassesFromMap(vertical-align, vertical-align, $vertical-align);
-
+@include createClassesFromMap(vertical-align, $vertical-align);
 
 
 
@@ -315,24 +271,21 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(overflow, overflow, $overflow);
+@include createClassesFromMap(overflow, $overflow);
 
 
-@include createClassesFromMap(overflow-x, overflow-x, $overflow);
+@include createClassesFromMap(overflow-x, $overflow);
 
 
-@include createClassesFromMap(overflow-y, overflow-y, $overflow);
+@include createClassesFromMap(overflow-y, $overflow);
 
+
+@include createClassesFromMap(white-space, $white-space);
 
 
 .overflow-touch{
     -webkit-overflow-scrolling: touch !important;
 }
-
-
-
-@include createClassesFromMap(white-space, white-space, $white-space);
-
 
 
 
@@ -343,11 +296,10 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(cursor, cursor, $cursor);
+@include createClassesFromMap(cursor, $cursor);
 
 
-
-@include createClassesFromMap(pointer-events, pointer-events, $pointer-events);
+@include createClassesFromMap(pointer-events, $pointer-events);
 
 
 
@@ -359,16 +311,16 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(border-radius, border-radius, $border-radius);
+@include createClassesFromMap(border-radius, $border-radius);
 
 
-@include createClassesFromMap(border-color, border-color, $color);
+@include createClassesFromMap(border-color, $color);
 
 
-@include createClassesFromMap(border-width, border-width, $line-width);
+@include createClassesFromMap(border-width, $line-width);
 
 
-@include createClassesFromMap(border-style, border-style, $border-style);
+@include createClassesFromMap(border-style, $border-style);
 
 
 
@@ -409,7 +361,7 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(z-index, z-index, $z-index);
+@include createClassesFromMap(z-index, $z-index);
 
 
 

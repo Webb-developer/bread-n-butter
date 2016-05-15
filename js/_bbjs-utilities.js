@@ -141,7 +141,7 @@ Only one tab can be open at a time.
     var $tab     = $(".tab__summary"),
         $content = $(".tab__content");
 
-    var hiddenClass = "hidden";
+    var activeClass = "tab__summary--toggled";
 
 
     $tab.on("click", function(){
@@ -150,21 +150,28 @@ Only one tab can be open at a time.
         var $self = $(this);
 
 
-        if($self.hasClass("active")){
+        if($self.hasClass(activeClass)){
 
             // Remove any active states from clicked tab.
-            $self.removeClass("active");
-            $(".tab__content[data-tab=" + $self.data("tab") + "]").addClass(hiddenClass);
+            $self.removeClass(activeClass);
+
+            $(".tab__content[data-tab=" + $self.data("tab") + "]")
+            .css("display", "none");
 
         } else {
 
             // Remove any active states from all tabs.
-            $tab.removeClass("active");
-            $content.addClass(hiddenClass);
+            $tab.removeClass(activeClass);
+
+            // Hide any open tabs.
+            $content.css("display", "block");
 
             // Add active states to clicked tab.
-            $self.addClass("active");
-            $(".tab__content[data-tab=" + $self.data("tab") + "]").removeClass(hiddenClass);
+            $self.addClass(activeClass);
+
+            // Reveal the tab.
+            $(".tab__content[data-tab=" + $self.data("tab") + "]")
+            .css("display", "block");
 
         }
 
@@ -291,10 +298,9 @@ Clear input placeholders on focus.
 
             var $self = $(this);
 
+
             if($self[0].hasAttribute("placeholder")){
-
                 $self.attr("backup-placeholder", $self.attr("placeholder")).attr("placeholder", "");
-
             }
 
         // Add the placeholders back on blur.
@@ -302,10 +308,9 @@ Clear input placeholders on focus.
 
             var $self = $(this);
 
+
             if($self[0].hasAttribute("placeholder")){
-
                 $self.attr("placeholder", $self.attr("backup-placeholder"));
-
             }
 
         });

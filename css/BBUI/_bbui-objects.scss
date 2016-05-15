@@ -79,12 +79,12 @@ Functionality for this is in _bbjs-utilities.js
 
 
 .input--error{
-    background-color: map-get($color, "light-red");
+    background-color: map-get($color, "red");
 }
 
 
 .input--success{
-    background-color: map-get($color, "light-green");
+    background-color: map-get($color, "green");
 }
 
 
@@ -578,7 +578,7 @@ Simple content dropdowns
 
 @example
 <div class='dropdown'>
-    <div class='dropdown__summary  js-toggle' data-toggle='dropdown__content' use-parent="true">Toggle</div>
+    <div class='dropdown__summary  js-toggle' data-toggle='dropdown__content' toggle-parent></div>
     <div class='dropdown__content'>Im some content</div>
 </div>
 */
@@ -588,44 +588,53 @@ Simple content dropdowns
 }
 
 
-.dropdown__content--toggled{
-
-    .dropdown__content{
-        display: block;
-    }
-
-    .dropdown__summary{
-
-        &:after{
-            transform: rotate(90deg);
-        }
-    }
-}
-
-
 .dropdown__summary{
     display: inline-block;
     position: relative;
     user-select: none;
 
-    &:after{
-        content: map-deep-get($dropdown, "caret" "icon");
-        position: absolute;
-        right: map-deep-get($dropdown, "caret" "right-offset");
-        font-size: map-deep-get($dropdown, "caret" "font-size");
-        line-height: map-deep-get($dropdown, "caret" "line-height");
-        top:    0;
-        bottom: 0;
+    @if (map-deep-get($dropdown, "caret" "show") == true){
+
+        &:after{
+            content: map-deep-get($dropdown, "caret" "icon");
+            position: absolute;
+            right: map-deep-get($dropdown, "caret" "right-offset");
+            font-size: map-deep-get($dropdown, "caret" "font-size");
+            line-height: map-deep-get($dropdown, "caret" "line-height");
+            top:    0;
+            bottom: 0;
+        }
+
     }
 }
 
 
 .dropdown__content{
     display: none;
-    margin-top: map-get($spacing, "s");
+    margin-top: map-get($dropdown, "margin-top");
     max-height: map-get($dropdown, "max-height");
+    overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+}
+
+
+.dropdown__content--toggled{
+
+    .dropdown__content{
+        display: block;
+    }
+    
+    @if (map-deep-get($dropdown, "caret" "show") == true){
+
+        .dropdown__summary{
+
+            &:after{
+                transform: rotate(90deg);
+            }
+        }
+
+    }
 }
 
 
@@ -639,28 +648,32 @@ Simple content dropdowns
 
 /*
 @description
-.tab__content should have a .hidden class applied to it.
-tabs functionality is in bbjs-utilities.js
+Tabs functionality is in bbjs-utilities.js
 
 @example
 <div class='tab__summary' data-tab='0'>Toggle</div>
-<div class='tab__content  hidden' data-tab='0'>Im some content</div>
+<div class='tab__content ' data-tab='0'>Im some content</div>
 */
 
 .tab__summary{
-    cursor: pointer;
-    display: inline-block;
-    user-select: none;
-    margin-right: map-get($spacing, "m");
+    @extend .a;
+    @extend .dropdown__summary;
 
-    &:nth-last-of-type(1){
-        margin-right: 0;
+    @if (map-deep-get($dropdown, "caret" "show") == true){
+
+        &.tab__summary--toggled{
+
+            &:after{
+                transform: rotate(90deg);
+            }
+        }
+
     }
 }
 
 
 .tab__content{
-    margin-top: map-get($spacing, "s");
+    @extend .dropdown__content;
 }
 
 

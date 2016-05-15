@@ -15,8 +15,8 @@ Place SASS mixins and functions here.
 Mixin for a basic media query from our $media-query
 map.
 
-@param {string} query - a key in our $media-query
-map that we are fetching.
+@param {string} query
+A key in our $media-query map that we are fetching.
 
 @example
 .hello{
@@ -27,9 +27,19 @@ map that we are fetching.
 */
 
 @mixin mq($query){
-    
-    @media #{map-get($media-query, $query)}{
-        @content;
+
+    @if(map_has_key($media-query, $query)){
+
+        @media #{map-get($media-query, $query)}{
+            @content;
+        }
+
+    } @else {
+        
+        @media #{$query}{
+            @content;
+        }
+
     }
 
 }
@@ -186,13 +196,15 @@ Mixin to create flexbox grids.
 
 @param {number} cols - the number of columns in the grid.
 
-@param {number} widthOffset - the offset of the column width.
+@param {number} widthOffset
+The offset of the column width.
 The width of the columns will be subtracted by this amount.
 We create an offset because we are using
 flexbox with justify-content: space between.
 This will automatically create a more intelligent gutter.
 
-@param {string} className - the class name of the grid that will be outputted.
+@param {string} className
+The class name of the grid that will be outputted.
 The child classname will have a suffix of "__item".
 
 @example
@@ -243,6 +255,11 @@ With changing number of columns.
     @at-root{
 
         .no-flexbox{
+
+            .#{$className}{
+                display: block;
+                overflow: hidden;
+            }
             
             .#{$className}__item{
                 padding-left:  $widthOffset;
@@ -266,10 +283,12 @@ a given width and a margin. The idea behind it is to have
 pieces that you can place together to form a full width row
 with a gutter included.
 
-@param {number} gutter - the size of the gutter. Don't include
+@param {number} gutter
+the size of the gutter. Don't include
 the unit, it will be outputted as a percentage.
 
-@param {number} MQ - the min width media query
+@param {number} MQ
+the min width media query
 for the styles to take effect.
 
 @example [SCSS]
@@ -355,6 +374,9 @@ https://css-tricks.com/snippets/sass/deep-getset-maps/#article-header-id-0
 }
 
 
+
+
+
 /*
 @name createClassesFromMap
 
@@ -365,29 +387,55 @@ Additionally, all values are outputted with !important because they
 are intended to be used as trumps. Removing !important may result
 in styles getting overidden by BBUI. map-deep-get is not compatible with createClassesFromMap().
 
-@param {string} property - the name of the property that will be outputted.
+@param {string} property
+the name of the property that will be outputted.
 
-@param {string} className - the classname that will be outputted, 
-suffixed with "--" then the value of the property. Ex: text-decoration--none
-The suffix is for a BEM like structure.
-
-@param {map} map - the SASS map where we get the data from
+@param {map} map
+the SASS map where we get the data from
 and iterate through the key-value pairs.
 
+@param {boolean} createMQs
+Determines whether to wrap the styles in media queries along 
+with the the regular styles.
+See createMQClassesFromMap() for more.
+
+@param {string} className
+Optional. The classname that will be outputted, 
+suffixed with "--" then the value of the property.
+Ex: text-decoration--none
+The suffix is for a BEM like structure.
+If omitted, the class name will default to the param $property's value.
+
 @example
-@include createClassesFromMap(font-family, font-family, $font-family);
+@include createClassesFromMap(font-family, $font-family);
 */
 
-@mixin createClassesFromMap($property, $className, $map){
+@mixin createClassesFromMap($property, $map, $createMQs: false, $className: $property){
 
     @each $key, $value in $map{
 
-        @if $value != '' {
+        @if $value != '' && map_has_key($map, $key){
             
             .#{$className} {
             
                 &--#{$key}{
                     #{$property}: $value !important;
+                }
+
+            }
+
+            @if ($createMQs == true){
+
+                @each $MQKey, $MQValue in $media-query{
+
+                    @media #{$MQValue}{
+                
+                        .#{$className}--#{$key}-on-#{$MQKey}{
+                            #{$property}: $value !important;
+                        }
+
+                    }
+
                 }
 
             }
@@ -407,7 +455,7 @@ except it wraps our classes in a media query. It gets the
 media queries from our $media-query map.
 */
 
-@mixin createMQClassesFromMap($property, $className, $map){
+@mixin createMQClassesFromMap($property, $map, $className: $property){
 
     @each $key, $value in $map{
 
@@ -423,6 +471,9 @@ media queries from our $media-query map.
         }
     }
 }
+
+
+
 
 
 /*
