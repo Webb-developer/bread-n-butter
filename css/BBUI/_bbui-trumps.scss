@@ -16,34 +16,34 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(font-family, $font-family, ff);
+@include createClassesFromMap(font-family, $font-family, false, ff);
 
 
-@include createClassesFromMap(letter-spacing, $letter-spacing, ls);
+@include createClassesFromMap(letter-spacing, $letter-spacing, false, ls);
 
 
-@include createClassesFromMap(font-size, $font-size, fs);
+@include createClassesFromMap(font-size, $font-size, false, fs);
 
 
-@include createClassesFromMap(font-weight, $font-weight, fw);
+@include createClassesFromMap(font-weight, $font-weight, false, fw);
 
 
-@include createClassesFromMap(line-height, $line-height, lh);
+@include createClassesFromMap(line-height, $line-height, false, lh);
 
 
 @include createClassesFromMap(color, $color);
 
 
-@include createClassesFromMap(background-color, $color, bgc);
+@include createClassesFromMap(background-color, $color, false, bgc);
 
 
-@include createClassesFromMap(text-align, $text-align, ta);
+@include createClassesFromMap(text-align, $text-align, false, ta);
 
 
-@include createClassesFromMap(text-decoration, $text-decoration, td);
+@include createClassesFromMap(text-decoration, $text-decoration, false, td);
 
 
-@include createClassesFromMap(text-transform, $text-transform, tt);
+@include createClassesFromMap(text-transform, $text-transform, false, tt);
 
 
 

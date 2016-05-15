@@ -46,6 +46,55 @@ A key in our $media-query map that we are fetching.
 
 
 
+
+/*
+@name convertMQValue
+
+@description
+Function to convert a media query value from our 
+$media-query-values to a min or max media query
+by adding or subtracting 1 from the value.
+This is useful to prevent media queries conflicting
+when using min and max-width media queries.
+
+@param {string} MQValue
+A key in our $media-query-values map that we are fetching.
+
+@param {boolean} toMax
+Determines whether to convert to min or max.
+
+@example
+.hello{
+    @media (max-width: convertMQValue("s")){
+        color: blue;
+    }
+}
+*/
+
+@function convertMQValue($MQValue, $toMax: true){
+
+    @if (map_has_key($media-query-values, $MQValue)){
+
+        $query: "";
+    
+        @if($toMax == true){
+            $query: map-get($media-query-values, $MQValue) - 1;
+        } @else {
+            $query: map-get($media-query-values, $MQValue) + 1;
+        }
+
+        @return $query;
+
+    } @else{
+        @error "Can't convert MQ value. Map key doesn't exist.";
+    }
+
+}
+
+
+
+
+
 /*
 @name aspect-ratio
 
@@ -396,8 +445,8 @@ and iterate through the key-value pairs.
 
 @param {boolean} createMQs
 Determines whether to wrap the styles in media queries along 
-with the the regular styles.
-See createMQClassesFromMap() for more.
+with the the regular styles. It gets the media queries
+from our $media-query map.
 
 @param {string} className
 Optional. The classname that will be outputted, 
@@ -414,7 +463,7 @@ If omitted, the class name will default to the param $property's value.
 
     @each $key, $value in $map{
 
-        @if $value != '' && map_has_key($map, $key){
+        @if ($value != ""){
             
             .#{$className} {
             
@@ -423,8 +472,10 @@ If omitted, the class name will default to the param $property's value.
                 }
 
             }
-
-            @if ($createMQs == true){
+            
+            @if (type_of($createMQs) != bool){
+                @error "$createMQs is not of boolean type.";
+            } @elseif ($createMQs == true){
 
                 @each $MQKey, $MQValue in $media-query{
 
@@ -440,38 +491,12 @@ If omitted, the class name will default to the param $property's value.
 
             }
             
+        } @else {
+            @warn "Value missing when trying to createClassesFromMap().";
         }
 
     }
 }
-
-
-/*
-@name createMQClassesFromMap
-
-@description
-This mixin is nearly identical to createClassesFromMap()
-except it wraps our classes in a media query. It gets the
-media queries from our $media-query map.
-*/
-
-@mixin createMQClassesFromMap($property, $map, $className: $property){
-
-    @each $key, $value in $map{
-
-        @each $MQKey, $MQValue in $media-query{
-            
-            @media #{$MQValue}{
-                
-                .#{$className}--#{$key}-on-#{$MQKey}{
-                    #{$property}: $value !important;
-                }
-
-            }
-        }
-    }
-}
-
 
 
 

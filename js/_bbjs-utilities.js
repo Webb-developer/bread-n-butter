@@ -130,7 +130,7 @@ Only one tab can be open at a time.
 
 @example
 <div class='tab__summary' data-tab='0'>Toggle</div>
-<div class='tab__content  hidden' data-tab='0'>Im some content</div>
+<div class='tab__content ' data-tab='0'>Im some content</div>
 */
 
 (function(){
