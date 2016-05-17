@@ -656,8 +656,6 @@ $display: (
     "block":        block,
     "inline-block": inline-block,
     "none":         none,
-    "table":        table,
-    "table-cell":   table-cell,
     "flex":         flex
 );
 
@@ -731,7 +729,6 @@ $justify-content: (
 
 $list-style: (
     "none":    none,
-    "square":  square,
     "disc":    disc,
     "decimal": decimal
 );
@@ -746,9 +743,7 @@ $pointer-events: (
 
 
 $cursor: (
-    "zoom-in":  zoom-in,
-    "zoom-out": zoom-out,
-    "pointer":  pointer
+    "pointer": pointer
 );
 
 
@@ -762,7 +757,6 @@ $border-style: (
 
 
 $overflow: (
-    "auto":   auto,
     "scroll": scroll,
     "hidden": hidden
 );
