@@ -280,8 +280,18 @@ With changing number of columns.
 @mixin createGrid($cols, $widthOffset, $className){
 
     .#{$className}__item{
-        width: (100% / $cols) - $widthOffset;
-        margin-bottom: $widthOffset + 0%;
+
+        @if($cols == 1){
+            width: 100%;
+        } @else {
+            width: (100% / $cols) - $widthOffset;
+        }
+        
+        @if($cols > 1){
+            margin-bottom: (100 - ((100% / $cols - $widthOffset) * $cols)) / ($cols - 1);
+        } @else {
+            margin-bottom: (100 - ((100% / $cols - $widthOffset) * $cols));
+        }
 
         @for $i from $cols through 1{
             
@@ -495,39 +505,63 @@ If omitted, the class name will default to the param $property's value.
 
 
 
+
 /*
-@name createIncrementalNumberClasses
+@name ifTouch
 
 @description
-Creates a series of classes like createClassesFromMap(),
-except it appends an incrementing number on each next class.
-See createClassesFromMap() for property and className parameters.
-
-@param {number} increment - the amount to increment by each loop.
-@param {number} max - the amount of times to loop. 
+Mixin for checking if the browser has touchevents,
+excluding desktop.
 
 @example
-@include createIncrementalNumberClasses(max-height, max-height, 50, 15);
-Could produce something like:
-
-.max-height--50{
-    max-height: 50px;
-}
-.max-height--100{
-    max-height: 100px;
+.hello{
+    @include ifTouch(){
+        opacity: 1;
+    }
 }
 */
 
-@mixin createIncrementalNumberClasses($property, $className, $increment, $max){
+@mixin ifTouch{
 
-    @for $i from 1 through $max{
+    $selector: &;
+    
+    @at-root{
 
-        $val: ($i * $increment);
-
-        .#{$className}--#{$val}{
-            #{$property}: #{$val}px !important;
+        .touchevents:not(.desktop){
+            
+            #{$selector}{
+                @content;
+            }
         }
-
     }
+}
 
+
+
+
+
+/*
+@name displayOn
+
+@description
+Mixin to produce classes that are hidden
+with display: none, and then shown at
+a given media query from our $media-query map.
+*/
+
+@mixin displayOn{
+
+    [class*="display-on--"]{
+        display: none !important;
+    }
+    
+    @each $key, $value in $media-query{
+        
+        @media #{$value}{
+            
+            .display-on--#{$key}{
+                display: block !important;
+            }
+        }
+    }
 }

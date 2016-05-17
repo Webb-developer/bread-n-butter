@@ -379,19 +379,12 @@ Misc overlay. Requires height.
 
 .overlay{
     @include overlay(false, false);
-
-    $class: &;
+    z-index: 1;
     
-    @at-root{
-
-        .touchevents:not(.desktop){
-
-            #{$class}{
-                position: relative;
-                opacity: 1;
-                visibility: visible;
-            }
-        }
+    @include ifTouch{
+        position: relative;
+        opacity: 1;
+        visibility: visible;
     }
 }
 
@@ -625,8 +618,8 @@ Simple content dropdowns
 
 .dropdown__content{
     display: none;
-    margin-top: map-get($dropdown, "margin-top");
-    max-height: map-get($dropdown, "max-height");
+    margin-top: map-get($dropdown, "content" "margin-top");
+    max-height: map-get($dropdown, "content" "max-height");
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
@@ -748,7 +741,7 @@ Slide out from left or right drawers.
 
 .drawer--left--toggled,
 .drawer--right--toggled{
-    @extend %scroll-locked;
+    @extend %lock-scroll;
 
     .drawer__overlay{
         visibility: visible;
