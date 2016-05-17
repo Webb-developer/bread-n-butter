@@ -379,6 +379,20 @@ Misc overlay. Requires height.
 
 .overlay{
     @include overlay(false, false);
+
+    $class: &;
+    
+    @at-root{
+
+        .touchevents:not(.desktop){
+
+            #{$class}{
+                position: relative;
+                opacity: 1;
+                visibility: visible;
+            }
+        }
+    }
 }
 
 

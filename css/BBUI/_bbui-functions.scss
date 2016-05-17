@@ -218,6 +218,7 @@ This will reveal .myOverlay when we hover over .overlay__parent.
 
 @mixin overlay-parent($hidden: false, $child: overlay){
     position: relative;
+    display: block;
     
     &:hover{
         
@@ -277,13 +278,6 @@ With changing number of columns.
 */
 
 @mixin createGrid($cols, $widthOffset, $className){
-    
-    .#{$className}{
-        display: flex;
-        flex-wrap: wrap;
-        flex-direction: row;
-        justify-content: space-between;
-    }
 
     .#{$className}__item{
         width: (100% / $cols) - $widthOffset;

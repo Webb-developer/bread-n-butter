@@ -17,6 +17,13 @@ they help form them.
 
 
 
+.grid{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 
 /*
 See bbui-functions.scss for usage.
