@@ -308,15 +308,11 @@ With changing number of columns.
     @at-root{
 
         .no-flexbox{
-
-            .#{$className}{
-                display: block;
-                overflow: hidden;
-            }
             
             .#{$className}__item{
-                padding-left:  $widthOffset;
-                padding-right: $widthOffset;
+                padding-left:  1%;
+                padding-right: 1%;
+                float: left;
             }
         }
     }
@@ -477,28 +473,65 @@ If omitted, the class name will default to the param $property's value.
 
             }
             
-            @if (type_of($createMQs) != bool){
-                @error "$createMQs is not of boolean type.";
-            } @elseif ($createMQs == true){
+        } @else {
+            @warn "Value missing when trying to createClassesFromMap().";
+        }
 
-                @each $MQKey, $MQValue in $media-query{
+    }
 
-                    @media #{$MQValue}{
-                
-                        .#{$className}--#{$key}-on-#{$MQKey}{
-                            #{$property}: $value !important;
-                        }
+    @each $key, $value in $map{
+        
+        @if (type_of($createMQs) != bool){
+            @error "$createMQs is not of boolean type.";
+        } @elseif ($createMQs == true){
 
+            @each $MQKey, $MQValue in $media-query{
+
+                @media #{$MQValue}{
+            
+                    .#{$className}--#{$key}-on-#{$MQKey}{
+                        #{$property}: $value !important;
                     }
 
                 }
 
             }
-            
-        } @else {
-            @warn "Value missing when trying to createClassesFromMap().";
+
         }
 
+    }
+}
+
+
+
+
+
+/*
+@name noFlex
+
+@description
+Mixin for checking if the browser supports flex.
+
+@example
+.hello{
+    @include noFlex{
+        display: block;
+    }
+}
+*/
+
+@mixin noFlex{
+
+    $selector: &;
+    
+    @at-root{
+
+        .no-flexbox{
+            
+            #{$selector}{
+                @content;
+            }
+        }
     }
 }
 
@@ -515,7 +548,7 @@ excluding desktop.
 
 @example
 .hello{
-    @include ifTouch(){
+    @include ifTouch{
         opacity: 1;
     }
 }

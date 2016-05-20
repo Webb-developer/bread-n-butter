@@ -22,6 +22,11 @@ they help form them.
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
+
+    @include noFlex{
+        display: block;
+        overflow: hidden;
+    }
 }
 
 
@@ -54,7 +59,7 @@ See bbui-functions.scss for usage.
 See bbui-functions.scss for usage.
 */
 
-@include createGridUnits(1.53846154, 650px);
+@include createGridUnits(1.53846154, map-get($media-query-values, "m"));
 
 
 
