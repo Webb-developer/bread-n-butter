@@ -59,7 +59,7 @@ See bbui-functions.scss for usage.
 See bbui-functions.scss for usage.
 */
 
-@include createGridUnits(1.53846154, map-get($media-query-values, "m"));
+@include createGridUnits(4, map-get($media-query-values, "m"));
 
 
 

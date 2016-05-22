@@ -11,12 +11,14 @@ Smooth anchor link scrolling.
     // a href contains #something not just #
     $('a[href*="#"]:not([href="#"])').on("click", function(e){
 
-        e.preventDefault();
+        var href = $(this).attr("href").replace("/", "");
+        var $id  = $(href);
 
-        var id     = $(this).attr("href"),
-            scroll = $(id).offset().top;
 
-        bbjs.animateScroll(scroll);
+        if($id.length){
+            e.preventDefault();
+            bbjs.animateScroll($id.offset().top);
+        }
 
     });
 

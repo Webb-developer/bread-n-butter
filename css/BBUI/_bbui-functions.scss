@@ -352,44 +352,32 @@ for the styles to take effect.
 @mixin createGridUnits($gutter, $MQ){
 
     $base: 100 - ($gutter * 2);
-    $count: round($base / ($gutter * 4));
+    $count: $base / ($gutter * 2);
     
     @media (min-width: #{$MQ}){
         
         [class*="grid-unit"]{
             margin-left: $gutter + 0%;
             float: left;
-
-            &:last-child{
-                margin-right: $gutter + 0%;
-            }
         }
     
         @while $base > 0{
             
-            .grid-unit--offset-#{$count}{
+            .grid-unit--offset-#{round($count)}{
                 margin-left: $base + 0%;
-
-                &:last-child{
-                    margin-right: $base + 0%;
-                }
             }
 
-            .grid-unit--#{$count}{
+            .grid-unit--#{round($count)}{
                 width: $base + 0%;
             }
                 
-            $base: $base - ($gutter * 4);
-            $count: $count - 1;
+            $base: $base - ($gutter * 2);
+            $count: $base / ($gutter * 2);
 
         }
 
         .grid-unit--offset-gutter{
-            margin-left: ($gutter / 2) + $gutter + 0%;
-
-            &:last-child{
-                margin-right: ($gutter / 2) + $gutter + 0%;
-            }
+            margin-left: $gutter + 0%;
         }
 
     }
