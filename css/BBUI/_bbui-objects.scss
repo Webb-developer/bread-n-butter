@@ -585,9 +585,12 @@ to appear on immediately rather than from a user triggered event.
 Simple content dropdowns
 
 @example
-<div class='dropdown'>
-    <div class='dropdown__summary  js-toggle' data-toggle='dropdown__content' toggle-parent></div>
-    <div class='dropdown__content'>Im some content</div>
+<div class="dropdown">
+
+    <div class="dropdown__summary  js-toggle" data-icon="+" data-icon-active="-" data-toggle="dropdown" toggle-parent>Drop Me</div>
+
+    <div class="dropdown__content"></div>
+
 </div>
 */
 
@@ -601,18 +604,14 @@ Simple content dropdowns
     position: relative;
     user-select: none;
 
-    @if (map-deep-get($dropdown, "caret" "show") == true){
-
-        &:after{
-            content: map-deep-get($dropdown, "caret" "icon");
-            position: absolute;
-            right: map-deep-get($dropdown, "caret" "right-offset");
-            font-size: map-deep-get($dropdown, "caret" "font-size");
-            line-height: map-deep-get($dropdown, "caret" "line-height");
-            top:    0;
-            bottom: 0;
-        }
-
+    &:after{
+        content: attr(data-icon);
+        position: absolute;
+        right: map-deep-get($dropdown, "icon" "right-offset");
+        font-size: map-deep-get($dropdown, "icon" "font-size");
+        line-height: map-deep-get($dropdown, "icon" "line-height");
+        top:    0;
+        bottom: 0;
     }
 }
 
@@ -627,21 +626,17 @@ Simple content dropdowns
 }
 
 
-.dropdown__content--toggled{
+.dropdown--toggled{
 
     .dropdown__content{
         display: block;
     }
     
-    @if (map-deep-get($dropdown, "caret" "show") == true){
-
-        .dropdown__summary{
-
-            &:after{
-                transform: rotate(90deg);
-            }
+    .dropdown__summary{
+        
+        &:after{
+            content: attr(data-icon-active);
         }
-
     }
 }
 
@@ -659,24 +654,13 @@ Simple content dropdowns
 Tabs functionality is in bbjs-utilities.js
 
 @example
-<div class='tab__summary' data-tab='0'>Toggle</div>
-<div class='tab__content ' data-tab='0'>Im some content</div>
+<div class='tab__summary' data-tab='0' data-icon="+" data-icon-active="-">Toggle</div>
+<div class='tab__content' data-tab='0'>Im some content</div>
 */
 
 .tab__summary{
     @extend .a;
     @extend .dropdown__summary;
-
-    @if (map-deep-get($dropdown, "caret" "show") == true){
-
-        &.tab__summary--toggled{
-
-            &:after{
-                transform: rotate(90deg);
-            }
-        }
-
-    }
 }
 
 
@@ -684,6 +668,13 @@ Tabs functionality is in bbjs-utilities.js
     @extend .dropdown__content;
 }
 
+
+.tab__summary--toggled{
+
+    &:after{
+        content: attr(data-icon-active);
+    }
+}
 
 
 

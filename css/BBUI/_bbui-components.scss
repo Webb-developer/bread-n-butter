@@ -141,14 +141,14 @@ See bbui-functions.scss for usage.
 .clip-text{
     white-space: nowrap;
     text-overflow: clip;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 
 .clip-text--ellipsis{
     white-space: nowrap;
     text-overflow: ellipsis;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 
@@ -221,8 +221,8 @@ See bbui-functions.scss for usage.
 }
 
 
-.aspect-ratio--4-5{
-    @include aspect-ratio(4, 5);
+.aspect-ratio--5-4{
+    @include aspect-ratio(5, 4);
 }
 
 

@@ -445,49 +445,34 @@ h1, h2, h3, h4, h5, h6{
 
 /*
 @example
-<h4 class='title--m'></h4>
+<h1></h1>
+<h4 class='h2'></h4>
 */
 
 .h1, h1{
-    font-family:    map-deep-get($title, "xxl" "font-family");
-    font-size:      map-deep-get($title, "xxl" "font-size");
-    font-weight:    map-deep-get($title, "xxl" "font-weight");
-    letter-spacing: map-deep-get($title, "xxl" "letter-spacing");
-    line-height:    map-deep-get($title, "xxl" "line-height");
+    font: map-deep-get($title, "xl" "font");
 }
 
 
 .h2, h2{
-    font-family:    map-deep-get($title, "xl" "font-family");
-    font-size:      map-deep-get($title, "xl" "font-size");
-    font-weight:    map-deep-get($title, "xl" "font-weight");
-    letter-spacing: map-deep-get($title, "xl" "letter-spacing");
-    line-height:    map-deep-get($title, "xl" "line-height");
+    font: map-deep-get($title, "l" "font");
 }
 
 
 .h3, h3{
-    font-family:    map-deep-get($title, "l" "font-family");
-    font-size:      map-deep-get($title, "l" "font-size");
-    font-weight:    map-deep-get($title, "l" "font-weight");
-    letter-spacing: map-deep-get($title, "l" "letter-spacing");
-    line-height:    map-deep-get($title, "l" "line-height");
+    font: map-deep-get($title, "m" "font");
 }
 
 
 .h4, h4{
-    font-family:    map-deep-get($title, "m" "font-family");
-    font-size:      map-deep-get($title, "m" "font-size");
-    font-weight:    map-deep-get($title, "m" "font-weight");
-    letter-spacing: map-deep-get($title, "m" "letter-spacing");
-    line-height:    map-deep-get($title, "m" "line-height");
+    font: map-deep-get($title, "s" "font");
 }
 
 
 
 
 /*
-Use .font-family--italic class for true italic
+Use .ff--italic class for true italic
 when using custom fonts.
 */
 
@@ -509,10 +494,6 @@ html{
     text-rendering: optimizeLegibility;
     font-size: 100%;
     line-height: map-get($line-height, "m");
-
-    @include mq("s"){
-        font-size: 110%;
-    }
 }
 
 

@@ -49,27 +49,8 @@ they do their job. Get the hint?
 
 
 /*------------------------------------*\
-    #LISTS
-\*------------------------------------*/
-
-
-
-@include createClassesFromMap(list-style, $list-style);
-
-
-
-
-
-
-/*------------------------------------*\
     #CSS3
 \*------------------------------------*/
-
-
-
-.optimize-transition{
-    transform: translateZ(0) !important;
-}
 
 
 
@@ -163,18 +144,6 @@ they do their job. Get the hint?
 
 
 @include createClassesFromMap(display, $display, true);
-
-
-@include createClassesFromMap(align-items, $align-items);
-
-
-@include createClassesFromMap(flex-wrap, $flex-wrap);
-
-
-@include createClassesFromMap(flex-direction, $flex-direction);
-
-
-@include createClassesFromMap(justify-content, $justify-content);
 
 
 
@@ -306,15 +275,6 @@ they do their job. Get the hint?
 
 
 @include createClassesFromMap(border-radius, $border-radius);
-
-
-@include createClassesFromMap(border-color, $color);
-
-
-@include createClassesFromMap(border-width, $line-width);
-
-
-@include createClassesFromMap(border-style, $border-style);
 
 
 

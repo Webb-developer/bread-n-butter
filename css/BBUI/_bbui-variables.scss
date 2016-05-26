@@ -100,11 +100,11 @@ $font-family: (
 
 $font-size: (
 
-    "base": 1rem,
-
     "xs":   0.82rem,
 
     "s":    0.9rem,
+
+    "base": 1rem,
 
     "m":    1.2rem,
 
@@ -426,40 +426,35 @@ $button: (
 /*
 Define some base titles.
 These styles will be extended to h1/.h1 - h4/.h4
+
+font shorthand:
+font-style font-variant font-weight font-size/line-height font-family
 */
 
 $title: (
     
+    "s": (
+        "font": normal normal normal
+        map-get($font-size, "m") unquote("/") map-get($line-height, "s")
+        map-get($font-family, "bold")
+    ),
+
     "m": (
-        "font-family": map-get($font-family, "bold"),
-        "font-size": map-get($font-size, "m"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
+        "font": normal normal normal
+        map-get($font-size, "l") unquote("/") map-get($line-height, "s")
+        map-get($font-family, "bold")
     ),
 
     "l": (
-        "font-family": map-get($font-family, "bold"),
-        "font-size": map-get($font-size, "l"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
+        "font": normal normal normal
+        map-get($font-size, "xl") unquote("/") map-get($line-height, "s")
+        map-get($font-family, "bold")
     ),
 
     "xl": (
-        "font-family": map-get($font-family, "bold"),
-        "font-size": map-get($font-size, "xl"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
-    ),
-
-    "xxl": (
-        "font-family": map-get($font-family, "bold"),
-        "font-size": map-get($font-size, "xxl"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
+        "font": normal normal normal
+        map-get($font-size, "xxl") unquote("/") map-get($line-height, "s")
+        map-get($font-family, "bold")
     )
 
 );
@@ -592,12 +587,7 @@ $dropdown: (
         "margin-top": map-get($spacing, "s")
     ),
 
-    "caret": (
-        show: true,
-        // Expects a right direction facing icon.
-        // When the tab is toggled this icon
-        // will be rotated +90deg.
-        "icon": "›",
+    "icon": (
         "right-offset": -15px,
         "font-size": map-get($font-size, "m"),
         "line-height": map-get($line-height, "s")
@@ -694,47 +684,6 @@ $text-decoration: (
 
 
 
-$align-items: (
-    "center":     center,
-    "flex-end":   flex-end,
-    "flex-start": flex-start,
-    "baseline":   baseline
-);
-
-
-
-$flex-wrap: (
-    "wrap":   wrap,
-    "nowrap": nowrap
-);
-
-
-
-$flex-direction: (
-    "row":    row,
-    "column": column
-);
-
-
-
-$justify-content: (
-    "flex-end":      flex-end,
-    "flex-start":    flex-start,
-    "center":        center,
-    "space-around":  space-around,
-    "space-between": space-between
-);
-
-
-
-$list-style: (
-    "none":    none,
-    "disc":    disc,
-    "decimal": decimal
-);
-
-
-
 $pointer-events: (
     "none": none,
     "auto": auto
@@ -744,14 +693,6 @@ $pointer-events: (
 
 $cursor: (
     "pointer": pointer
-);
-
-
-
-$border-style: (
-    "solid":  solid,
-    "dotted": dotted,
-    "dashed": dashed
 );
 
 
