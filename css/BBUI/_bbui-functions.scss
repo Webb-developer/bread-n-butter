@@ -444,7 +444,7 @@ The suffix is for a BEM like structure.
 If omitted, the class name will default to the param $property's value.
 
 @example
-@include createClassesFromMap(font-family, $font-family);
+@include createClassesFromMap(font-family, $font-family, false, ff);
 */
 
 @mixin createClassesFromMap($property, $map, $createMQs: false, $className: $property){

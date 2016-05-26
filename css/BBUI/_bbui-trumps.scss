@@ -82,19 +82,19 @@ they do their job. Get the hint?
 
 
 
-@include createClassesFromMap(padding, $spacing, true);
+@include createClassesFromMap(padding, $spacing--padding, true);
 
 
-@include createClassesFromMap(padding-left, $spacing, true);
+@include createClassesFromMap(padding-left, $spacing--padding, true);
 
 
-@include createClassesFromMap(padding-right, $spacing, true);
+@include createClassesFromMap(padding-right, $spacing--padding, true);
 
 
-@include createClassesFromMap(padding-top, $spacing, true);
+@include createClassesFromMap(padding-top, $spacing--padding, true);
 
 
-@include createClassesFromMap(padding-bottom, $spacing, true);
+@include createClassesFromMap(padding-bottom, $spacing--padding, true);
 
 
 

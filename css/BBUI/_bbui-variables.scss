@@ -180,6 +180,17 @@ $spacing: (
 
 
 
+/*
+@name spacing--padding
+
+@description
+This map's values are used to create padding classes.
+It differs from $spacing, because it removed the auto value,
+which is not a valid CSS property for padding.
+*/
+$spacing--padding: map_remove($spacing, "auto");
+
+
 
 
 /*------------------------------------*\
