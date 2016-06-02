@@ -443,6 +443,7 @@ h1, h2, h3, h4, h5, h6{
 }
 
 
+
 /*
 @example
 <h1></h1>
@@ -450,22 +451,33 @@ h1, h2, h3, h4, h5, h6{
 */
 
 .h1, h1{
-    font: map-deep-get($title, "xl" "font");
+    font-family:    map-deep-get($title, "xl" "font-family");
+    font-size:      map-deep-get($title, "xl" "font-size");
+    font-weight:    map-deep-get($title, "xl" "font-weight");
+    letter-spacing: map-deep-get($title, "xl" "letter-spacing");
+    line-height:    map-deep-get($title, "xl" "line-height");
+
+    // @include mq("m"){
+    //     font-size: #{adjust-font-size(map-deep-get($title, "xl" "font-size"), 25%)}rem;
+    // }
 }
 
 
 .h2, h2{
-    font: map-deep-get($title, "l" "font");
+    font-family:    map-deep-get($title, "l" "font-family");
+    font-size:      map-deep-get($title, "l" "font-size");
+    font-weight:    map-deep-get($title, "l" "font-weight");
+    letter-spacing: map-deep-get($title, "l" "letter-spacing");
+    line-height:    map-deep-get($title, "l" "line-height");
 }
 
 
 .h3, h3{
-    font: map-deep-get($title, "m" "font");
-}
-
-
-.h4, h4{
-    font: map-deep-get($title, "s" "font");
+    font-family:    map-deep-get($title, "m" "font-family");
+    font-size:      map-deep-get($title, "m" "font-size");
+    font-weight:    map-deep-get($title, "m" "font-weight");
+    letter-spacing: map-deep-get($title, "m" "letter-spacing");
+    line-height:    map-deep-get($title, "m" "line-height");
 }
 
 

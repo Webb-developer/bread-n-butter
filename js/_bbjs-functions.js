@@ -392,7 +392,7 @@ bbjs.cookies = (function(document){
 
 
 
-/**
+/*
 @property bbjs.modals
 
 @description
@@ -400,16 +400,9 @@ Shows and hides modals with cookie based detection.
 
 @example
 <div class="modal  js-modal">
-    
-    <div class="center-table">
-        <div class="center-table-cell">
-            <div class="modal__inner">
-                <span class="modal__close  js-modal__close"></span>
-                Modal content
-            </div>
-        </div>
+    <div class="modal__inner">
+        <span class="modal__close  js-modal__close"></span>
     </div>
-
 </div>
 */
 
@@ -421,25 +414,39 @@ bbjs.modals = function(){
     var settings = {
 
         element: {
-            // @property {string} settings.element.modal - the modal selector.
+            /*
+            @property {string} settings.element.modal
+            The modal selector.
+            */
             modal: ".js-modal",
 
-            // @property {string} settings.element.close - the modal close trigger selector.
-            close: ".js-modal__close",
+            /*
+            @property {string} settings.element.close
+            The modal close trigger selector.
+            */
+            close: ".modal__close",
 
-            // @property {string} settings.element.closeOverlay - additional modal close
-            // trigger. This is the overlay that surrounds the modal. This is a class, not
-            // a selector.
+            /*
+            @property {string} settings.element.closeOverlay
+            Additional modal close trigger. This is the overlay
+            that surrounds the modal. This is a class name, not a selector.
+            */
             closeOverlay: "center-table-cell",
         },
 
-        // @property {boolean} settings.hideOnRevisit - Determines whether to hide
-        // the modal or keep showing it if our cookie has been set.
-        // Set to true to show the modal once per session.
+        /*
+        @property {boolean} settings.hideOnRevisit
+        Determines whether to hide the modal or keep showing
+        it if our cookie has been set.
+        Set to true to show the modal once per session.
+        */
         hideOnRevisit: true,
 
-        // @property {object} settings.cookie - The cookie that we'll create
-        // so we can allow the modal to be shown only once. It's values don't really matter.
+        /*
+        @property {object} settings.cookie
+        The cookie that we'll create so we can allow the modal
+        to be shown only once. It's values don't really matter.
+        */
         cookie: {
             "name": "modal",
             "value": "set"
@@ -450,7 +457,7 @@ bbjs.modals = function(){
 
     function _bindUI(){
 
-        $(document).on('click', settings.element.close, function(){
+        $(document).on('click', $(settings.element.modal).find(settings.element.close), function(){
             hide();
         })
         .on('click', settings.element.modal, function(e){
@@ -463,7 +470,7 @@ bbjs.modals = function(){
         })
         .on("keyup", function(e){
 
-            if (e.which === 27){ // ESC key
+            if(e.which === 27){ // ESC key
                 hide();
             }
 
@@ -472,8 +479,10 @@ bbjs.modals = function(){
     }
 
 
-    // @returns {boolean} - true if the cookie is set,
-    // or false if not set.
+    /*
+    @returns {boolean}
+    True if the cookie is set, or false if not set.
+    */
     function _wasVisited(){
 
         if(bbjs.cookies.isSet(settings.cookie.name)){
@@ -501,7 +510,6 @@ bbjs.modals = function(){
 
             _bindUI();
 
-
             if(_wasVisited()){
 
                 if(settings.hideOnRevisit){
@@ -511,11 +519,8 @@ bbjs.modals = function(){
                 }
 
             } else {
-
                 bbjs.cookies.create(settings.cookie.name, settings.cookie.value);
-
                 show();
-
             }
 
         }

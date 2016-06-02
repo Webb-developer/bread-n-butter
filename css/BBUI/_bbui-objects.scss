@@ -23,7 +23,7 @@ with them to provide customization in the future.
 @description
 Functionality for this is in _bbjs-utilities.js
 
-@example
+@example [HTML]
 <div class="load-bar" role="progressbar"></div>
 */
 
@@ -53,7 +53,7 @@ Functionality for this is in _bbjs-utilities.js
 
 
 /*
-@example
+@example [HTML]
 <label class='label'></label>
 <input class='input'></div>
 */
@@ -97,7 +97,7 @@ Functionality for this is in _bbjs-utilities.js
 
 
 /*
-@example
+@example [HTML]
 <div class="menu-icon">
     <div class="menu-icon__line"></div>
     <div class="menu-icon__line"></div>
@@ -152,18 +152,15 @@ Functionality for this is in _bbjs-utilities.js
     }
 
     &:active{
-        color: map-get($close-icon, "color");
+        color: lighten(map-get($close-icon, "color"), 25%);
     }
 
-    &.close-icon--to-left{
-        right: inherit;
-        left: 0;
-    }
+}
 
-    &.close-icon--no-offset{
-        margin: 0;
-    }
 
+.close-icon--to-left{
+    right: inherit;
+    left: 0;
 }
 
 
@@ -177,7 +174,7 @@ Functionality for this is in _bbjs-utilities.js
 
 
 /*
-@example
+@example [HTML]
 <hr class='hr  hr--medium'>
 */
 
@@ -211,10 +208,10 @@ Functionality for this is in _bbjs-utilities.js
 
 
 /*
-@example
+@example [HTML]
 <ul>
-    <li class='list-item  list-item--s'></li>
-    <li class='list-item  list-item--s'></li>
+    <li class='list-item'></li>
+    <li class='list-item'></li>
 </ul>
 
 <ul>
@@ -233,16 +230,6 @@ Functionality for this is in _bbjs-utilities.js
 }
 
 
-.list-item--s{
-    margin-right: map-get($spacing, "xs");
-}
-
-
-.list-item--l{
-    margin-right: map-get($spacing, "m");
-}
-
-
 .list-item--vertical{
     display: block;
     margin-bottom: map-get($spacing, "s");
@@ -250,16 +237,6 @@ Functionality for this is in _bbjs-utilities.js
     &:nth-last-child(1){
         margin-bottom: 0;
     }
-}
-
-
-.list-item--vertical--s{
-    margin-bottom: map-get($spacing, "xs");
-}
-
-
-.list-item--vertical--l{
-    margin-bottom: map-get($spacing, "m");
 }
 
 
@@ -272,8 +249,8 @@ Functionality for this is in _bbjs-utilities.js
 
 
 /*
-@example
-<div class="button  button--black  button--tall" role="button">Click Me</div>
+@example [HTML]
+<button class="button  button--black  button--tall"></button>
 */
 
 .button{
@@ -368,12 +345,12 @@ Functionality for this is in _bbjs-utilities.js
 @description
 Misc overlay. Requires height.
 
-@example
+@example [HTML]
 <div class="overlay__parent">
     <div class="overlay">Overlay Content</div>
 </div>
 
-@example
+@example [HTML]
 <div class="overlay--fullscreen">Fullscreen overlay Content</div>
 */
 
@@ -413,8 +390,8 @@ Misc overlay. Requires height.
 @description
 Wrapper for user entered content to "reset" styles.
 
-@example
-<div class="wysiwyg">Im user generated content.</div>
+@example [HTML]
+<div class="wysiwyg"></div>
 */
 
 .wysiwyg{
@@ -468,7 +445,7 @@ Wrapper for user entered content to "reset" styles.
 
 
 /*
-@example
+@example [HTML]
 <ul>
     <li class='breadcrumb'></li>
     <li class='breadcrumb'></li>
@@ -504,46 +481,30 @@ Wrapper for user entered content to "reset" styles.
 
 /*
 @description
-Simple modal. For hide functionality apply a js-toggle class
-to the close trigger. See example below.
 
-@example
+Simple modal.
+
+@example [HTML]
 <div class="modal">
-            
-    <div class="center-table">
-        <div class="center-table-cell">
-            
-            <div class="modal__inner">
-                <span class="modal__close  js-toggle" data-toggle="newsletter"></span>
-            </div>
-
-        </div>
+    <div class="modal__inner">
+        <span class="modal__close"></span>
     </div>
-
 </div>
 
 
-Apply a js-modal class to the modal if you want the modal
-to appear on immediately rather than from a user triggered event.
+Apply a js-modal class to add functionality.
 
-@example
+@example [HTML]
 <div class="modal  js-modal">
-    
-    <div class="center-table">
-        <div class="center-table-cell">
-            <div class="modal__inner">
-                <span class="modal__close  js-modal__close"></span>
-                Modal content
-            </div>
-        </div>
+    <div class="modal__inner">
+        <span class="modal__close"></span>
     </div>
-
 </div>
 */
 
 .modal{
     background-color: map-get($modal, "background-color");
-    z-index: map-get($z-index, "max");
+    z-index: map-get($modal, "modal");
     position: fixed;
     top:    0;
     left:   0;
@@ -584,10 +545,10 @@ to appear on immediately rather than from a user triggered event.
 @description
 Simple content dropdowns
 
-@example
+@example [HTML]
 <div class="dropdown">
 
-    <div class="dropdown__summary  js-toggle" data-icon="+" data-icon-active="-" data-toggle="dropdown" toggle-parent>Drop Me</div>
+    <div class="dropdown__summary  js-toggle" data-icon="+" data-icon-active="-" data-toggle="dropdown" toggle-parent></div>
 
     <div class="dropdown__content"></div>
 
@@ -653,7 +614,7 @@ Simple content dropdowns
 @description
 Tabs functionality is in bbjs-utilities.js
 
-@example
+@example [HTML]
 <div class='tab__summary' data-tab='0' data-icon="+" data-icon-active="-">Toggle</div>
 <div class='tab__content' data-tab='0'>Im some content</div>
 */
@@ -689,7 +650,7 @@ Tabs functionality is in bbjs-utilities.js
 @description
 Slide out from left or right drawers.
 
-@example
+@example [HTML]
 <div class='js-toggle' data-toggle='drawer--right'>Toggle</div>
 <div class='drawer  drawer--right'></div>
 <div class='drawer__overlay'></div>

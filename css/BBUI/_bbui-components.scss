@@ -156,60 +156,15 @@ See bbui-functions.scss for usage.
 
 
 /*------------------------------------*\
-    #VISIBILITY
-\*------------------------------------*/
-
-
-
-.visually-hidden{
-    visibility: hidden;
-    opacity: 0;
-}
-
-
-%visually-hidden{
-    visibility: hidden;
-    opacity: 0;
-}
-
-
-.visually-visible{
-    visibility: visible;
-    opacity: 1;
-}
-
-
-%visually-visible{
-    visibility: visible;
-    opacity: 1;
-}
-
-
-
-
-
-/*------------------------------------*\
     #MEDIA
 \*------------------------------------*/
 
 
 
-.bg-image--cover{
-    background-size: cover;
-    background-repeat: no-repeat;
-}
-
-
-.bg-image--contain{
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-
 .bg-image--cover--center{
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 50% 50%;
+    background-position: 50%;
 }
 
 
@@ -240,8 +195,8 @@ See bbui-functions.scss for usage.
     object-fit:      cover;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: 50% 50%;
-    object-position:     50% 50%;
+    background-position: 50%;
+    object-position:     50%;
 }
 
 

@@ -88,11 +88,7 @@ $media-query: (
 
 $font-family: (
 
-    "base":       unquote("Georgia"),
-
-    "serif":      unquote(""),
-
-    "sans-serif": unquote("")
+    "base": unquote("Arial")
 
 );
 
@@ -110,9 +106,7 @@ $font-size: (
 
     "l":    1.7rem,
 
-    "xl":   2.3rem,
-
-    "xxl":  2.7rem,
+    "xl":   2.3rem
 
 );
 
@@ -271,7 +265,7 @@ $sizes: (
 
 
 /*------------------------------------*\
-    #RULES & BORDERS
+    #RULES
 \*------------------------------------*/
 
 
@@ -295,20 +289,6 @@ $line-width: (
 
 
 
-$border-radius: (
-
-    "none": 0,
-
-    "s":    1px,
-
-    "m":    2px,
-
-    "l":    4px
-
-);
-
-
-
 
 /*------------------------------------*\
     #TRANSITIONS
@@ -327,6 +307,8 @@ See: http://easings.net/
 $transition-type: (
 
     "linear": unquote("linear"),
+
+    "ease":   unquote("ease"),
 
     "sine":   unquote("cubic-bezier(0.445, 0.05, 0.55, 0.95)"),
 
@@ -361,7 +343,6 @@ $transition-speed: (
     "extra-fast": 0.1s
     
 );
-
 
 
 
@@ -443,29 +424,29 @@ font-style font-variant font-weight font-size/line-height font-family
 */
 
 $title: (
-    
-    "s": (
-        "font": normal normal normal
-        map-get($font-size, "m") unquote("/") map-get($line-height, "s")
-        map-get($font-family, "bold")
-    ),
 
     "m": (
-        "font": normal normal normal
-        map-get($font-size, "l") unquote("/") map-get($line-height, "s")
-        map-get($font-family, "bold")
+        "font-family": map-get($font-family, "base"),
+        "font-size": map-get($font-size, "m"),
+        "font-weight": normal,
+        "letter-spacing": inherit,
+        "line-height": map-get($line-height, "s")
     ),
 
     "l": (
-        "font": normal normal normal
-        map-get($font-size, "xl") unquote("/") map-get($line-height, "s")
-        map-get($font-family, "bold")
+        "font-family": map-get($font-family, "base"),
+        "font-size": map-get($font-size, "l"),
+        "font-weight": normal,
+        "letter-spacing": inherit,
+        "line-height": map-get($line-height, "s")
     ),
 
     "xl": (
-        "font": normal normal normal
-        map-get($font-size, "xxl") unquote("/") map-get($line-height, "s")
-        map-get($font-family, "bold")
+        "font-family": map-get($font-family, "base"),
+        "font-size": map-get($font-size, "xl"),
+        "font-weight": normal,
+        "letter-spacing": inherit,
+        "line-height": map-get($line-height, "s")
     )
 
 );
@@ -496,8 +477,7 @@ $forms: (
 
 /*
 @description
-This is a hover triggered overlay. See .overlay
-in bbui-objects.
+See .overlay in bbui-objects.
 */
 
 $overlay:(
@@ -514,6 +494,8 @@ $overlay:(
 
 
 $modal:(
+
+    "z-index": 20,
     
     "padding": map-get($spacing, "s"),
 
@@ -617,8 +599,6 @@ $dropdown: (
 
 $z-index: (
 
-    "negative":      -1,
-
     "base":          1,
 
     "header":        10,
@@ -691,19 +671,6 @@ $text-decoration: (
     "none":      none,
     "underline": underline,
     "strike":    line-through
-);
-
-
-
-$pointer-events: (
-    "none": none,
-    "auto": auto
-);
-
-
-
-$cursor: (
-    "pointer": pointer
 );
 
 
