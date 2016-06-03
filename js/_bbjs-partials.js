@@ -27,11 +27,7 @@ all of our BBJS namespaced functions.
 
     'use strict';
     
-
     bbjs.modals.init();
-
-    bbjs.animateIn.init();
-
 
     // [http://www.appelsiini.net/projects/lazyload]
     if(bbjs.settings.lazyload.enable){
@@ -39,7 +35,7 @@ all of our BBJS namespaced functions.
     }
 
     // [http://www.owlcarousel.owlgraphic.com]
-    if(bbjs.settings.carousels.enable){
+    if(bbjs.settings.owlCarousel.enable){
         bbjs.callCarousel();
     }
 

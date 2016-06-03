@@ -1,7 +1,6 @@
-/**
+/*
 @author Andrew Puig [andrew.lpuig@gmail.com]
-@version 1.42
-@todo Improve bbjs.forms
+@version 1.45
 */
 
 
@@ -31,7 +30,7 @@ window.bbjs = {};
 
 
 
-/**
+/*
 @property bbjs.settings
 
 @description
@@ -41,18 +40,13 @@ Some basic bbjs configuration
 bbjs.settings = {
 
     lazyload: {
-        enable: true,
-        options: {
-            effect: "fadeIn"
-        }
+        enable: true
     },
 
     fastclick: true,
 
-    // Owl Carousel
-    carousels: {
-        enable: true,
-        arrows: ["", ""]
+    owlCarousel: {
+        enable: true
     }
 
 };
@@ -60,7 +54,7 @@ bbjs.settings = {
 
 
 
-/**
+/*
 @property bbjs.cache
 
 @description

@@ -66,6 +66,7 @@ Functionality for this is in _bbjs-utilities.js
 
 
 .input{
+    display: block;
     border: map-deep-get($forms, "input" "border");
     padding: map-deep-get($forms, "input" "padding");
     color: map-deep-get($forms, "input" "color");
@@ -131,14 +132,12 @@ Functionality for this is in _bbjs-utilities.js
     right: 0;
     margin-top:   -#{map-get($close-icon, "padding")};
     margin-right: -#{map-get($close-icon, "padding")};
-
-    // Padding is for clickability, not for offset from corners.
-    // Apply class of close-icon--no-icon to add offsets.
     padding: map-get($close-icon, "padding");
     display: inline-block;
     cursor: pointer;
     font-size: map-get($close-icon, "font-size");
     color: map-get($close-icon, "color");
+    z-index: 1;
 
     &:after{
         content: map-deep-get($close-icon, "icon" "symbol");
@@ -395,24 +394,23 @@ Wrapper for user entered content to "reset" styles.
 */
 
 .wysiwyg{
-    line-height: map-get($line-height, "l");
     
     // h1-h4 styles will be inherited from bbui_base
     h1, h2{
-        margin-bottom: map-get($spacing, "l");
+        margin-top: map-get($spacing, "l");
     }
 
     h3{
-        margin-bottom: map-get($spacing, "m");
+        margin-top: map-get($spacing, "m");
     }
 
     h4{
-        margin-bottom: map-get($spacing, "s");
+        margin-top: map-get($spacing, "s");
     }
 
     ol,
     ul{
-        margin-bottom: map-get($spacing, "s");
+        margin-top: map-get($spacing, "s");
         margin-left: map-get($spacing, "m");
     }
 
@@ -430,7 +428,11 @@ Wrapper for user entered content to "reset" styles.
 
     b,
     strong{
-        font-family: map-get($font-family, "bold");
+        @if(map_has_key($font-family, "bold")){
+            font-family: map-get($font-family, "bold");
+        } @else {
+            font-weight: 700;
+        }
     }
 }
 
@@ -497,7 +499,7 @@ Apply a js-modal class to add functionality.
 @example [HTML]
 <div class="modal  js-modal">
     <div class="modal__inner">
-        <span class="modal__close"></span>
+        <span class="modal__close  js-modal__close"></span>
     </div>
 </div>
 */
@@ -512,12 +514,15 @@ Apply a js-modal class to add functionality.
     bottom: 0;
     padding: map-get($modal, "padding");
     display: none;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 
 .modal__inner{
     background-color: map-deep-get($modal, "inner" "background-color");
     padding: map-deep-get($modal, "inner" "padding");
+    border: map-deep-get($modal, "inner" "border");
     max-width: map-deep-get($modal, "inner" "max-width");
     width: 100%;
     margin-left:  auto;

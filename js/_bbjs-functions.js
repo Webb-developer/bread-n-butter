@@ -1,4 +1,4 @@
-/**
+/*
 @name debounce
 https://davidwalsh.name/javascript-debounce-function
 
@@ -44,7 +44,7 @@ function debounce(func, wait, immediate) {
 
 
 
-/**
+/*
 @property bbjs.itHasTouch
 
 @description
@@ -74,7 +74,7 @@ bbjs.itHasTouch = function(ignoreDesktopTouch){
 
 
 
-/**
+/*
 @property bbjs.animateScroll
 
 @description
@@ -104,7 +104,7 @@ bbjs.animateScroll = function(pos, speed){
 
 
 
-/**
+/*
 @property bbjs.uniqueArray
 
 @example
@@ -130,207 +130,7 @@ bbjs.uniqueArray = function(array){
 
 
 
-/**
-@property bbjs.forms
-
-@description
-Check form for empty fields.
-Submit form via AJAX or standard submit
-Adds error or success classes to inputs.
-
-@example [html]
-<input type='text' class='js-handle'>
-
-@example [js]
-forms.process({
-    form: "#customer_login",
-    ajax: true,
-    resetOnSuccess: true, (AJAX only)
-    success: function(){
-        console.log("oh yesss");
-    },
-    error: function(){
-        console.log("oh no");
-    }
-});
-*/
-
-bbjs.forms = function(){
-
-    'use strict';
-
-
-    var settings = {
-
-        element: {
-            "selector": ".js-handle",
-            "successClass": "input--success",
-            "errorClass": "input--error"
-        },
-
-        options: {}
-    };
-
-
-    function _processAJAX(){
-
-        var form = $(settings.options.form);
-
-
-        form.on('submit', function(e){
-
-            e.preventDefault();
-
-            _validate();
-
-
-            $.ajax({
-                type    : form.attr("method"),
-                url     : form.attr("action"),
-                data    : form.serialize()
-
-            }).done(function(data){
-
-                if(data.success === true){
-                    _onAJAXSuccess();
-                } else {
-                    _onError();
-                }
-
-            });
-
-        });
-
-    }
-
-
-    /**
-    @name _onAJAXSuccess
-
-    @description
-    This function is only called on AJAX success.
-    There's no regular form success function because form submission
-    depending on the form action would take us somewhere.
-    */
-
-    function _onAJAXSuccess(){
-
-        // If the user set resetOnSuccess to true
-        // reset the form.
-        if(settings.options.resetOnSuccess){
-            $(settings.options.form)[0].reset();
-        }
-
-        // If the user set a success function, call it.
-        if(typeof(settings.options.success) === "function"){
-            settings.options.success();
-        }
-
-    }
-
-
-    /**
-    @name _onError
-
-    @description
-    This function is called on both AJAX and regular form submit.
-    */
-
-    function _onError(){
-
-        if(typeof(settings.options.error) === "function"){
-            settings.options.error();
-        }
-
-    }
-
-
-    /**
-    @name _validate
-    
-    @description
-    This function does not actually validate any data.
-    It simply checks if the field is empty or not.
-
-    @returns {object}
-    @property fields.inputs - the amount of fields in the form
-    @property fields.valid - the amount of valid fields in the form
-    */
-
-    function _validate(){
-
-        var fields = {
-            inputs: $(settings.options.form).find(settings.element.selector),
-            valid: []
-        };
-
-        
-        fields.inputs.each(function(index, el){
-
-            if($(el).val().length === 0){
-                $(this).addClass(settings.element.errorClass);
-            } else {
-
-                $(el).removeClass(settings.element.errorClass).addClass(settings.element.successClass);
-
-                fields.valid.push($(el));
-
-            }
-
-        });
-
-        return fields;
-
-    }
-
-
-    function _processForm(){
-
-        $(settings.options.form).on('submit', function(e){
-
-            // Store the check in a variable
-            var check = _validate();
-
-
-            // The length of the valid fields does not match
-            // the length of the fields. Process error.
-            if(check.valid.length !== check.inputs.length){
-
-                e.preventDefault();
-
-                _onError();
-
-            }
-
-        });
-    }
-
-
-    function init(options){
-
-        // Set our settings options to the users options.
-        settings.options = options;
-
-
-        if(settings.options.ajax){
-            _processAJAX();
-        } else {
-            _processForm();
-        }
-
-    }
-
-
-    return {
-        process: init
-    };
-
-}();
-
-
-
-
-/**
+/*
 @property bbjs.cookies
 
 @description
@@ -346,17 +146,18 @@ bbjs.cookies = (function(document){
 
     'use strict';
 
-
-    // @param {string|number} name - the cookie name
-    // @param {string|number} value - the cookie value
+    /*
+    @param {string|number} name - the cookie name
+    @param {string|number} value - the cookie value
+    */
     function create(name, value){
-
         document.cookie = name + "=" + value;
-
     }
 
 
-    // @param {string|number} name - the cookie name to delete
+    /*
+    @param {string|number} name - the cookie name to delete
+    */
     function remove(name){
 
         document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -368,8 +169,10 @@ bbjs.cookies = (function(document){
     }
 
 
-    // @param {string|number} name - the cookie name to check
-    // @returns {boolean} - true if the cookie is set.
+    /*
+    @param {string|number} name - the cookie name to check
+    @returns {boolean} - true if the cookie is set.
+    */
     function isSet(name){
 
         if(document.cookie.indexOf(name) !== -1) {
@@ -424,7 +227,7 @@ bbjs.modals = function(){
             @property {string} settings.element.close
             The modal close trigger selector.
             */
-            close: ".modal__close",
+            close: ".js-modal__close",
 
             /*
             @property {string} settings.element.closeOverlay
@@ -457,7 +260,7 @@ bbjs.modals = function(){
 
     function _bindUI(){
 
-        $(document).on('click', $(settings.element.modal).find(settings.element.close), function(){
+        $(document).on('click', settings.element.close, function(){
             hide();
         })
         .on('click', settings.element.modal, function(e){
@@ -483,7 +286,7 @@ bbjs.modals = function(){
     @returns {boolean}
     True if the cookie is set, or false if not set.
     */
-    function _wasVisited(){
+    function _pageWasVisited(){
 
         if(bbjs.cookies.isSet(settings.cookie.name)){
             return true;
@@ -495,11 +298,13 @@ bbjs.modals = function(){
 
 
     function show(){
+        bbjs.cache.$html.addClass('lock-scroll');
         $(settings.element.modal).css('display', 'block');
     }
 
 
     function hide(){
+        bbjs.cache.$html.removeClass('lock-scroll');
         $(settings.element.modal).css('display', 'none');
     }
 
@@ -510,7 +315,7 @@ bbjs.modals = function(){
 
             _bindUI();
 
-            if(_wasVisited()){
+            if(_pageWasVisited()){
 
                 if(settings.hideOnRevisit){
                     hide();
@@ -531,77 +336,6 @@ bbjs.modals = function(){
     return {
         show: show,
         hide: hide,
-        init: init
-    };
-
-}();
-
-
-
-
-/**
-@property bbjs.animateIn
-
-@description
-Perform actions to elements when the window has loaded.
-
-@example [HTML]
-<div class="js-animate" animate-class="fadeInUp" animate-offset="1.5"></div>
-*/
-
-bbjs.animateIn = function(){
-
-    'use strict';
-
-
-    var settings = {
-
-        item: {
-            /**
-            @property {string} settings.item.selector - the element
-            that will be animated.
-            */
-            selector: ".js-animate",
-
-            /**
-            @property {string} settings.item.class
-            the class that will be applied to item.selector
-            once images have loaded.
-            */
-            class: "animate-class",
-
-            /**
-            @property {number} settings.item.offset - the amount of time to wait
-            after images have loaded to apply the class to item.selector.
-            */
-            offset: "animate-offset"
-        }
-
-    };
-
-
-    function init(){
-
-        bbjs.cache.$window.on("load", function(){
-            
-            $(settings.imagesLoadedContainer)
-            .find($(settings.item.selector).each(function(index, el){
-
-                // Convert offset from MS to S.
-                var offset = ($(el).attr(settings.item.offset) * 1000).toFixed(0) || 0;
-                        
-                setTimeout(function(){
-                    $(el).addClass($(el).attr(settings.item.class));
-                }, offset);
-
-            }));
-
-        });
-
-    }
-
-
-    return{
         init: init
     };
 

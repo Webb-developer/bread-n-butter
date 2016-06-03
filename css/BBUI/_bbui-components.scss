@@ -169,8 +169,6 @@ See bbui-functions.scss for usage.
 
 
 
-// Maintain intrinsic aspect ratios.
-
 .aspect-ratio--16-9{
     @include aspect-ratio(16, 9);
 }
@@ -220,7 +218,7 @@ See bbui-functions.scss for usage.
 }
 
 
-// Expects to be on the HTML element.
+// Expects to be on the root element.
 .lock-scroll{
     height: 100%;
     overflow-y: hidden;

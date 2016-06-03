@@ -2,7 +2,6 @@
 
     'use strict';
 
-
     if(bbjs.settings.fastclick){
         FastClick.attach(document.body);
     }
@@ -17,14 +16,16 @@
 @name callLazy
 
 @description
-Call lazy load, see further comments below.
+Call lazy load.
 */
 
-bbjs.callLazy = function(options){
+bbjs.callLazy = function(){
 
     'use strict';
 
-    $(".js-lazy").lazyload(typeof(options) === "undefined" ? bbjs.settings.lazyload.options : options);
+    $(".js-lazy").lazyload({
+        effect: "fadeIn"
+    });
 
 };
 
@@ -55,7 +56,6 @@ bbjs.callCarousel = function(){
         autoplay: true,
         autoplayTimeout: 4000,
         responsiveRefreshRate: 0,
-        navText: bbjs.settings.carousels.arrows,
         smartSpeed: 300
     });
 

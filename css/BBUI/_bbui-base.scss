@@ -435,6 +435,12 @@ b{
 
 
 
+small{
+    font-size: map-get($font-size, "s");
+}
+
+
+
 // Normalize all headers
 
 h1, h2, h3, h4, h5, h6{
@@ -498,9 +504,7 @@ em, .em{
 html{
     // to prevent scroll when a drawer is open
     overflow-x: hidden;
-    
-    -ms-text-size-adjust:     100%;
-    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -511,11 +515,10 @@ html{
 
 
 body{
+    // to prevent scroll when a drawer is open
+    overflow-x: hidden;
     word-wrap: break-word;
     font-family: map-get($font-family, "base");
     font-size: map-get($font-size, "base");
     color: map-get($color, "black");
-
-    // to prevent scroll when a drawer is open
-    overflow-x: hidden;
 }

@@ -504,7 +504,8 @@ $modal:(
     "inner":(
         "max-width": 500px,
         "background-color": #fff,
-        "padding": map-get($spacing, "m")
+        "padding": map-get($spacing, "m"),
+        "border": none
     )
     
 );
@@ -646,14 +647,6 @@ $text-align: (
     "left":   left,
     "right":  right,
     "center": center
-);
-
-
-
-$font-weight: (
-    "300": 300,
-    "500": 500,
-    "700": 700    
 );
 
 

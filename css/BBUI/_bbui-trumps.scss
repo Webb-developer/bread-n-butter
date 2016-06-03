@@ -25,9 +25,6 @@ they do their job. Get the hint?
 @include createClassesFromMap(font-size, $font-size, false, fs);
 
 
-@include createClassesFromMap(font-weight, $font-weight, false, fw);
-
-
 @include createClassesFromMap(line-height, $line-height, false, lh);
 
 

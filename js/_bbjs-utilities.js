@@ -92,7 +92,7 @@ the window height.
                     calc    = $(window).outerHeight() * (percent / 100);
 
 
-                if($(el).attr(settings.element.setMaxHeightAttribute)){
+                if($(el)[0].hasAttribute(settings.element.setMaxHeightAttribute)){
 
                     $(el).css({
                         'max-height': calc,
