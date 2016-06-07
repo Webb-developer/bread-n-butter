@@ -1,17 +1,3 @@
-(function(){
-
-    'use strict';
-
-    if(bbjs.settings.fastclick){
-        FastClick.attach(document.body);
-    }
-
-})();
-
-
-
-
-
 /**
 @name callLazy
 

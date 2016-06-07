@@ -43,8 +43,6 @@ bbjs.settings = {
         enable: true
     },
 
-    fastclick: true,
-
     owlCarousel: {
         enable: true
     }
@@ -88,7 +86,6 @@ bbjs.cache = {
 Optional includes.
 */
 
-// @codekit-prepend "vendor/fastclick.js";
 // @codekit-prepend "vendor/lazyload.js";
 // @codekit-prepend "vendor/owl-carousel.js";
 

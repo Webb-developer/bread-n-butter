@@ -510,6 +510,7 @@ html{
     text-rendering: optimizeLegibility;
     font-size: 100%;
     line-height: map-get($line-height, "m");
+    touch-action: manipulation;
 }
 
 
