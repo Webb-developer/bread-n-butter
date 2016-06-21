@@ -46,34 +46,6 @@ they do their job. Get the hint?
 
 
 /*------------------------------------*\
-    #CSS3
-\*------------------------------------*/
-
-
-
-.rotate--90{
-    transform: rotate(90deg) !important;
-}
-
-
-.rotate--180{
-    transform: rotate(180deg) !important;
-}
-
-
-.rotate---90{
-    transform: rotate(-90deg) !important;
-}
-
-
-.rotate---180{
-    transform: rotate(-180deg) !important;
-}
-
-
-
-
-/*------------------------------------*\
     #PADDING
 \*------------------------------------*/
 
@@ -239,13 +211,6 @@ they do their job. Get the hint?
 
 @include createClassesFromMap(overflow-y, $overflow);
 
-
-@include createClassesFromMap(white-space, $white-space);
-
-
-.overflow-touch{
-    -webkit-overflow-scrolling: touch !important;
-}
 
 
 
