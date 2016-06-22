@@ -291,11 +291,7 @@ table {
 iframe,
 img{
     vertical-align: middle;
-}
-
-
-iframe{
-    border: 0;
+    border: none;
 }
 
 
@@ -367,7 +363,7 @@ select{
 }
 
 
-select::-ms-expand {
+select::-ms-expand{
     display: none;
 }
 
@@ -439,6 +435,12 @@ b{
 
 
 
+table{
+    width: 100%;
+}
+
+
+
 small{
     font-size: map-get($font-size, "s");
 }
@@ -469,6 +471,8 @@ em, .em{
 
 
 html{
+    // prevent overflow from drawers
+    overflow-x: hidden;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -480,7 +484,10 @@ html{
 
 
 body{
+    // prevent overflow from drawers
+    overflow-x: hidden;
     word-wrap: break-word;
     font-family: map-get($font-family, "base");
     font-size: map-get($font-size, "base");
+    position: relative;
 }
