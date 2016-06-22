@@ -30,8 +30,7 @@ bbjs.callCarousel = function(){
 
     'use strict';
 
-
-    var carousel = $(".js-carousel").owlCarousel({
+    $(".js-carousel").owlCarousel({
         items: 1,
         slideBy: 1,
         loop: true,
@@ -41,10 +40,18 @@ bbjs.callCarousel = function(){
         lazyLoad: true,
         autoplay: true,
         autoplayTimeout: 4000,
+        autoplayHoverPause: true,
         responsiveRefreshRate: 0,
+        navText: ["", ""],
         smartSpeed: 300
     });
 
-    return carousel;
-
 };
+
+
+
+
+
+$(function() {
+    FastClick.attach(document.body);
+});

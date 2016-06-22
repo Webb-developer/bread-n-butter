@@ -86,15 +86,16 @@ bbjs.cache = {
 Optional includes.
 */
 
-// @codekit-prepend "vendor/lazyload.js";
-// @codekit-prepend "vendor/owl-carousel.js";
+// @codekit-prepend "vendor/_lazyload.js";
+// @codekit-prepend "vendor/_owl-carousel.js";
+// @codekit-prepend "vendor/_fastclick.js";
 
 
 /*
 Required includes.
 */
 
-// @codekit-prepend "vendor/device.js";
+// @codekit-prepend "vendor/_device.js";
 
 
 
