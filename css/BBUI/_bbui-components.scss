@@ -159,12 +159,18 @@ See bbui-functions.scss for usage.
 
 // Expects to be on the root element.
 .lock-scroll{
-    height: 100%;
-    overflow-y: hidden;
+    overflow: hidden;
+
+    &.touchevents:not(.desktop){
+        height: 100%;
+
+        body{
+            height: 100%;
+        }
+    }
 
     body{
-        height: 100%;
-        overflow-y: hidden;
+        overflow: hidden;
     }
 }
 

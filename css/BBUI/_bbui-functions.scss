@@ -170,6 +170,10 @@ visiblility so we can transition.
     z-index: map-get($z-index, "overlay");
     padding: map-get($overlay, "padding");
 
+    @include ifTouch{
+        position: absolute;
+    }
+
     &--toggled{
 
         @if ($hidden == true){

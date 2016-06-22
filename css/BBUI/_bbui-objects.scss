@@ -37,6 +37,10 @@ Functionality for this is in _bbjs-utilities.js
     transform: translateZ(0);
     transition: width map-get($transition-speed, "medium") map-get($transition-type, "linear");
     pointer-events: none;
+
+    @include ifTouch{
+        display: none;
+    }
     
     &.done{
         opacity: 0;
@@ -390,19 +394,19 @@ Simple content dropdowns
 
 
 .dropdown__content{
-    display: none;
-    margin-top: map-get($dropdown, "content" "margin-top");
-    max-height: map-get($dropdown, "content" "max-height");
-    overflow-x: hidden;
-    overflow-y: auto;
+    max-height: 0;
+    overflow: hidden;
     -webkit-overflow-scrolling: touch;
+    transition: map-get($transition-speed, "medium") map-get($transition-type, "ease");
 }
 
 
-.dropdown--toggled{
+.dropdown__toggled{
 
     .dropdown__content{
-        display: block;
+        max-height: map-deep-get($dropdown, "content" "max-height");
+        overflow-x: hidden;
+        overflow-y: auto;
     }
     
     .dropdown__summary{
@@ -481,7 +485,10 @@ Slide out from left or right drawers.
     transform: translateZ(0);
     -webkit-overflow-scrolling: touch;
     width: map-get($drawer, "width");
-    @extend .hidden-scrollbar;
+    
+    @include ifTouch{
+        position: absolute;
+    }
 }
 
 

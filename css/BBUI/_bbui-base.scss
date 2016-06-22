@@ -409,6 +409,10 @@ a, .a{
     &:hover{
         color: inherit;
     }
+
+    &.plain{
+        color: inherit;
+    }
 }
 
 
@@ -465,22 +469,17 @@ em, .em{
 
 
 html{
-    // to prevent scroll when a drawer is open
-    overflow-x: hidden;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-size: 100%;
     line-height: map-get($line-height, "m");
-    touch-action: manipulation;
 }
 
 
 
 body{
-    // to prevent scroll when a drawer is open
-    overflow-x: hidden;
     word-wrap: break-word;
     font-family: map-get($font-family, "base");
     font-size: map-get($font-size, "base");
