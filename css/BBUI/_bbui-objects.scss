@@ -401,8 +401,9 @@ Simple content dropdowns
 }
 
 
-.dropdown__toggled{
-
+.dropdown__toggled,
+.dropdown--hover:hover{
+    
     .dropdown__content{
         max-height: map-deep-get($dropdown, "content" "max-height");
         overflow-x: hidden;
