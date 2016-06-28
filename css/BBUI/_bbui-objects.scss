@@ -88,6 +88,19 @@ Functionality for this is in _bbjs-utilities.js
 
 
 .close-icon{
+    
+    &:after{
+        content: map-deep-get($close-icon, "icon" "symbol");
+        font-size: inherit;
+        line-height: map-deep-get($close-icon, "icon" "line-height");
+        display: block;
+    }
+}
+
+
+.closer{
+    @extend .close-icon;
+
     position: absolute;
     top:   0;
     right: 0;
@@ -98,13 +111,6 @@ Functionality for this is in _bbjs-utilities.js
     cursor: pointer;
     z-index: 1;
 
-    &:after{
-        content: map-deep-get($close-icon, "icon" "symbol");
-        font-size: inherit;
-        line-height: map-deep-get($close-icon, "icon" "line-height");
-        display: block;
-    }
-
     &:hover{
         color: lighten(map-get($close-icon, "color"), 50%);
     }
@@ -112,11 +118,10 @@ Functionality for this is in _bbjs-utilities.js
     &:active{
         color: lighten(map-get($close-icon, "color"), 25%);
     }
-
 }
 
 
-.close-icon--to-left{
+.closer--to-left{
     right: inherit;
     left: 0;
 }
