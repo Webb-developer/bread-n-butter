@@ -207,7 +207,7 @@ every x ms/s, to simulate a progress bar.
     var $progress = $(".load-bar");
 
 
-    if($progress.length){
+    if($progress.length && !bbjs.itHasTouch(true)){
 
         var counter = {
 
@@ -263,7 +263,7 @@ every x ms/s, to simulate a progress bar.
         and clear the interval.
         */
         bbjs.cache.$window.on("load", function() {
-            $progress.css("width", "100%").addClass('done');
+            $progress.css("width", "100%").addClass('load-bar--loaded');
             clearInterval(interval);
         });
 

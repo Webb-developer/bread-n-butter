@@ -34,17 +34,18 @@ Functionality for this is in _bbjs-utilities.js
     z-index: map-get($z-index, "max");
     background-color: map-get($color, "black");
     height: 3px;
-    transform: translateZ(0);
-    transition: width map-get($transition-speed, "medium") map-get($transition-type, "linear");
+    transition: width map-get($transition-speed, "medium") map-get($transition-type, "ease");
     pointer-events: none;
-
+    
+    // Most mobile browser's have a load bar by default.
     @include ifTouch{
         display: none;
     }
-    
-    &.done{
-        opacity: 0;
-    }
+}
+
+
+.load-bar--loaded{
+    opacity: 0;
 }
 
 
@@ -171,7 +172,7 @@ Misc overlay. Requires height.
 */
 
 .overlay{
-    @include overlay(false, false);
+    @include overlay(false);
     z-index: 1;
     
     @include ifTouch{
@@ -189,7 +190,7 @@ Misc overlay. Requires height.
 
 
 .overlay--fullscreen{
-    @include overlay(true);
+    @include overlay;
 }
 
 

@@ -138,29 +138,22 @@ visiblility so we can transition.
 }
 */
 
-@mixin overlay($hidden: false, $fixed: true){
-    
-    @if ($hidden == true){
-        display: none !important;
-    } @else {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity map-get($transition-speed, "fast") map-get($transition-type, "linear");
-    }
+@mixin overlay($fixed: true){
+    $overlaySelector: &;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity map-get($transition-speed, "fast") map-get($transition-type, "ease");
+    top:    0;
+    left:   0;
+    right:  0;
+    bottom: 0;
 
     @if ($fixed == true){
         position: fixed;
         transform: translateZ(0);
-        top:    0;
-        left:   0;
-        right:  0;
-        bottom: 0;
     } @else {
         position: absolute;
-        left:   map-get($overlay, "offset");
-        right:  map-get($overlay, "offset");
-        top:    map-get($overlay, "offset");
-        bottom: map-get($overlay, "offset");
     }
 
     background-color: map-get($overlay, "background-color");
@@ -169,22 +162,24 @@ visiblility so we can transition.
     -webkit-overflow-scrolling: touch;
     z-index: map-get($z-index, "overlay");
     padding: map-get($overlay, "padding");
-
+    
+    // Fixed doesn't play well on touch.
     @include ifTouch{
         position: absolute;
     }
 
     &--toggled{
+        @extend .lock-scroll;
 
-        @if ($hidden == true){
-            display: block !important;
-        } @else {
+        #{$overlaySelector}{
             opacity: 1;
             visibility: visible;
         }
 
     }
 }
+
+
 
 
 
@@ -220,19 +215,15 @@ of the element that you are applying this mixin to.
 This will reveal .myOverlay when we hover over .overlay__parent.
 */
 
-@mixin overlay-parent($hidden: false, $child: overlay){
+@mixin overlay-parent($child: overlay){
     position: relative;
     display: block;
     
     &:hover{
         
         & .#{$child}{
-            @if ($hidden == true){
-                display: block !important;
-            } @else {
-                opacity: 1;
-                visibility: visible;
-            }
+            opacity: 1;
+            visibility: visible;
         }
     }
 
