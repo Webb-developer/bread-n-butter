@@ -19,9 +19,6 @@ they do their job. Get the hint?
 @include createClassesFromMap(font-family, $font-family, false, ff);
 
 
-@include createClassesFromMap(letter-spacing, $letter-spacing, false, ls);
-
-
 @include createClassesFromMap(font-size, $font-size, false, fs);
 
 

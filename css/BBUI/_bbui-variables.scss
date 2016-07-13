@@ -87,9 +87,7 @@ $media-query: (
 
 
 $font-family: (
-
     "base": unquote("Arial")
-
 );
 
 
@@ -109,21 +107,6 @@ $font-size: (
     "xl":   2.3rem
 
 );
-
-
-
-$letter-spacing: (
-
-    "none": 0,
-
-    "s":    0.03em,
-
-    "m":    0.06em,
-
-    "l":    0.09em,
-
-);
-
 
 
 $line-height: (
