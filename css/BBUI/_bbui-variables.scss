@@ -418,8 +418,7 @@ $close-icon:(
     "color": map-get($color, "black"),
 
     "icon":(
-        "symbol": "×",
-        "line-height": 0.558em
+        "symbol": "×"
     )
 
 );
@@ -427,17 +426,7 @@ $close-icon:(
 
 
 $dropdown: (
-
-    "content": (
-        "max-height": 300px,
-    ),
-
-    "icon": (
-        "right-offset": -15px,
-        "font-size": map-get($font-size, "m"),
-        "line-height": map-get($line-height, "s")
-    )
-
+    "max-height": 300px
 );
 
 
@@ -514,22 +503,6 @@ $text-transform: (
 $text-decoration: (
     "none":      none,
     "underline": underline,
-    "strike":    line-through
-);
-
-
-
-$overflow: (
-    "scroll": scroll,
-    "hidden": hidden
-);
-
-
-
-$vertical-align: (
-    "top":    top,
-    "bottom": bottom,
-    "middle": middle
 );
 
 

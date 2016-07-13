@@ -126,65 +126,6 @@ the window height.
 
 
 /**
-@description
-This function adds toggle functionality to tabs.
-Only one tab can be open at a time.
-
-@example
-<div class='tab__summary' data-tab='0'>Toggle</div>
-<div class='tab__content ' data-tab='0'>Im some content</div>
-*/
-
-(function(){
-
-    'use strict';
-
-
-    var $tab     = $(".tab__summary"),
-        $content = $(".tab__content");
-
-    var activeClass = "tab__summary--toggled";
-
-
-    $tab.on("click", function(){
-
-        // Save our this reference.
-        var $self = $(this);
-
-
-        if($self.hasClass(activeClass)){
-
-            // Remove any active states from clicked tab.
-            $self.removeClass(activeClass);
-
-            $(".tab__content[data-tab=" + $self.data("tab") + "]")
-            .css("display", "none");
-
-        } else {
-
-            // Remove any active states from all tabs.
-            $tab.removeClass(activeClass);
-
-            // Hide any open tabs.
-            $content.css("display", "block");
-
-            // Add active states to clicked tab.
-            $self.addClass(activeClass);
-
-            // Reveal the tab.
-            $(".tab__content[data-tab=" + $self.data("tab") + "]")
-            .css("display", "block");
-
-        }
-
-    });
-
-})();
-
-
-
-
-/**
 @name load-progress-bar
 
 @description

@@ -91,8 +91,6 @@ Functionality for this is in _bbjs-utilities.js
     
     &:after{
         content: map-deep-get($close-icon, "icon" "symbol");
-        font-size: inherit;
-        line-height: map-deep-get($close-icon, "icon" "line-height");
         display: block;
     }
 }
@@ -390,9 +388,7 @@ Simple content dropdowns
     &:after{
         content: attr(data-icon);
         position: absolute;
-        right: map-deep-get($dropdown, "icon" "right-offset");
-        font-size: map-deep-get($dropdown, "icon" "font-size");
-        line-height: map-deep-get($dropdown, "icon" "line-height");
+        right: 0;
         top:    0;
         bottom: 0;
     }
@@ -411,7 +407,7 @@ Simple content dropdowns
 .dropdown--hover:hover{
     
     .dropdown__content{
-        max-height: map-deep-get($dropdown, "content" "max-height");
+        max-height: map-get($dropdown, "max-height");
         overflow-x: hidden;
         overflow-y: auto;
     }
@@ -421,42 +417,6 @@ Simple content dropdowns
         &:after{
             content: attr(data-icon-active);
         }
-    }
-}
-
-
-
-
-/*------------------------------------*\
-    #TABS
-\*------------------------------------*/
-
-
-
-/*
-@description
-Tabs functionality is in bbjs-utilities.js
-
-@example [HTML]
-<div class='tab__summary' data-tab='0' data-icon="+" data-icon-active="-">Toggle</div>
-<div class='tab__content' data-tab='0'>Im some content</div>
-*/
-
-.tab__summary{
-    @extend .a;
-    @extend .dropdown__summary;
-}
-
-
-.tab__content{
-    @extend .dropdown__content;
-}
-
-
-.tab__summary--toggled{
-
-    &:after{
-        content: attr(data-icon-active);
     }
 }
 

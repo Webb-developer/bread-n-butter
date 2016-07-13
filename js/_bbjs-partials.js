@@ -34,9 +34,4 @@ all of our BBJS namespaced functions.
         bbjs.callLazy();
     }
 
-    // [http://www.owlcarousel.owlgraphic.com]
-    if(bbjs.settings.owlCarousel.enable){
-        bbjs.callCarousel();
-    }
-
 })();

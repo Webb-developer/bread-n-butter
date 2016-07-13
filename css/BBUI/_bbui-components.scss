@@ -31,15 +31,6 @@ they help form them.
 
 
 
-/*
-See bbui-functions.scss for usage.
-*/
-
-// @include createGridUnits(4, map-get($media-query-values, "m"));
-
-
-
-
 
 /*------------------------------------*\
     #TABLES
@@ -111,21 +102,6 @@ See bbui-functions.scss for usage.
     #MEDIA
 \*------------------------------------*/
 
-
-
-.aspect-ratio--16-9{
-    @include aspect-ratio(16, 9);
-}
-
-
-.aspect-ratio--5-4{
-    @include aspect-ratio(5, 4);
-}
-
-
-.aspect-ratio--1-1{
-    @include aspect-ratio(1, 1);
-}
 
 
 .aspect-ratio__object{

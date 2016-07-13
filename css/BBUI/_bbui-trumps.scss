@@ -192,27 +192,6 @@ they do their job. Get the hint?
 @include createClassesFromMap(float, $float, true);
 
 
-@include createClassesFromMap(vertical-align, $vertical-align);
-
-
-
-
-/*------------------------------------*\
-    #CONTAINMENT
-\*------------------------------------*/
-
-
-
-@include createClassesFromMap(overflow, $overflow);
-
-
-@include createClassesFromMap(overflow-x, $overflow);
-
-
-@include createClassesFromMap(overflow-y, $overflow);
-
-
-
 
 
 /*------------------------------------*\

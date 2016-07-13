@@ -41,10 +41,6 @@ bbjs.settings = {
 
     lazyload: {
         enable: true
-    },
-
-    owlCarousel: {
-        enable: true
     }
 
 };
@@ -66,9 +62,7 @@ bbjs.cache = {
     $html:   $("html"),
 
     $body:   $("body"),
-
-    $main:   $(".js-main"),
-
+    
     $window: $(window)
 
 };
@@ -87,8 +81,6 @@ Optional includes.
 */
 
 // @codekit-prepend "vendor/_lazyload.js";
-// @codekit-prepend "vendor/_owl-carousel.js";
-// @codekit-prepend "vendor/_fastclick.js";
 
 
 /*
