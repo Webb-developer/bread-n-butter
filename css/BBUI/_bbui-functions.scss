@@ -101,14 +101,14 @@ Determines whether to convert to min or max.
 @description
 Mixin to preserve aspect ratios.
 
-@param {number} width
 @param {number} height
+@param {number} width
 
 @example
 @include aspect-ratio(16, 9);
 */
 
-@mixin aspect-ratio($width, $height){
+@mixin aspect-ratio($height, $width){
     position: relative;
     padding-top: ($height / $width) * 100%;
 }
