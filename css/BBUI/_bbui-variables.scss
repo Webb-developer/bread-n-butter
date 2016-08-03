@@ -87,9 +87,7 @@ $media-query: (
 
 
 $font-family: (
-
     "base": unquote("Arial")
-
 );
 
 
@@ -109,21 +107,6 @@ $font-size: (
     "xl":   2.3rem
 
 );
-
-
-
-$letter-spacing: (
-
-    "none": 0,
-
-    "s":    0.03em,
-
-    "m":    0.06em,
-
-    "l":    0.09em,
-
-);
-
 
 
 $line-height: (
@@ -379,101 +362,6 @@ $drawer: (
 
 
 
-$button: (
-    
-    // All non-themed buttons have a default
-    // transparent color border.
-
-    "base": (
-        "border-width": 1px,
-        "height": 35px,
-        "line-height": 35px,
-        "padding": 0 1.2rem
-    ),
-
-
-    "short": (
-        "height": 25px,
-        "line-height": 25px
-    ),
-
-    "tall": (
-        "height": 45px,
-        "line-height": 45px
-    ),
-
-
-    "wide": (
-        "padding": 0 2rem
-    ),
-
-    "narrow": (
-        "padding": 0 0.6rem
-    )
-
-);
-
-
-
-/*
-Define some base titles.
-These styles will be extended to h1/.h1 - h4/.h4
-
-font shorthand:
-font-style font-variant font-weight font-size/line-height font-family
-*/
-
-$title: (
-
-    "m": (
-        "font-family": map-get($font-family, "base"),
-        "font-size": map-get($font-size, "m"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
-    ),
-
-    "l": (
-        "font-family": map-get($font-family, "base"),
-        "font-size": map-get($font-size, "l"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
-    ),
-
-    "xl": (
-        "font-family": map-get($font-family, "base"),
-        "font-size": map-get($font-size, "xl"),
-        "font-weight": normal,
-        "letter-spacing": inherit,
-        "line-height": map-get($line-height, "s")
-    )
-
-);
-
-
-
-$forms: (
-
-    "label": (
-        "color": map-get($color, "black-80"),
-        "margin": 0 0 4px 0
-    ),
-    
-    "input": (
-        "border": solid map-get($line-width, "s") rgba(0,0,0,0.2),
-        "padding": 0.3rem 0.8rem,
-        "color": map-get($color, "black-80"),
-
-        "hover": (
-            "border-color": rgba(0,0,0,0.5)
-        )
-    )
-
-);
-
-
-
 
 /*
 @description
@@ -481,43 +369,8 @@ See .overlay in bbui-objects.
 */
 
 $overlay:(
-    
     "padding": 2rem,
-
-    // Offset from all corners
-    "offset": 0,
-
     "background-color": rgba(255,255,255,0.85)
-
-);
-
-
-
-$modal:(
-
-    "z-index": 20,
-    
-    "padding": map-get($spacing, "s"),
-
-    "background-color": map-get($overlay, "background-color"),
-
-    "inner":(
-        "max-width": 500px,
-        "background-color": #fff,
-        "padding": map-get($spacing, "m"),
-        "border": none
-    )
-    
-);
-
-
-
-$load-bar: (
-
-    "background-color": map-get($color, "black"),
-
-    "height": 3px
-
 );
 
 
@@ -530,8 +383,6 @@ Hamburger icon
 $hamburger:(
 
     "width": 30px,
-
-    "padding": 1rem,
 
     "line":(
         "background-color": map-get($color, "black"),
@@ -547,46 +398,18 @@ $close-icon:(
 
     "padding": 10px,
 
-    "font-size": map-get($font-size, "l"),
-
     "color": map-get($color, "black"),
 
     "icon":(
-        "symbol": "×",
-        "line-height": 0.558em
+        "symbol": "×"
     )
-
-);
-
-
-
-$hr: (
-
-    "height": map-get($line-width, "s"),
-
-    "background-color": map-get($color, "black-20"),
-    
-    "margin": 0.4rem 0,
-    
-    "max-width": none
 
 );
 
 
 
 $dropdown: (
-
-    "content": (
-        "max-height": 300px,
-        "margin-top": map-get($spacing, "s")
-    ),
-
-    "icon": (
-        "right-offset": -15px,
-        "font-size": map-get($font-size, "m"),
-        "line-height": map-get($line-height, "s")
-    )
-
+    "max-height": 300px
 );
 
 
@@ -663,22 +486,6 @@ $text-transform: (
 $text-decoration: (
     "none":      none,
     "underline": underline,
-    "strike":    line-through
-);
-
-
-
-$overflow: (
-    "scroll": scroll,
-    "hidden": hidden
-);
-
-
-
-$vertical-align: (
-    "top":    top,
-    "bottom": bottom,
-    "middle": middle
 );
 
 
@@ -687,11 +494,4 @@ $float: (
     "none":  none,
     "left":  left,
     "right": right
-);
-
-
-
-$white-space: (
-    "nowrap": nowrap,
-    "pre":    pre
 );

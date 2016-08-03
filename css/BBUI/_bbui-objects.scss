@@ -32,61 +32,22 @@ Functionality for this is in _bbjs-utilities.js
     top:  0;
     left: 0;
     z-index: map-get($z-index, "max");
-    height: map-get($load-bar, "height");
-    background-color: map-get($load-bar, "background-color");
-    transform: translateZ(0);
-    transition: width map-get($transition-speed, "medium") map-get($transition-type, "linear");
+    background-color: map-get($color, "black");
+    height: 3px;
+    transition: width map-get($transition-speed, "medium") map-get($transition-type, "ease");
     pointer-events: none;
     
-    &.done{
-        opacity: 0;
+    // Most mobile browser's have a load bar by default.
+    @include touch{
+        display: none;
     }
 }
 
 
-
-
-/*------------------------------------*\
-    #FORMS
-\*------------------------------------*/
-
-
-
-/*
-@example [HTML]
-<label class='label'></label>
-<input class='input'></div>
-*/
-
-.label{
-    display: block;
-    color: map-deep-get($forms, "label" "color");
-    margin: map-deep-get($forms, "label" "margin");
+.load-bar--loaded{
+    opacity: 0;
 }
 
-
-.input{
-    display: block;
-    border: map-deep-get($forms, "input" "border");
-    padding: map-deep-get($forms, "input" "padding");
-    color: map-deep-get($forms, "input" "color");
-    transition: border-color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear");
-
-    &:hover,
-    &:focus{
-        border-color: map-deep-get($forms, "input" "hover" "border-color");
-    }
-}
-
-
-.input--error{
-    background-color: map-get($color, "red");
-}
-
-
-.input--success{
-    background-color: map-get($color, "green");
-}
 
 
 
@@ -127,6 +88,17 @@ Functionality for this is in _bbjs-utilities.js
 
 
 .close-icon{
+    
+    &:after{
+        content: map-deep-get($close-icon, "icon" "symbol");
+        display: block;
+    }
+}
+
+
+.closer{
+    @extend .close-icon;
+
     position: absolute;
     top:   0;
     right: 0;
@@ -135,16 +107,7 @@ Functionality for this is in _bbjs-utilities.js
     padding: map-get($close-icon, "padding");
     display: inline-block;
     cursor: pointer;
-    font-size: map-get($close-icon, "font-size");
-    color: map-get($close-icon, "color");
     z-index: 1;
-
-    &:after{
-        content: map-deep-get($close-icon, "icon" "symbol");
-        font-size: inherit;
-        line-height: map-deep-get($close-icon, "icon" "line-height");
-        display: block;
-    }
 
     &:hover{
         color: lighten(map-get($close-icon, "color"), 50%);
@@ -153,90 +116,15 @@ Functionality for this is in _bbjs-utilities.js
     &:active{
         color: lighten(map-get($close-icon, "color"), 25%);
     }
-
 }
 
 
-.close-icon--to-left{
+.closer--to-left{
     right: inherit;
     left: 0;
 }
 
 
-
-
-
-/*------------------------------------*\
-    #RULES
-\*------------------------------------*/
-
-
-
-/*
-@example [HTML]
-<hr class='hr  hr--medium'>
-*/
-
-.hr{
-    border:  none;
-    outline: none;
-    height: map-get($hr, "height");
-    display: block;
-    background-color: map-get($hr, "background-color");
-    margin: map-get($hr, "margin");
-    max-width: map-get($hr, "max-width");
-}
-
-
-.hr--medium{
-    height: map-get($line-width, "m");
-}
-
-
-.hr--thick{
-    height: map-get($line-width, "l");
-}
-
-
-
-
-/*------------------------------------*\
-    #LISTS
-\*------------------------------------*/
-
-
-
-/*
-@example [HTML]
-<ul>
-    <li class='list-item'></li>
-    <li class='list-item'></li>
-</ul>
-
-<ul>
-    <li class='list-item--vertical'></li>
-    <li class='list-item--vertical'></li>
-</ul>
-*/
-
-.list-item{
-    display: inline-block;
-    margin-right: map-get($spacing, "s");
-
-    &:nth-last-child(1){
-        margin-right: 0;
-    }
-}
-
-
-.list-item--vertical{
-    display: block;
-    margin-bottom: map-get($spacing, "s");
-
-    &:nth-last-child(1){
-        margin-bottom: 0;
-    }
-}
 
 
 
@@ -249,130 +137,18 @@ Functionality for this is in _bbjs-utilities.js
 
 /*
 @example [HTML]
-<button class="button  button--black  button--tall"></button>
+<button class="button"></button>
 */
 
 .button{
     cursor: pointer;
-    border: solid map-deep-get($button, "base" "border-width") transparent;
     display: inline-block;
     white-space: nowrap;
     text-align: center;
-    padding: map-deep-get($button, "base" "padding");
-    height: map-deep-get($button, "base" "height");
-    line-height: map-deep-get($button, "base" "line-height");
 
     &[disabled]{
-        @extend %disabled;
+        @extend .disabled;
     }
-}
-
-
-
-.button--short{
-    height: map-deep-get($button, "short" "height");
-    line-height: map-deep-get($button, "short" "line-height");
-}
-
-
-.button--tall{
-    height: map-deep-get($button, "tall" "height");
-    line-height: map-deep-get($button, "tall" "line-height");
-}
-
-
-
-.button--narrow{
-    padding: map-deep-get($button, "narrow" "padding");
-}
-
-
-.button--wide{
-    padding: map-deep-get($button, "wide" "padding");
-}
-
-
-
-.button--black{
-    background-color: map-get($color, "black");
-    border-color:     map-get($color, "black");
-    color: map-get($color, "white");
-    transition: background-color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear"), color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear");
-
-    &:hover{
-        background-color: map-get($color, "white");
-        color: map-get($color, "black");
-    }
-
-    &:active,
-    &.active{
-        background-color: map-get($color, "black");
-        color: map-get($color, "white");
-    }
-}
-
-
-.button--white{
-    background-color: map-get($color, "white");
-    color:        map-get($color, "black");
-    border-color: map-get($color, "black");
-    transition: background-color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear"), color map-get($transition-speed, "extra-fast") map-get($transition-type, "linear");
-
-    &:hover{
-        background-color: map-get($color, "black");
-        color: map-get($color, "white");
-    }
-
-    &:active,
-    &.active{
-        background-color: map-get($color, "white");
-        color: map-get($color, "black");
-    }
-}
-
-
-
-
-
-/*------------------------------------*\
-    #OVERLAYS
-\*------------------------------------*/
-
-
-
-/*
-@description
-Misc overlay. Requires height.
-
-@example [HTML]
-<div class="overlay__parent">
-    <div class="overlay">Overlay Content</div>
-</div>
-
-@example [HTML]
-<div class="overlay--fullscreen">Fullscreen overlay Content</div>
-*/
-
-.overlay{
-    @include overlay(false, false);
-    z-index: 1;
-    
-    @include ifTouch{
-        position: relative;
-        opacity: 1;
-        visibility: visible;
-        padding: 0;
-    }
-}
-
-
-.overlay__parent{
-    @include overlay-parent;
-}
-
-
-.overlay--fullscreen{
-    @include overlay(true);
 }
 
 
@@ -505,25 +281,12 @@ Apply a js-modal class to add functionality.
 */
 
 .modal{
-    background-color: map-get($modal, "background-color");
-    z-index: map-get($modal, "modal");
-    position: fixed;
-    top:    0;
-    left:   0;
-    right:  0;
-    bottom: 0;
-    padding: map-get($modal, "padding");
-    display: none;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    @include cover(true);
+    z-index: map-get($z-index, "max");
 }
 
 
 .modal__inner{
-    background-color: map-deep-get($modal, "inner" "background-color");
-    padding: map-deep-get($modal, "inner" "padding");
-    border: map-deep-get($modal, "inner" "border");
-    max-width: map-deep-get($modal, "inner" "max-width");
     width: 100%;
     margin-left:  auto;
     margin-right: auto;
@@ -573,9 +336,7 @@ Simple content dropdowns
     &:after{
         content: attr(data-icon);
         position: absolute;
-        right: map-deep-get($dropdown, "icon" "right-offset");
-        font-size: map-deep-get($dropdown, "icon" "font-size");
-        line-height: map-deep-get($dropdown, "icon" "line-height");
+        right: 0;
         top:    0;
         bottom: 0;
     }
@@ -583,19 +344,20 @@ Simple content dropdowns
 
 
 .dropdown__content{
-    display: none;
-    margin-top: map-get($dropdown, "content" "margin-top");
-    max-height: map-get($dropdown, "content" "max-height");
-    overflow-x: hidden;
-    overflow-y: auto;
+    max-height: 0;
+    overflow: hidden;
     -webkit-overflow-scrolling: touch;
+    transition: map-get($transition-speed, "medium") map-get($transition-type, "ease");
 }
 
 
-.dropdown--toggled{
-
+.dropdown__toggled,
+.dropdown--hover:hover{
+    
     .dropdown__content{
-        display: block;
+        max-height: map-get($dropdown, "max-height");
+        overflow-x: hidden;
+        overflow-y: auto;
     }
     
     .dropdown__summary{
@@ -603,42 +365,6 @@ Simple content dropdowns
         &:after{
             content: attr(data-icon-active);
         }
-    }
-}
-
-
-
-
-/*------------------------------------*\
-    #TABS
-\*------------------------------------*/
-
-
-
-/*
-@description
-Tabs functionality is in bbjs-utilities.js
-
-@example [HTML]
-<div class='tab__summary' data-tab='0' data-icon="+" data-icon-active="-">Toggle</div>
-<div class='tab__content' data-tab='0'>Im some content</div>
-*/
-
-.tab__summary{
-    @extend .a;
-    @extend .dropdown__summary;
-}
-
-
-.tab__content{
-    @extend .dropdown__content;
-}
-
-
-.tab__summary--toggled{
-
-    &:after{
-        content: attr(data-icon-active);
     }
 }
 
@@ -674,7 +400,10 @@ Slide out from left or right drawers.
     transform: translateZ(0);
     -webkit-overflow-scrolling: touch;
     width: map-get($drawer, "width");
-    @extend .hidden-scrollbar;
+    
+    @include touch{
+        position: absolute;
+    }
 }
 
 
@@ -690,7 +419,9 @@ Slide out from left or right drawers.
 
 // The overlay that appears when a drawer is open
 .drawer__overlay{
-    @include overlay;
+    @include cover(true);
+    opacity: 0;
+    visibility: hidden;
     z-index: map-get($z-index, "drawerOverlay");
     transition: opacity map-get($drawer, "transition");
     background: map-deep-get($drawer, "overlay" "background");
@@ -699,7 +430,7 @@ Slide out from left or right drawers.
 
 .drawer--left--toggled,
 .drawer--right--toggled{
-    @extend %lock-scroll;
+    @extend .lock-scroll;
 
     .drawer__overlay{
         visibility: visible;

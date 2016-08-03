@@ -19,9 +19,6 @@ they do their job. Get the hint?
 @include createClassesFromMap(font-family, $font-family, false, ff);
 
 
-@include createClassesFromMap(letter-spacing, $letter-spacing, false, ls);
-
-
 @include createClassesFromMap(font-size, $font-size, false, fs);
 
 
@@ -41,34 +38,6 @@ they do their job. Get the hint?
 
 
 @include createClassesFromMap(text-transform, $text-transform, false, tt);
-
-
-
-
-/*------------------------------------*\
-    #CSS3
-\*------------------------------------*/
-
-
-
-.rotate--90{
-    transform: rotate(90deg) !important;
-}
-
-
-.rotate--180{
-    transform: rotate(180deg) !important;
-}
-
-
-.rotate---90{
-    transform: rotate(-90deg) !important;
-}
-
-
-.rotate---180{
-    transform: rotate(-180deg) !important;
-}
 
 
 
@@ -218,34 +187,6 @@ they do their job. Get the hint?
 
 
 @include createClassesFromMap(float, $float, true);
-
-
-@include createClassesFromMap(vertical-align, $vertical-align);
-
-
-
-
-/*------------------------------------*\
-    #CONTAINMENT
-\*------------------------------------*/
-
-
-
-@include createClassesFromMap(overflow, $overflow);
-
-
-@include createClassesFromMap(overflow-x, $overflow);
-
-
-@include createClassesFromMap(overflow-y, $overflow);
-
-
-@include createClassesFromMap(white-space, $white-space);
-
-
-.overflow-touch{
-    -webkit-overflow-scrolling: touch !important;
-}
 
 
 

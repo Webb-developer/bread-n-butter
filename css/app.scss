@@ -3,7 +3,7 @@
 
 @guide
 Use css autoprefixer when compiling
-with browser string: "last 4 versions"
+with browser string: "last 3 versions"
 
 * CONTENTS
 *
@@ -28,10 +28,6 @@ with browser string: "last 4 versions"
 
 
 @import "BBUI/bbui-app.scss";
-
-@import "vendor/owl-carousel.scss";
-
-@import "fonts.scss";
 
 @import "variables.scss";
 

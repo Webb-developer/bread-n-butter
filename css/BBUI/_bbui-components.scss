@@ -30,39 +30,6 @@ they help form them.
 }
 
 
-/*
-See bbui-functions.scss for usage.
-*/
-
-@include createGrid(2, 3, "grid--2-4"){
-
-    @include mq("s"){
-
-        .grid--2-4__item{
-            $widthOffset: 3;
-            $cols: 4;
-
-            width: (100% / $cols) - $widthOffset;
-            margin-bottom: (100 - ((100% / $cols - $widthOffset) * $cols)) / ($cols - 1);
-
-            &:nth-last-of-type(3),
-            &:nth-last-of-type(4){
-                margin-bottom: 0;
-            }
-        }
-    }
-
-}
-
-
-/*
-See bbui-functions.scss for usage.
-*/
-
-@include createGridUnits(4, map-get($media-query-values, "m"));
-
-
-
 
 
 /*------------------------------------*\
@@ -95,15 +62,6 @@ See bbui-functions.scss for usage.
 
 
 
-.display-center-flex{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    align-items: center;
-}
-
-
-
 .hidden{
     display: none !important;
     speak: none;
@@ -131,57 +89,10 @@ See bbui-functions.scss for usage.
 
 
 
-
-/*------------------------------------*\
-    #TEXT
-\*------------------------------------*/
-
-
-
-.clip-text{
-    white-space: nowrap;
-    text-overflow: clip;
-    overflow-x: hidden;
-}
-
-
-.clip-text--ellipsis{
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow-x: hidden;
-}
-
-
-
-
-
 /*------------------------------------*\
     #MEDIA
 \*------------------------------------*/
 
-
-
-.bg-image--cover--center{
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: 50%;
-}
-
-
-
-.aspect-ratio--16-9{
-    @include aspect-ratio(16, 9);
-}
-
-
-.aspect-ratio--5-4{
-    @include aspect-ratio(5, 4);
-}
-
-
-.aspect-ratio--1-1{
-    @include aspect-ratio(1, 1);
-}
 
 
 .aspect-ratio__object{
@@ -212,31 +123,21 @@ See bbui-functions.scss for usage.
 }
 
 
-%disabled{
-    opacity: 0.5;
-    pointer-events: none;
-}
-
 
 // Expects to be on the root element.
 .lock-scroll{
-    height: 100%;
-    overflow-y: hidden;
+    overflow: hidden;
 
-    body{
+    &.touchevents:not(.desktop){
         height: 100%;
-        overflow-y: hidden;
+
+        body{
+            height: 100%;
+        }
     }
-}
-
-
-%lock-scroll{
-    height: 100%;
-    overflow-y: hidden;
 
     body{
-        height: 100%;
-        overflow-y: hidden;
+        overflow: hidden;
     }
 }
 

@@ -7,7 +7,6 @@ Smooth anchor link scrolling.
 
     'use strict';
 
-
     // a href contains #something not just #
     $('a[href*="#"]:not([href="#"])').on("click", function(e){
 
@@ -126,65 +125,6 @@ the window height.
 
 
 /**
-@description
-This function adds toggle functionality to tabs.
-Only one tab can be open at a time.
-
-@example
-<div class='tab__summary' data-tab='0'>Toggle</div>
-<div class='tab__content ' data-tab='0'>Im some content</div>
-*/
-
-(function(){
-
-    'use strict';
-
-
-    var $tab     = $(".tab__summary"),
-        $content = $(".tab__content");
-
-    var activeClass = "tab__summary--toggled";
-
-
-    $tab.on("click", function(){
-
-        // Save our this reference.
-        var $self = $(this);
-
-
-        if($self.hasClass(activeClass)){
-
-            // Remove any active states from clicked tab.
-            $self.removeClass(activeClass);
-
-            $(".tab__content[data-tab=" + $self.data("tab") + "]")
-            .css("display", "none");
-
-        } else {
-
-            // Remove any active states from all tabs.
-            $tab.removeClass(activeClass);
-
-            // Hide any open tabs.
-            $content.css("display", "block");
-
-            // Add active states to clicked tab.
-            $self.addClass(activeClass);
-
-            // Reveal the tab.
-            $(".tab__content[data-tab=" + $self.data("tab") + "]")
-            .css("display", "block");
-
-        }
-
-    });
-
-})();
-
-
-
-
-/**
 @name load-progress-bar
 
 @description
@@ -192,13 +132,12 @@ This function updates a given element's width
 every x ms/s, to simulate a progress bar.
 
 @example
-<div class='load-bar'></div>
+<div class='load-bar' role='progressbar'></div>
 */
 
 (function(){
 
     'use strict';
-
 
     /*
     The element whose width we will
@@ -207,7 +146,7 @@ every x ms/s, to simulate a progress bar.
     var $progress = $(".load-bar");
 
 
-    if($progress.length){
+    if($progress.length && !bbjs.itHasTouch(true)){
 
         var counter = {
 
@@ -263,7 +202,7 @@ every x ms/s, to simulate a progress bar.
         and clear the interval.
         */
         bbjs.cache.$window.on("load", function() {
-            $progress.css("width", "100%").addClass('done');
+            $progress.css("width", "100%").addClass('load-bar--loaded');
             clearInterval(interval);
         });
 

@@ -288,14 +288,14 @@ table {
 
 
 
-iframe,
-img{
-    vertical-align: middle;
+iframe{
+    border: none;
 }
 
 
-iframe{
-    border: 0;
+img{
+    vertical-align: middle;
+    border: none;
 }
 
 
@@ -321,11 +321,11 @@ textarea{
     outline:    none;
     border:     none;
     appearance: none;
-    font:           inherit;
-    letter-spacing: inherit;
-    color:          inherit;
-    background: #fff;
+    font:  inherit;
+    color: inherit;
+    background: transparent;
     border-radius: 0;
+    touch-action: manipulation;
 }
 
 
@@ -351,7 +351,10 @@ textarea{
 
 
 
-.touchevents:not(.desktop){
+// Device classes require device.js.
+// http://matthewhudson.me/projects/device.js/
+
+.ios{
 
     input:not([type='submit']),
     select,
@@ -367,7 +370,7 @@ select{
 }
 
 
-select::-ms-expand {
+select::-ms-expand{
     display: none;
 }
 
@@ -402,13 +405,9 @@ video{
 
 
 a, .a{
-    color: map-get($color, "black-60");
-    text-decoration: none;
     cursor: pointer;
-
-    &:hover{
-        color: inherit;
-    }
+    color: inherit;
+    touch-action: manipulation;
 }
 
 
@@ -423,6 +422,7 @@ strong{
 }
 
 
+
 /*
 Use .font-family--bold for true bold
 when using custom fonts. Or use .font-weight--700
@@ -431,6 +431,12 @@ for regular font weight styling.
 
 b{
     font-weight: 700;
+}
+
+
+
+table{
+    width: 100%;
 }
 
 
@@ -451,45 +457,6 @@ h1, h2, h3, h4, h5, h6{
 
 
 /*
-@example
-<h1></h1>
-<h4 class='h2'></h4>
-*/
-
-.h1, h1{
-    font-family:    map-deep-get($title, "xl" "font-family");
-    font-size:      map-deep-get($title, "xl" "font-size");
-    font-weight:    map-deep-get($title, "xl" "font-weight");
-    letter-spacing: map-deep-get($title, "xl" "letter-spacing");
-    line-height:    map-deep-get($title, "xl" "line-height");
-
-    // @include mq("m"){
-    //     font-size: #{adjust-font-size(map-deep-get($title, "xl" "font-size"), 25%)}rem;
-    // }
-}
-
-
-.h2, h2{
-    font-family:    map-deep-get($title, "l" "font-family");
-    font-size:      map-deep-get($title, "l" "font-size");
-    font-weight:    map-deep-get($title, "l" "font-weight");
-    letter-spacing: map-deep-get($title, "l" "letter-spacing");
-    line-height:    map-deep-get($title, "l" "line-height");
-}
-
-
-.h3, h3{
-    font-family:    map-deep-get($title, "m" "font-family");
-    font-size:      map-deep-get($title, "m" "font-size");
-    font-weight:    map-deep-get($title, "m" "font-weight");
-    letter-spacing: map-deep-get($title, "m" "letter-spacing");
-    line-height:    map-deep-get($title, "m" "line-height");
-}
-
-
-
-
-/*
 Use .ff--italic class for true italic
 when using custom fonts.
 */
@@ -502,24 +469,23 @@ em, .em{
 
 
 html{
-    // to prevent scroll when a drawer is open
+    // prevent overflow from drawers
     overflow-x: hidden;
     text-size-adjust: 100%;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     font-size: 100%;
-    line-height: map-get($line-height, "m");
-    touch-action: manipulation;
 }
 
 
 
 body{
-    // to prevent scroll when a drawer is open
+    // prevent overflow from drawers
     overflow-x: hidden;
     word-wrap: break-word;
     font-family: map-get($font-family, "base");
     font-size: map-get($font-size, "base");
-    color: map-get($color, "black");
+    line-height: map-get($line-height, "m");
+    position: relative;
 }

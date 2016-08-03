@@ -20,7 +20,7 @@ A key in our $media-query map that we are fetching.
 
 @example
 .hello{
-    @include query("m"){
+    @include mq("m"){
         color: red;
     }
 }
@@ -46,73 +46,9 @@ A key in our $media-query map that we are fetching.
 
 
 
-/*
-@name strip-unit
-
-@description
-Remove the unit of a length
-
-@param {number} number
-Number to remove unit from
-
-@return {number}
-Unitless number
-*/
-@function strip-unit($number) {
-    @if type-of($number) == 'number' and not unitless($number) {
-        @return $number / ($number * 0 + 1);
-    }
-
-    @return $number;
-}
-
-
-
-
 
 /*
-@name adjust-font-size
-
-@description
-Adjust the font size of a number by giving it a percent
-change.
-
-@param {*} input
-The input font size value, with or without units.
-
-@param {number} percentChange
-The percent change.
-
-@param {boolean} grow
-Determines whether to return the
-percent increase or decrease.
-
-@return {number}
-The updated number without a unit.
-*/
-@function adjust-font-size($input, $percentChange, $grow: true){
-
-    $percentChange: strip-unit($percentChange / 100);
-    $unitLessSize: strip-unit($input);
-    $result: $unitLessSize * $percentChange;
-    $return: 0;
-
-    @if($grow == true){
-        $return: $result + $unitLessSize;
-    } @else {
-        $return: $unitLessSize - $result;
-    }
-
-    @return $return;
-
-}
-
-
-
-
-
-/*
-@name convertMQValue
+@name convertMQ
 
 @description
 Function to convert a media query value from our 
@@ -129,13 +65,13 @@ Determines whether to convert to min or max.
 
 @example
 .hello{
-    @media (max-width: convertMQValue("s")){
+    @media (max-width: convertMQ("s")){
         color: blue;
     }
 }
 */
 
-@function convertMQValue($MQValue, $toMax: true){
+@function convertMQ($MQValue, $toMax: true){
 
     @if (map_has_key($media-query-values, $MQValue)){
 
@@ -165,14 +101,14 @@ Determines whether to convert to min or max.
 @description
 Mixin to preserve aspect ratios.
 
-@param {number} width
 @param {number} height
+@param {number} width
 
 @example
 @include aspect-ratio(16, 9);
 */
 
-@mixin aspect-ratio($width, $height){
+@mixin aspect-ratio($height, $width){
     position: relative;
     padding-top: ($height / $width) * 100%;
 }
@@ -182,120 +118,37 @@ Mixin to preserve aspect ratios.
 
 
 /*
-@name overlay
+@name cover
 
 @description
-Mixin to create an overlay.
-The overlay can be toggled with a class
-(class--toggled) or by hover. If you're
-toggling via hover, you'll need to wrap
-the overlay. See the overlay-parent mixin below.
+Mixin to create a cover.
 
-@param {boolean} hidden
-Determines whether to hide the overlay
-with display or with opacity and
-visiblility so we can transition.
-
-@example
-.overlay{
-    @include overlay(false, false);
-}
+@param {boolean} fixed
+Determines whether to display the cover
+with a fixed or absolute position.
 */
 
-@mixin overlay($hidden: false, $fixed: true){
-    
-    @if ($hidden == true){
-        display: none !important;
-    } @else {
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity map-get($transition-speed, "fast") map-get($transition-type, "linear");
-    }
+@mixin cover($fixed: false){
 
     @if ($fixed == true){
         position: fixed;
         transform: translateZ(0);
-        top:    0;
-        left:   0;
-        right:  0;
-        bottom: 0;
     } @else {
         position: absolute;
-        left:   map-get($overlay, "offset");
-        right:  map-get($overlay, "offset");
-        top:    map-get($overlay, "offset");
-        bottom: map-get($overlay, "offset");
     }
 
-    background-color: map-get($overlay, "background-color");
+    top:    0;
+    left:   0;
+    right:  0;
+    bottom: 0;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    z-index: map-get($z-index, "overlay");
-    padding: map-get($overlay, "padding");
-
-    &--toggled{
-
-        @if ($hidden == true){
-            display: block !important;
-        } @else {
-            opacity: 1;
-            visibility: visible;
-        }
-
-    }
-}
-
-
-
-
-
-/*
-@name overlay-parent
-
-@description
-Mixin to show an overlay. The overlay
-must be a child of the element that this mixin
-is applied to.
-
-@param {boolean} hidden
-Determines whether to show the overlay
-with display or with opacity and
-visiblility so we can transition.
-
-@param {string} child
-The class name of the overlay that we
-are trying to show. This should be a child
-of the element that you are applying this mixin to.
-
-@example
-.overlay__parent{
-    @include overlay-parent(false, myOverlay);
-}
-
-.myOverlay{
-    @include overlay(false, false);
-}
-
-This will reveal .myOverlay when we hover over .overlay__parent.
-*/
-
-@mixin overlay-parent($hidden: false, $child: overlay){
-    position: relative;
-    display: block;
     
-    &:hover{
-        
-        & .#{$child}{
-            @if ($hidden == true){
-                display: block !important;
-            } @else {
-                opacity: 1;
-                visibility: visible;
-            }
-        }
+    // Fixed doesn't play well on touch.
+    @include touch{
+        position: absolute;
     }
-
 }
 
 
@@ -331,7 +184,7 @@ a width of 47% each ((100 / 2) - 3)
 With changing number of columns.
 @include createGrid(2, 3, "grid--2-4"){
 
-    @include query("m"){
+    @include mq("m"){
 
         .grid--2-4__item{
             width: 22%;
@@ -382,72 +235,6 @@ With changing number of columns.
     }
 
 }
-
-
-
-
-
-/*
-@name createGridUnits
-
-@description
-Mixin to create grid units. Grid units are just classes with
-a given width and a margin. The idea behind it is to have
-pieces that you can place together to form a full width row
-with a gutter included.
-
-@param {number} gutter
-the size of the gutter. Don't include
-the unit, it will be outputted as a percentage.
-
-@param {number} MQ
-the min width media query
-for the styles to take effect.
-
-@example [SCSS]
-@include createGridUnits(1.53846154, 750px);
-
-@example [HTML]
-<div class='grid-unit--7'>Nav</div>
-<div class='grid-unit--2'>Logo</div>
-<div class='grid-unit--7'>Cart</div>
-*/
-
-@mixin createGridUnits($gutter, $MQ){
-
-    $base: 100 - ($gutter * 2);
-    $count: $base / ($gutter * 2);
-    
-    @media (min-width: #{$MQ}){
-        
-        [class*="grid-unit"]{
-            margin-left: $gutter + 0%;
-            float: left;
-        }
-    
-        @while $base > 0{
-            
-            .grid-unit--offset-#{round($count)}{
-                margin-left: $base + 0%;
-            }
-
-            .grid-unit--#{round($count)}{
-                width: $base + 0%;
-            }
-                
-            $base: $base - ($gutter * 2);
-            $count: $base / ($gutter * 2);
-
-        }
-
-        .grid-unit--offset-gutter{
-            margin-left: $gutter + 0%;
-        }
-
-    }
-
-}
-
 
 
 
@@ -606,7 +393,7 @@ excluding desktop.
 }
 */
 
-@mixin ifTouch{
+@mixin touch{
 
     $selector: &;
     
