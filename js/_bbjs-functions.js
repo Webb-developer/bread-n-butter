@@ -62,7 +62,6 @@ bbjs.itHasTouch = function(ignoreDesktopTouch){
 
     'use strict';
 
-
     if(ignoreDesktopTouch){
         return bbjs.cache.$html.hasClass("touchevents") && !bbjs.cache.$html.hasClass("desktop");
     } else {
@@ -88,7 +87,6 @@ bbjs.animateScroll = function(pos, speed){
 
     'use strict';
     
-
     if(!isNaN(pos)){
 
         bbjs.cache.$body.add(bbjs.cache.$html).animate({
@@ -119,7 +117,6 @@ uniqueArray(myArray);
 bbjs.uniqueArray = function(array){
 
     'use strict';
-
 
     return array.filter(function(el, index, arr) {
         return index === arr.indexOf(el);

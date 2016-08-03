@@ -288,7 +288,11 @@ table {
 
 
 
-iframe,
+iframe{
+    border: none;
+}
+
+
 img{
     vertical-align: middle;
     border: none;
@@ -317,9 +321,8 @@ textarea{
     outline:    none;
     border:     none;
     appearance: none;
-    font:           inherit;
-    letter-spacing: inherit;
-    color:          inherit;
+    font:  inherit;
+    color: inherit;
     background: transparent;
     border-radius: 0;
     touch-action: manipulation;
@@ -402,22 +405,9 @@ video{
 
 
 a, .a{
-    text-decoration: underline;
     cursor: pointer;
     color: inherit;
     touch-action: manipulation;
-
-    &:hover{
-        opacity: 0.7;
-    }
-
-    &.plain{
-        text-decoration: none;
-
-        &:hover{
-            opacity: initial;
-        }
-    }
 }
 
 
@@ -463,8 +453,6 @@ h1, h2, h3, h4, h5, h6{
     font-weight: normal;
     font-size: inherit;
 }
-
-
 
 
 

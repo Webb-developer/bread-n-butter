@@ -20,7 +20,7 @@ A key in our $media-query map that we are fetching.
 
 @example
 .hello{
-    @include query("m"){
+    @include mq("m"){
         color: red;
     }
 }
@@ -48,7 +48,7 @@ A key in our $media-query map that we are fetching.
 
 
 /*
-@name convertMQValue
+@name convertMQ
 
 @description
 Function to convert a media query value from our 
@@ -65,13 +65,13 @@ Determines whether to convert to min or max.
 
 @example
 .hello{
-    @media (max-width: convertMQValue("s")){
+    @media (max-width: convertMQ("s")){
         color: blue;
     }
 }
 */
 
-@function convertMQValue($MQValue, $toMax: true){
+@function convertMQ($MQValue, $toMax: true){
 
     @if (map_has_key($media-query-values, $MQValue)){
 
@@ -118,36 +118,17 @@ Mixin to preserve aspect ratios.
 
 
 /*
-@name overlay
+@name cover
 
 @description
-Mixin to create an overlay.
-The overlay can be toggled with a class
-(class--toggled) or by hover. If you're
-toggling via hover, you'll need to wrap
-the overlay. See the overlay-parent mixin below.
+Mixin to create a cover.
 
-@param {boolean} hidden
-Determines whether to hide the overlay
-with display or with opacity and
-visiblility so we can transition.
-
-@example
-.overlay{
-    @include overlay(false, false);
-}
+@param {boolean} fixed
+Determines whether to display the cover
+with a fixed or absolute position.
 */
 
-@mixin overlay($fixed: true){
-    $overlaySelector: &;
-
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity map-get($transition-speed, "fast") map-get($transition-type, "ease");
-    top:    0;
-    left:   0;
-    right:  0;
-    bottom: 0;
+@mixin cover($fixed: false){
 
     @if ($fixed == true){
         position: fixed;
@@ -156,77 +137,18 @@ visiblility so we can transition.
         position: absolute;
     }
 
-    background-color: map-get($overlay, "background-color");
+    top:    0;
+    left:   0;
+    right:  0;
+    bottom: 0;
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    z-index: map-get($z-index, "overlay");
-    padding: map-get($overlay, "padding");
     
     // Fixed doesn't play well on touch.
-    @include ifTouch{
+    @include touch{
         position: absolute;
     }
-
-    &--toggled{
-        @extend .lock-scroll;
-
-        #{$overlaySelector}{
-            opacity: 1;
-            visibility: visible;
-        }
-
-    }
-}
-
-
-
-
-
-
-
-/*
-@name overlay-parent
-
-@description
-Mixin to show an overlay. The overlay
-must be a child of the element that this mixin
-is applied to.
-
-@param {boolean} hidden
-Determines whether to show the overlay
-with display or with opacity and
-visiblility so we can transition.
-
-@param {string} child
-The class name of the overlay that we
-are trying to show. This should be a child
-of the element that you are applying this mixin to.
-
-@example
-.overlay__parent{
-    @include overlay-parent(false, myOverlay);
-}
-
-.myOverlay{
-    @include overlay(false, false);
-}
-
-This will reveal .myOverlay when we hover over .overlay__parent.
-*/
-
-@mixin overlay-parent($child: overlay){
-    position: relative;
-    display: block;
-    
-    &:hover{
-        
-        & .#{$child}{
-            opacity: 1;
-            visibility: visible;
-        }
-    }
-
 }
 
 
@@ -262,7 +184,7 @@ a width of 47% each ((100 / 2) - 3)
 With changing number of columns.
 @include createGrid(2, 3, "grid--2-4"){
 
-    @include query("m"){
+    @include mq("m"){
 
         .grid--2-4__item{
             width: 22%;
@@ -471,7 +393,7 @@ excluding desktop.
 }
 */
 
-@mixin ifTouch{
+@mixin touch{
 
     $selector: &;
     

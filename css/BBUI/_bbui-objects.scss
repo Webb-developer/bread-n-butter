@@ -38,7 +38,7 @@ Functionality for this is in _bbjs-utilities.js
     pointer-events: none;
     
     // Most mobile browser's have a load bar by default.
-    @include ifTouch{
+    @include touch{
         display: none;
     }
 }
@@ -149,51 +149,6 @@ Functionality for this is in _bbjs-utilities.js
     &[disabled]{
         @extend .disabled;
     }
-}
-
-
-
-
-
-/*------------------------------------*\
-    #OVERLAYS
-\*------------------------------------*/
-
-
-
-/*
-@description
-Misc overlay. Requires height.
-
-@example [HTML]
-<div class="overlay__parent">
-    <div class="overlay">Overlay Content</div>
-</div>
-
-@example [HTML]
-<div class="overlay--fullscreen">Fullscreen overlay Content</div>
-*/
-
-.overlay{
-    @include overlay(false);
-    z-index: 1;
-    
-    @include ifTouch{
-        position: relative;
-        opacity: 1;
-        visibility: visible;
-        padding: 0;
-    }
-}
-
-
-.overlay__parent{
-    @include overlay-parent;
-}
-
-
-.overlay--fullscreen{
-    @include overlay;
 }
 
 
@@ -326,15 +281,8 @@ Apply a js-modal class to add functionality.
 */
 
 .modal{
+    @include cover(true);
     z-index: map-get($z-index, "max");
-    position: fixed;
-    top:    0;
-    left:   0;
-    right:  0;
-    bottom: 0;
-    display: none;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
 }
 
 
@@ -453,7 +401,7 @@ Slide out from left or right drawers.
     -webkit-overflow-scrolling: touch;
     width: map-get($drawer, "width");
     
-    @include ifTouch{
+    @include touch{
         position: absolute;
     }
 }
@@ -471,7 +419,9 @@ Slide out from left or right drawers.
 
 // The overlay that appears when a drawer is open
 .drawer__overlay{
-    @include overlay;
+    @include cover(true);
+    opacity: 0;
+    visibility: hidden;
     z-index: map-get($z-index, "drawerOverlay");
     transition: opacity map-get($drawer, "transition");
     background: map-deep-get($drawer, "overlay" "background");

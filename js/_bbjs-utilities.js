@@ -7,7 +7,6 @@ Smooth anchor link scrolling.
 
     'use strict';
 
-
     // a href contains #something not just #
     $('a[href*="#"]:not([href="#"])').on("click", function(e){
 
@@ -133,13 +132,12 @@ This function updates a given element's width
 every x ms/s, to simulate a progress bar.
 
 @example
-<div class='load-bar'></div>
+<div class='load-bar' role='progressbar'></div>
 */
 
 (function(){
 
     'use strict';
-
 
     /*
     The element whose width we will
