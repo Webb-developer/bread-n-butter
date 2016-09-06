@@ -60,13 +60,13 @@ $media-query-values: (
 
 @description
 WARNING: Adding too many media queries here will
-dramatically increase the file size. Please check 
+dramatically increase the file size. Please check
 the minified file size if you are adding additional
 media queries.
 */
 
 $media-query: (
-    
+
     "s":  unquote('(min-width: #{map-get($media-query-values, "s")})'),
 
     "m":  unquote('(min-width: #{map-get($media-query-values, "m")})'),
@@ -177,7 +177,7 @@ $spacing--padding: map_remove($spacing, "auto");
 
 
 /*
-Lighter variations of the 
+Lighter variations of the
 $base-black color will be created.
 */
 
@@ -185,7 +185,7 @@ $base-black: #000;
 
 
 $color: (
-    
+
     "black": $base-black,
 
     "black-80": lighten($base-black, 20%),
@@ -195,7 +195,7 @@ $color: (
     "black-40": lighten($base-black, 60%),
 
     "black-20": lighten($base-black, 80%),
-    
+
     "white": #fff,
 
     "green": #007e00,
@@ -308,7 +308,7 @@ $transition-type: (
     "circ":   unquote("cubic-bezier(0.785, 0.135, 0.15, 0.86)"),
 
     "back":   unquote("cubic-bezier(0.68, -0.55, 0.265, 1.55)")
-    
+
 );
 
 
@@ -324,7 +324,7 @@ $transition-speed: (
     "fast":       0.2s,
 
     "extra-fast": 0.1s
-    
+
 );
 
 
@@ -450,7 +450,7 @@ $z-index: (
 @name generated classes
 
 @description
-These values are less likely to be modifed 
+These values are less likely to be modifed
 we'll put them at the bottom of the file.
 They are just a quicker way to create and edit CSS classes.
 */
@@ -479,13 +479,6 @@ $text-transform: (
     "capitalize": capitalize,
     "uppercase":  uppercase,
     "none":       none
-);
-
-
-
-$text-decoration: (
-    "none":      none,
-    "underline": underline,
 );
 
 

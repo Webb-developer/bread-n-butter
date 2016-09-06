@@ -19,22 +19,10 @@ they do their job. Get the hint?
 @include createClassesFromMap(font-family, $font-family, false, ff);
 
 
-@include createClassesFromMap(font-size, $font-size, false, fs);
-
-
-@include createClassesFromMap(line-height, $line-height, false, lh);
-
-
 @include createClassesFromMap(color, $color);
 
 
-@include createClassesFromMap(background-color, $color, false, bgc);
-
-
 @include createClassesFromMap(text-align, $text-align, false, ta);
-
-
-@include createClassesFromMap(text-decoration, $text-decoration, false, td);
 
 
 @include createClassesFromMap(text-transform, $text-transform, false, tt);
@@ -242,5 +230,5 @@ they do their job. Get the hint?
     &:after{
         clear: both !important;
     }
-   
+
 }

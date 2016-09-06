@@ -1,50 +1,4 @@
 /*
-@name debounce
-https://davidwalsh.name/javascript-debounce-function
-
-@example
-var myFunction = debounce(function(){
-    // Do something classy here
-}, 150);
-
-myFunction();
-*/
-
-function debounce(func, wait, immediate) {
-
-    'use strict';
-
-
-    var timeout;
-
-    return function() {
-
-        var context = this, args = arguments;
-
-        var later = function() {
-            timeout = null;
-            if (!immediate){
-                func.apply(context, args);
-            }
-        };
-
-        var callNow = immediate && !timeout;
-
-        clearTimeout(timeout);
-
-        timeout = setTimeout(later, wait);
-
-        if (callNow){
-            func.apply(context, args);
-        }
-    };
-}
-
-
-
-
-
-/*
 @property bbjs.itHasTouch
 
 @description
@@ -67,7 +21,7 @@ bbjs.itHasTouch = function(ignoreDesktopTouch){
     } else {
         return bbjs.cache.$html.hasClass("touchevents");
     }
-    
+
 };
 
 
@@ -86,7 +40,7 @@ Animate scrollTo position.
 bbjs.animateScroll = function(pos, speed){
 
     'use strict';
-    
+
     if(!isNaN(pos)){
 
         bbjs.cache.$body.add(bbjs.cache.$html).animate({
@@ -96,32 +50,6 @@ bbjs.animateScroll = function(pos, speed){
     } else {
         throw new Error("animateScroll pos is NaN");
     }
-};
-
-
-
-
-
-/*
-@property bbjs.uniqueArray
-
-@example
-var myArray = ["fuck", "fuck", "shit"];
-uniqueArray(myArray);
-
-@param {array} array - the array we will be making unique.
-
-@returns {array} - a unique array, meaning, no key is the same.
-*/
-
-bbjs.uniqueArray = function(array){
-
-    'use strict';
-
-    return array.filter(function(el, index, arr) {
-        return index === arr.indexOf(el);
-    });
-
 };
 
 
@@ -209,7 +137,7 @@ Shows and hides modals with cookie based detection.
 bbjs.modals = function(){
 
     'use strict';
-    
+
 
     var settings = {
 

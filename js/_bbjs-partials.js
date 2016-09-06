@@ -4,7 +4,6 @@
 
 
 
-// @codekit-prepend "_bbjs-plugins.js";
 // @codekit-prepend "_bbjs-functions.js";
 // @codekit-prepend "_bbjs-utilities.js";
 
@@ -26,12 +25,7 @@ all of our BBJS namespaced functions.
 (function(){
 
     'use strict';
-    
-    bbjs.modals.init();
 
-    // [http://www.appelsiini.net/projects/lazyload]
-    if(bbjs.settings.lazyload.enable){
-        bbjs.callLazy();
-    }
+    bbjs.modals.init();
 
 })();

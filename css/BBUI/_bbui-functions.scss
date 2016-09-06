@@ -35,7 +35,7 @@ A key in our $media-query map that we are fetching.
         }
 
     } @else {
-        
+
         @media #{$query}{
             @content;
         }
@@ -51,7 +51,7 @@ A key in our $media-query map that we are fetching.
 @name convertMQ
 
 @description
-Function to convert a media query value from our 
+Function to convert a media query value from our
 $media-query-values to a min or max media query
 by adding or subtracting 1 from the value.
 This is useful to prevent media queries conflicting
@@ -76,7 +76,7 @@ Determines whether to convert to min or max.
     @if (map_has_key($media-query-values, $MQValue)){
 
         $query: "";
-    
+
         @if($toMax == true){
             $query: map-get($media-query-values, $MQValue) - 1;
         } @else {
@@ -144,7 +144,7 @@ with a fixed or absolute position.
     overflow-x: hidden;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
-    
+
     // Fixed doesn't play well on touch.
     @include touch{
         position: absolute;
@@ -203,7 +203,7 @@ With changing number of columns.
         } @else {
             width: (100% / $cols) - $widthOffset;
         }
-        
+
         @if($cols > 1){
             margin-bottom: (100 - ((100% / $cols - $widthOffset) * $cols)) / ($cols - 1);
         } @else {
@@ -211,7 +211,7 @@ With changing number of columns.
         }
 
         @for $i from $cols through 1{
-            
+
             &:nth-last-of-type(#{$i}){
                 margin-bottom: 0;
             }
@@ -225,7 +225,7 @@ With changing number of columns.
     @at-root{
 
         .no-flexbox{
-            
+
             .#{$className}__item{
                 padding-left:  1%;
                 padding-right: 1%;
@@ -283,12 +283,12 @@ the SASS map where we get the data from
 and iterate through the key-value pairs.
 
 @param {boolean} createMQs
-Determines whether to wrap the styles in media queries along 
+Determines whether to wrap the styles in media queries along
 with the the regular styles. It gets the media queries
 from our $media-query map.
 
 @param {string} className
-Optional. The classname that will be outputted, 
+Optional. The classname that will be outputted,
 suffixed with "--" then the value of the property.
 Ex: text-decoration--none
 The suffix is for a BEM like structure.
@@ -303,15 +303,15 @@ If omitted, the class name will default to the param $property's value.
     @each $key, $value in $map{
 
         @if ($value != ""){
-            
+
             .#{$className} {
-            
+
                 &--#{$key}{
                     #{$property}: $value !important;
                 }
 
             }
-            
+
         } @else {
             @warn "Value missing when trying to createClassesFromMap().";
         }
@@ -319,7 +319,7 @@ If omitted, the class name will default to the param $property's value.
     }
 
     @each $key, $value in $map{
-        
+
         @if (type_of($createMQs) != bool){
             @error "$createMQs is not of boolean type.";
         } @elseif ($createMQs == true){
@@ -327,7 +327,7 @@ If omitted, the class name will default to the param $property's value.
             @each $MQKey, $MQValue in $media-query{
 
                 @media #{$MQValue}{
-            
+
                     .#{$className}--#{$key}-on-#{$MQKey}{
                         #{$property}: $value !important;
                     }
@@ -362,11 +362,11 @@ Mixin for checking if the browser supports flex.
 @mixin noFlex{
 
     $selector: &;
-    
+
     @at-root{
 
         .no-flexbox{
-            
+
             #{$selector}{
                 @content;
             }
@@ -396,11 +396,11 @@ excluding desktop.
 @mixin touch{
 
     $selector: &;
-    
+
     @at-root{
 
         .touchevents:not(.desktop){
-            
+
             #{$selector}{
                 @content;
             }
@@ -426,11 +426,11 @@ a given media query from our $media-query map.
     [class*="display-on--"]{
         display: none !important;
     }
-    
+
     @each $key, $value in $media-query{
-        
+
         @media #{$value}{
-            
+
             .display-on--#{$key}{
                 display: block !important;
             }

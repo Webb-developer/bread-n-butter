@@ -36,7 +36,7 @@ Functionality for this is in _bbjs-utilities.js
     height: 3px;
     transition: width map-get($transition-speed, "medium") map-get($transition-type, "ease");
     pointer-events: none;
-    
+
     // Most mobile browser's have a load bar by default.
     @include touch{
         display: none;
@@ -88,7 +88,7 @@ Functionality for this is in _bbjs-utilities.js
 
 
 .close-icon{
-    
+
     &:after{
         content: map-deep-get($close-icon, "icon" "symbol");
         display: block;
@@ -119,14 +119,6 @@ Functionality for this is in _bbjs-utilities.js
 }
 
 
-.closer--to-left{
-    right: inherit;
-    left: 0;
-}
-
-
-
-
 
 
 /*------------------------------------*\
@@ -148,103 +140,6 @@ Functionality for this is in _bbjs-utilities.js
 
     &[disabled]{
         @extend .disabled;
-    }
-}
-
-
-
-
-
-/*------------------------------------*\
-    #WYSIWYG
-\*------------------------------------*/
-
-
-
-/*
-@description
-Wrapper for user entered content to "reset" styles.
-
-@example [HTML]
-<div class="wysiwyg"></div>
-*/
-
-.wysiwyg{
-    
-    // h1-h4 styles will be inherited from bbui_base
-    h1, h2{
-        margin-top: map-get($spacing, "l");
-    }
-
-    h3{
-        margin-top: map-get($spacing, "m");
-    }
-
-    h4{
-        margin-top: map-get($spacing, "s");
-    }
-
-    ol,
-    ul{
-        margin-top: map-get($spacing, "s");
-        margin-left: map-get($spacing, "m");
-    }
-
-    ol{
-        list-style-type: decimal;
-    }
-
-    ul{
-        list-style-type: square;
-    }
-
-    p{
-        margin-top: map-get($spacing, "s");
-    }
-
-    b,
-    strong{
-        @if(map_has_key($font-family, "bold")){
-            font-family: map-get($font-family, "bold");
-        } @else {
-            font-weight: 700;
-        }
-    }
-}
-
-
-
-
-
-/*------------------------------------*\
-    #BREADCRUMBS
-\*------------------------------------*/
-
-
-
-/*
-@example [HTML]
-<ul>
-    <li class='breadcrumb'></li>
-    <li class='breadcrumb'></li>
-</ul>
-*/
-
-.breadcrumb{
-    display: block;
-    float: left;
-
-    &:after{
-        content: "/";
-        display: inline-block;
-        padding: 0 5px;
-    }
-
-    &:nth-last-of-type(1){
-
-        &:after{
-            display: none;
-        }
     }
 }
 
@@ -352,16 +247,17 @@ Simple content dropdowns
 
 
 .dropdown--toggled,
-.dropdown--hover:hover{
-    
+.dropdown--hover:hover,
+.dropdown[aria-expanded="true"]{
+
     .dropdown__content{
         max-height: map-get($dropdown, "max-height");
         overflow-x: hidden;
         overflow-y: auto;
     }
-    
+
     .dropdown__summary{
-        
+
         &:after{
             content: attr(data-icon-active);
         }
@@ -400,7 +296,7 @@ Slide out from left or right drawers.
     transform: translateZ(0);
     -webkit-overflow-scrolling: touch;
     width: map-get($drawer, "width");
-    
+
     @include touch{
         position: absolute;
     }
@@ -465,7 +361,7 @@ Slide out from left or right drawers.
 }
 
 
-// Anything with this class will be 
+// Anything with this class will be
 // pushed left or right when a drawer is open
 .will-move{
     transition: transform map-get($drawer, "transition");

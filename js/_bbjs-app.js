@@ -29,25 +29,6 @@ window.bbjs = {};
 
 
 
-
-/*
-@property bbjs.settings
-
-@description
-Some basic bbjs configuration
-*/
-
-bbjs.settings = {
-
-    lazyload: {
-        enable: true
-    }
-
-};
-
-
-
-
 /*
 @property bbjs.cache
 
@@ -58,14 +39,11 @@ rather then getting to ensure up to date results.
 */
 
 bbjs.cache = {
-
     $html:   $("html"),
-
     $body:   $("body"),
-    
     $window: $(window)
-
 };
+
 
 
 
@@ -75,12 +53,6 @@ bbjs.cache = {
 \*------------------------------------*/
 
 
-
-/*
-Optional includes.
-*/
-
-// @codekit-prepend "vendor/_lazyload.js";
 
 
 /*

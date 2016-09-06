@@ -153,7 +153,7 @@ every x ms/s, to simulate a progress bar.
             /**
             @property {number} counter.value
             The intitial counter value. Leave at 0.
-            */  
+            */
             value: 0,
 
             /**
@@ -224,7 +224,7 @@ Clear input placeholders on focus.
 
 
     var settings = {
-        enable: true
+        enable: false
     };
 
 
@@ -283,7 +283,7 @@ Would output: "search--toggled" class on the html element.
 
 @example
 <div>
-    <div class='js-toggle' data-toggle='dropdown' toggle-parent></div>
+    <div class='js-toggle' data-toggle='dropdown' data-toggle-parent="true"></div>
 </div>
 Would output: "dropdown--toggled" class on the parent.
 */
@@ -312,7 +312,7 @@ Would output: "dropdown--toggled" class on the parent.
             /**
             @property {string} settings.element.toggleParent
             */
-            toggleParent: "toggle-parent"
+            dataToggleParent: "toggle-parent"
         },
 
         /**
@@ -341,11 +341,11 @@ Would output: "dropdown--toggled" class on the parent.
             var classes = $self.data(settings.element.dataToggle).split(" ");
 
 
-            // Loop through each of the classes in the 
+            // Loop through each of the classes in the
             classes.forEach(function(attrClass){
 
                 // Toggle the immediate parent.
-                if($self[0].hasAttribute(settings.element.toggleParent)){
+                if($self.data(settings.element.dataToggleParent) == "true"){
                     $self.parent().toggleClass(attrClass.concat(settings.toggledClass));
                 } else {
                     bbjs.cache.$html.toggleClass(attrClass.concat(settings.toggledClass));
@@ -378,7 +378,6 @@ This function hides a .drawer via click of settings.overlay
 
     'use strict';
 
-
     var settings = {
 
         // The element that we click to hide the drawer.
@@ -388,7 +387,6 @@ This function hides a .drawer via click of settings.overlay
         classes: "drawer--right--toggled  drawer--left--toggled"
 
     };
-
 
     $(document).on("click", settings.overlay, function(){
         bbjs.cache.$html.removeClass(settings.classes);

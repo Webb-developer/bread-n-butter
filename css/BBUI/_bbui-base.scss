@@ -2,7 +2,7 @@
 @name base
 
 @guide
-The basic styles. Base includes normalizing, resetting 
+The basic styles. Base includes normalizing, resetting
 and applying base defaults. There should be no classes except
 for ones that pair with a default. Ex: h1, .h1
 */
@@ -317,13 +317,10 @@ input,
 button,
 select,
 textarea{
-    box-shadow: none;
-    outline:    none;
-    border:     none;
     appearance: none;
     font:  inherit;
     color: inherit;
-    background: transparent;
+    background: none;
     border-radius: 0;
     touch-action: manipulation;
 }
@@ -336,17 +333,17 @@ textarea{
 
 
 :-moz-placeholder {
-   color: inherit;  
+   color: inherit;
 }
 
 
 ::-moz-placeholder {
-   color: inherit;  
+   color: inherit;
 }
 
 
-:-ms-input-placeholder {  
-   color: inherit;  
+:-ms-input-placeholder {
+   color: inherit;
 }
 
 
@@ -487,5 +484,4 @@ body{
     font-family: map-get($font-family, "base");
     font-size: map-get($font-size, "base");
     line-height: map-get($line-height, "m");
-    position: relative;
 }
